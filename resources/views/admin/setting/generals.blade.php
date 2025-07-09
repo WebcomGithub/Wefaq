@@ -34,16 +34,25 @@
 
                         <div class="col-sm-6 mb-5">
                             {{ Form::label('about_us', __('messages.setting.about_us_ar').':', ['class' => 'form-label required']) }}
+{{--
                             {{ Form::textarea('about_us_ar', json_decode($setting['about_us_lang'], true)['ar'], ['class' => 'form-control', 'required', 'placeholder' => __('messages.setting.about_us'), 'maxLength'=>5000]) }}
+
+--}}
+                            {{ Form::textarea('about_us_ar',optional(json_decode($setting['about_us_lang'] ?? '{}', true))['ar'] ?? '',['class' => 'form-control', 'required', 'placeholder' => __('messages.setting.about_us'), 'maxLength'=>5000]) }}
+
                         </div>
                         <div class="col-sm-6 mb-5">
                             {{ Form::label('about_us', __('messages.setting.about_us').':', ['class' => 'form-label required']) }}
                             {{ Form::textarea('about_us', $setting['about_us'], ['class' => 'form-control', 'required', 'placeholder' => __('messages.setting.about_us'), 'maxLength'=>5000]) }}
                         </div>
-                        
+
                         <div class="col-sm-6 mb-5">
                             {{ Form::label('about_us', __('messages.setting.about_us_tr').':', ['class' => 'form-label required']) }}
+{{--
                             {{ Form::textarea('about_us_tr', json_decode($setting['about_us_lang'], true)['tr'], ['class' => 'form-control', 'required', 'placeholder' => __('messages.setting.about_us'), 'maxLength'=>5000]) }}
+--}}
+                            {{ Form::textarea('about_us_ar',optional(json_decode($setting['about_us_lang'] ?? '{}', true))['ar'] ?? '',['class' => 'form-control', 'required', 'placeholder' => __('messages.setting.about_us'), 'maxLength'=>5000]) }}
+
                         </div>
 
 
