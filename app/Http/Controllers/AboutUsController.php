@@ -14,7 +14,7 @@ use Laracasts\Flash\Flash;
 
 class AboutUsController extends AppBaseController
 {
-    /** Test
+    /**
      * @var AboutUsRepository
      */
     private $aboutUsRepository;
