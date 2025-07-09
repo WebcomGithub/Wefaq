@@ -2,18 +2,101 @@
 @php
     $pages  = pages();
 @endphp
-<header>
+{{-- new update--}}
+<style>
+    .social-icons .social-icon {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        width: 30px;
+        height: 30px;
+        background-color: #f1f1f1;
+        color: #333;
+        border-radius: 50%;
+        text-decoration: none;
+        font-size: 14px;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .social-icon.facebook:hover {
+        background-color: #3b5998;
+        color: white;
+    }
+
+    .social-icon.twitter:hover {
+        background-color: #1da1f2;
+        color: white;
+    }
+    .nav-item {
+        position: relative;
+    }
+
+    .nav-item > .dropdown-nav {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        display: none;
+        background: white;
+        min-width: 200px;
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        z-index: 999;
+    }
+
+    .nav-item:hover > .dropdown-nav {
+        display: block;
+    }
+
+    .dropdown-nav li a {
+        display: block;
+        padding: 8px 16px;
+        color: #333;
+        text-decoration: none;
+        transition: background-color 0.3s;
+    }
+
+    .dropdown-nav li a:hover {
+        background-color: #f0f0f0;
+    }
+
+
+
+</style>
+<header class="sticky-top bg-white shadow-sm">
     <div class="container">
         <div class="row align-items-center">
-            <div class="col-lg-1 col-4">
-                <div class="header-logo">
+            <div class="col-lg-3 col-4 d-flex align-items-center">
+                {{-- الشعار --}}
+                <div class="header-logo me-2" style="max-width: 60px;">
                     <a href="{{ route('landing.home') }}">
-                        <img src="{{ getLogoUrl() ? : asset('front_landing/images/ing-logo.png')}}" alt="Jobs"
-                             class="w-100 h-100"/>
+                        <img src="{{ getLogoUrl() ?: asset('front_landing/images/wefaq-logo.jpg') }}" alt="Jobs"
+                             class="img-fluid" />
+                    </a>
+                </div>
+
+                {{-- أيقونات التواصل بشكل أفقي --}}
+                <div class="social-icons d-flex flex-row gap-2">
+                    <a href="{{ $settings['facebook_url'] }}" target="_blank" class="social-icon facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="{{ $settings['twitter_url'] }}" target="_blank" class="social-icon twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="{{ $settings['linkedin_url'] }}" target="_blank" class="social-icon twitter">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="{{ $settings['instagram_url'] }}" target="_blank" class="social-icon twitter">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="{{ $settings['youtube_url'] }}" target="_blank" class="social-icon twitter">
+                        <i class="fab fa-youtube"></i>
                     </a>
                 </div>
             </div>
-            <div class="col-lg-11 col-8 ">
+
+            <div class="col-lg-9 col-8 ">
                 <nav class="navbar navbar-expand-lg navbar-dark justify-content-end py-0">
                     <button class="navbar-toggler border-0 p-0" type="button" data-bs-toggle="collapse"
                             data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
@@ -22,21 +105,41 @@
                     <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                         <ul class="navbar-nav align-items-center py-2 py-lg-0">
                             <li class="nav-item">
-                                <a class="nav-link {{ Request::is('/') ? 'active' : ''}}  fw-5 fs-14"
+                                <a class="nav-link text-dark {{ Request::is('/') ? 'active' : ''}}  fw-5 fs-14"
                                    aria-current="page"
                                    href="{{ route('landing.home') }}">{{__('messages.front_landing.home')}}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link {{ Request::is('about-us') ? 'active' : ''}} fw-5 fs-14"
+                                <a class="nav-link text-dark {{ Request::is('about-us') ? 'active' : ''}} fw-5 fs-14"
                                    href="{{ route('landing.about') }}">{{__('messages.front_landing.about')}}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link {{ Request::is('causes','c/*') ? 'active' : '' }} fw-5  fs-14"
+                                <a class="nav-link text-dark {{ Request::is('causes','c/*') ? 'active' : '' }} fw-5  fs-14"
                                    href="{{ route('landing.causes') }}">{{__('messages.front_landing.causes')}}</a>
+                                <ul class="dropdown-nav ps-0">
+                                    @foreach ($data['campaigns'] as $campaign)
+                                        <li>
+                                            <a href="{{ route('landing.campaign.details',$campaign->slug) }}"
+                                               class="fs-14 fw-5 text-dark {{ Request::is('page/' . $campaign->id) ? 'active' : '' }}">
+                                                {{ App::getLocale() == 'AR' && $campaign->title_lang
+                                                    ? Str::limit($campaign->title_lang['ar'] ?? '', 70)
+                                                    : (App::getLocale() == 'TR' && $campaign->title_lang
+                                                        ? Str::limit($campaign->title_lang['tr'] ?? '', 70)
+                                                        : Str::limit($campaign->title, 70)
+                                                    )
+                                                }}
+                                            </a>
+                                            <br>
+                                            <small class="text-muted">{{ $campaign->created_at->format('d M Y') }}</small>
+                                        </li>
+                                    @endforeach
+
+                                </ul>
                             </li>
-                            <li class="nav-item">
+                            {{--<li class="nav-item">
                                 <a href="#"
-                                   class="nav-link fw-5  fs-14 {{ Request::is('faqs','events','teams','event-details/*','page*') ? 'active' : '' }}">{{__('messages.pages')}}</a>
+                                   class="nav-link text-dark fw-5  fs-14 {{ Request::is('faqs','events','teams','event-details/*','page*') ? 'active' : '' }}">{{__('messages.pages')}}
+                                   </a>
                                 <ul class="dropdown-nav ps-0">
                                     <li><a href="{{ route('landing.faqs') }}"
                                            class="fs-14 fw-5 {{ Request::is('faqs') ? 'active' : '' }}">{{__('messages.faqs.faqs')}}</a>
@@ -48,25 +151,59 @@
                                         @if ($page->is_active)
                                             <li>
                                                 <a href="{{ route('landing.page.detail', $page->id) }}"
-                                                    class="fs-14 fw-5 {{ Request::is('page/' . $page->id) ? 'active' : '' }}">{!! nl2br(\Illuminate\Support\Str::limit($page->name)) !!}</a>
+                                                    class="fs-14 fw-5 text-dark {{ Request::is('page/' . $page->id) ? 'active' : '' }}">{!! nl2br(\Illuminate\Support\Str::limit($page->name)) !!}</a>
                                             </li>
                                         @endif
                                     @endforeach
                                     <li><a href="{{ route('landing.team') }}"
-                                            class="fs-14 fw-5 {{ Request::is('teams') ? 'active' : '' }}">{{ __('messages.front_landing.team') }}</a>
+                                            class="fs-14 fw-5 text-dark {{ Request::is('teams') ? 'active' : '' }}">{{ __('messages.front_landing.team') }}</a>
                                     </li>
+                                </ul>
+                            </li>--}}
+                            <li class="nav-item">
+                                <a class="nav-link text-dark  fw-5 fs-14 {{ Request::is('news', 'news-details*') ? 'active' : '' }}"
+                                    href="{{ route('landing.news') }}">{{ __('messages.news.news') }}</a>
+                                <ul class="dropdown-nav ps-0">
+                                    @foreach ($latestFiveNews as $news)
+                                            <li>
+                                                <a href="{{route('landing.news-details',$news->slug)}}"
+                                                   class="fs-14 fw-5 text-dark {{ Request::is('page/' . $news->id) ? 'active' : '' }}">{!! nl2br(\Illuminate\Support\Str::limit($news->title)) !!}</a>
+                                                <br>
+                                                <small class="text-muted">{{ $news->created_at->format('d M Y') }}</small>
+
+                                            </li>
+                                    @endforeach
                                 </ul>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link  fw-5 fs-14 {{ Request::is('news', 'news-details*') ? 'active' : '' }}"
-                                    href="{{ route('landing.news') }}">{{ __('messages.news.news') }}</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link  fw-5  fs-14 {{ Request::is('contact-us') ? 'active' : '' }}"
+                                <a class="nav-link text-dark  fw-5  fs-14 {{ Request::is('contact-us') ? 'active' : '' }}"
                                     href="{{ route('landing.contact') }}">{{ __('messages.contact_us.contact_us') }}</a>
                             </li>
+                            {{--تقدييم شكوى--}}
                             <li class="nav-item">
-                                <a href="#" class="nav-link fw-5  fs-14">
+                                <a class="btn btn-danger fw-bold px-3 py-2 ms-lg-2 {{ Request::is('contact-us') ? 'active' : '' }}"
+                                   href="{{ route('landing.contact') }}">
+                                    {{ __('messages.front_landing.complaints_tab') }}
+                                </a>
+                            </li>
+
+                            {{--تقارير الجمعية--}}
+                            <li class="nav-item">
+                                <a class="nav-link text-dark  fw-5  fs-14 {{ Request::is('contact-us') ? 'active' : '' }}"
+                                   href="{{ route('landing.contact') }}">{{ __('messages.front_landing.association_reports') }}</a>
+                                <ul class="dropdown-nav ps-0">
+                                    @foreach ($pages as $page)
+                                        @if ($page->is_active)
+                                            <li>
+                                                <a href="{{ route('landing.page.detail', $page->id) }}"
+                                                   class="fs-14 fw-5 text-dark {{ Request::is('page/' . $page->id) ? 'active' : '' }}">{!! nl2br(\Illuminate\Support\Str::limit($page->name)) !!}</a>
+                                            </li>
+                                        @endif
+                                    @endforeach
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link text-dark fw-5  fs-14">
                                     <i class="fas fa-language me-1"></i>
                                     {{ getHeaderLanguageName() }}</a>
                                 <ul class="dropdown-nav ps-0">
@@ -86,7 +223,7 @@
 
                         {{-- <a href="https://online.fliphtml5.com/jhzny/ulww/" target="_blank" class="btn btn-primary mb-3 mb-lg-0">Profile</a> --}}
 
-                        </div> 
+                        </div>
                     </div>
                 </nav>
                 <!--start mobile-menu -->
