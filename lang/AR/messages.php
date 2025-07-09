@@ -594,7 +594,7 @@
     'donate' => 'Donate',
     'view_all' => 'View All',
     'insights' => 'Insights',
-    'news_feeds' => 'News Feeds',
+    'news_feeds' => 'خلاصات الأخبار',
     'read_more' => 'Read More',
     'related_tags' => 'Related Tags',
     'social_share' => 'Social Share',

@@ -20,7 +20,6 @@ $brands = brands();
                         @endfor
                     </div>
                     <div class="carousel-inner">
-
                         {{--@foreach($data['campaigns'] as $campaign)
                             <div class="carousel-item {{$loop->first ? 'active' : ''}}">
                                 <div class="inner-bgimg position-relative object-fit-cover"
