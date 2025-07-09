@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreatePageRequest;
 use App\Http\Requests\UpdatePageRequest;
+use App\Models\Campaign;
+use App\Models\CampaignCategory;
+use App\Models\News;
 use App\Models\Page;
 use App\Repositories\PageRepository;
 use Illuminate\Console\Application;
@@ -119,8 +122,13 @@ class PageController extends AppBaseController
         if ($page->is_active == Page::INACTIVE){
             return redirect(route('landing.home'));
         }
-        
-        return view('front_landing.page_detail', compact('page'));
+        $data['campaigns'] = Campaign::with('campaignCategory', 'user')->where('status',
+            Campaign::STATUS_ACTIVE)->latest()->take(6)->orderBy('is_emergency', 'desc')->get();
+        $latestFiveNews = News::latest()->take(5)->get();
+
+
+
+        return view('front_landing.page_detail', compact('page','data','latestFiveNews'));
     }
 
     /**

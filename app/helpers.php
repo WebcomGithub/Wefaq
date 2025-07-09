@@ -75,6 +75,13 @@ function pages()
 
     return $page;
 }
+function latestFiveNews()
+{
+    $latestFiveNews = News::latest()->take(5)->get();
+
+    return $latestFiveNews;
+
+}
 
 /**
  * @return int

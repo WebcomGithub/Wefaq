@@ -1,6 +1,11 @@
 {{--<!-- start-companies-logo section -->--}}
 <section class="companies-logo-section pt-100 pb-100 bg-gray" style="direction: ltr">
     <div class="container">
+        <div class="text-center mb-10">
+            <h2 class="fs-6 fw-6 text-primary">{{__('messages.front_landing.our_partners')}}</h2>
+            <br>
+            <br>
+        </div>
         <div class="slick-slider">
             @foreach($brands as $brand)
                 <div class="slide d-flex justify-content-center">
@@ -27,13 +32,29 @@
                         </a>
                     </div>
                     <p class="fs-14 text-white mb-0">
-                        @if (App::getLocale() == 'AR' && $settings['about_us_lang'] != null)
+                       {{-- @if (App::getLocale() == 'AR' && $settings['about_us_lang'] != null)
                             {{ json_decode($settings['about_us_lang'], true)['ar'] }}
                         @elseif (App::getLocale() == 'TR' && $settings['about_us_lang'] != null)
                             {{ json_decode($settings['about_us_lang'], true)['tr'] }}
                         @else
                             {{ Str::limit($settings['about_us'] , 350) }}
+                        @endif--}}
+                        @if (
+    App::getLocale() == 'AR' &&
+    !empty($settings['about_us_lang']) &&
+    json_decode($settings['about_us_lang'], true)['ar'] ?? false
+)
+                            {{ json_decode($settings['about_us_lang'], true)['ar'] }}
+                        @elseif (
+                            App::getLocale() == 'TR' &&
+                            !empty($settings['about_us_lang']) &&
+                            json_decode($settings['about_us_lang'], true)['tr'] ?? false
+                        )
+                            {{ json_decode($settings['about_us_lang'], true)['tr'] }}
+                        @else
+                            {{ Str::limit($settings['about_us'] ?? '', 350) }}
                         @endif
+
                     </p>
                 </div>
             </div>
@@ -85,9 +106,9 @@
             </div>
         </div>
         <div class="text-center mt-4">
-            <p>Design By: 
+            <p>
                 <a href="https://webcom.technology/ar" target="_blank" rel="noopener noreferrer">
-                    WebCom.Technology
+                    حميع الحقوق محفوظة لجمعية وفاق لرعاية المرأة والطفل
                 </a>
             </p>
         </div>

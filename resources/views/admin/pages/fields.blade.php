@@ -8,6 +8,7 @@
     <div class="col-lg-12">
         <div class="mb-5">
             {{ Form::label('title', __('messages.common.title').':', ['class' => 'required form-label']) }}
+            {{ Form::text('title',null, ['class' => 'form-control', 'placeholder' => __('messages.common.title'),'maxlength'=>'30']) }}
             {{ Form::text('title',null, ['class' => 'form-control', 'placeholder' => __('messages.common.title'),'maxlength'=>'25']) }}
         </div>
     </div>
