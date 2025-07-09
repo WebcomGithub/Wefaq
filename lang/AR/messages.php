@@ -17,7 +17,7 @@
   'search' => 'Search',
   'back_front_cms' => 'Front CMS',
   'no_news_found' => 'No news found',
-  'common' => 
+  'common' =>
   array (
     'filter_option' => 'Filter',
     'save' => 'Save',
@@ -86,7 +86,7 @@
     'previous' => 'Previous',
     'next' => 'Next',
   ),
-  'user' => 
+  'user' =>
   array (
     'profile_details' => 'Profile Details',
     'avatar' => 'Avatar',
@@ -114,7 +114,7 @@
     'edit_user' => 'Edit User',
     'user_details' => 'User Details',
   ),
-  'campaign' => 
+  'campaign' =>
   array (
     'campaign_categories' => 'Campaign Categories',
     'edit_category' => 'Edit Category',
@@ -172,12 +172,12 @@
     'donors' => 'Donors',
     'received_funds' => 'Received Funds',
   ),
-  'campaign_faqs' => 
+  'campaign_faqs' =>
   array (
     'campaign_faqs' => 'Campaign FAQs',
     'campaign_faqs_details' => 'Campaign FAQ Details',
   ),
-  'categories' => 
+  'categories' =>
   array (
     'categories' => 'Categories',
     'title_1' => 'Title 1',
@@ -193,18 +193,18 @@
     'category_title' => 'Category Title',
     'category_description' => 'Category Description',
   ),
-  'second_video_section' => 
+  'second_video_section' =>
   array (
     'second_video_section' => 'Video Section',
   ),
-  'campaign_updates' => 
+  'campaign_updates' =>
   array (
     'campaign_updates' => 'Campaign Updates',
     'add_campaign_updates' => 'Add Campaign Updates',
     'edit_campaign_updates' => 'Edit Campaign Updates',
     'campaign_update_details' => 'Campaign Update Details',
   ),
-  'campaign_transactions' => 
+  'campaign_transactions' =>
   array (
     'campaign_transactions' => 'Transactions',
     'donated_amount' => 'Donated Amount',
@@ -216,21 +216,21 @@
     'donors_as_gift' => 'Donors With Gift Selection',
     'donor_details' => 'Donor Details',
   ),
-  'faqs' => 
+  'faqs' =>
   array (
     'faqs' => 'FAQs',
     'add_faqs' => 'Add FAQ',
     'edit_faqs' => 'Edit FAQ',
     'faq_details' => 'FAQ Details',
   ),
-  'success_story' => 
+  'success_story' =>
   array (
     'success_story' => 'Success Stories',
     'add_success_story' => 'Add Success Story',
     'edit_success_story' => 'Edit Success Story',
     'enter_short_description' => 'Enter Short Description',
   ),
-  'brand' => 
+  'brand' =>
   array (
     'brands' => 'شركأونا',
     'add_brand' => 'Add Brand',
@@ -238,19 +238,19 @@
     'edit_brand' => 'Edit Brand',
     'enter_brand_name' => 'Enter Brand Name',
   ),
-  'news_category' => 
+  'news_category' =>
   array (
     'news_categories' => 'News Categories',
     'add_news_category' => 'Add News Category',
     'edit_news_category' => 'Edit News Category',
   ),
-  'new_tag' => 
+  'new_tag' =>
   array (
     'news_tags' => 'News Tags',
     'add_new_tag' => 'Add News Tag',
     'edit_new_tag' => 'Edit News Tag',
   ),
-  'inquiries' => 
+  'inquiries' =>
   array (
     'inquiries' => 'Inquiries',
     'subject' => 'Subject',
@@ -258,7 +258,7 @@
     'phone' => 'Phone',
     'message' => 'Message',
   ),
-  'news' => 
+  'news' =>
   array (
     'news' => 'الأخبار',
     'news_categories' => 'News Categories',
@@ -271,7 +271,7 @@
     'news_details' => 'News Details',
     'category' => 'Category',
   ),
-  'setting' => 
+  'setting' =>
   array (
     'Cash' => 'Cash',
     'Check' => 'Check',
@@ -315,7 +315,7 @@
     'paypal_mode' => 'Paypal Mode',
     'donation_commission' => 'Donation Commission',
   ),
-  'country' => 
+  'country' =>
   array (
     'country' => 'Country',
     'countries' => 'Countries',
@@ -325,20 +325,20 @@
     'select_country' => 'Select Country',
     'enter_country_name' => 'Enter Country Name',
   ),
-  'state' => 
+  'state' =>
   array (
     'states' => 'states',
     'add_state' => 'Add State',
     'state' => 'State',
     'edit_state' => 'Edit State',
   ),
-  'city' => 
+  'city' =>
   array (
     'city' => 'City',
     'add_city' => 'Add City',
     'edit_city' => 'Edit City',
   ),
-  'role' => 
+  'role' =>
   array (
     'role' => 'Role',
     'add_role' => 'Add Role',
@@ -348,7 +348,7 @@
     'select_all_permissions' => 'Select All Permissions',
     'select_role' => 'Select Role',
   ),
-  'event' => 
+  'event' =>
   array (
     'events' => 'Events',
     'event_categories' => 'Event Categories',
@@ -361,14 +361,14 @@
     'registration' => 'Registration',
     'out_of' => 'Out Of',
   ),
-  'event_category' => 
+  'event_category' =>
   array (
     'event_categories' => 'Event Categories',
     'event_category' => 'Event Category',
     'add_event_category' => 'Add Event Category',
     'edit_event_category' => 'Edit Event Category',
   ),
-  'page' => 
+  'page' =>
   array (
     'page_name' => 'Page Name',
     'add_page' => 'Add Page',
@@ -376,11 +376,11 @@
     'edit_page' => 'Edit Page',
     'cause_details' => 'Projects Details',
   ),
-  'email_subscribes' => 
+  'email_subscribes' =>
   array (
     'subscribes' => 'Subscribers',
   ),
-  'slider' => 
+  'slider' =>
   array (
     'sliders' => 'Sliders',
     'sliders_2' => 'Sliders 2',
@@ -396,7 +396,7 @@
     'slider_title_1' => 'Slider Title 1',
     'slider_title_2' => 'Slider Title 2',
   ),
-  'about_us' => 
+  'about_us' =>
   array (
     'about_us' => 'About Us',
     'years_of_exp' => 'Years Of Experience',
@@ -412,7 +412,7 @@
     'image_2' => 'Image 2',
     'about_us_title' => 'About Us Title',
   ),
-  'video_section' => 
+  'video_section' =>
   array (
     'video_section' => 'Video Section',
     'short_title' => 'Short Title English',
@@ -422,14 +422,14 @@
     'youtube_video_link' => 'Youtube Video Link',
     'enter_short_title' => 'Enter Short Title',
   ),
-  'contact_us' => 
+  'contact_us' =>
   array (
     'contact_us' => 'تواصل معنا',
     'menu_title' => 'Menu Title',
     'menu_image' => 'Menu Image',
     'enter_title' => 'Enter Title',
   ),
-  'events' => 
+  'events' =>
   array (
     'book_seat' => 'Book Seat',
     'events' => 'Events',
@@ -449,7 +449,7 @@
     'event_category' => 'Event Category',
     'event_details' => 'Event Details',
   ),
-  'call_to_actions' => 
+  'call_to_actions' =>
   array (
     'call_to_actions' => 'Call To Actions',
     'call_to_actions_details' => 'Call To Action Details',
@@ -457,33 +457,33 @@
     'address' => 'Address',
     'zip' => 'Zip',
   ),
-  'teams' => 
+  'teams' =>
   array (
     'teams' => 'Team Members',
     'designation' => 'Designation',
     'add_new_team' => 'Add Team Member',
     'edit_team' => 'Edit Team Member',
   ),
-  'terms_conditions' => 
+  'terms_conditions' =>
   array (
     'terms_conditions' => 'Terms Conditions',
     'privacy_policy' => 'Privacy Policy',
   ),
-  'news_comments' => 
+  'news_comments' =>
   array (
     'comments' => 'Comments',
     'website_name' => 'Web Site Name',
     'edit_news_comments' => 'Edit Comments',
   ),
-  'payment' => 
+  'payment' =>
   array (
     'donate_now' => 'Donate Now',
   ),
-  'profile' => 
+  'profile' =>
   array (
     'phone_number' => 'Phone Number',
   ),
-  'language' => 
+  'language' =>
   array (
     'new_language' => 'New Language',
     'edit_language' => 'Edit Language',
@@ -498,7 +498,7 @@
     'translation' => 'Translation',
     'select_file' => 'Select File',
   ),
-  'donation_gifts' => 
+  'donation_gifts' =>
   array (
     'donation_gifts' => 'Donation Gifts',
     'donation_amount' => 'Amount',
@@ -513,14 +513,14 @@
     'draft' => 'Draft',
     'gifts' => 'Gifts',
   ),
-  'withdraw' => 
+  'withdraw' =>
   array (
     'withdraw_request' => 'Withdraw Requests',
     'rejected_reasons' => 'Rejected Reasons',
     'your_notes' => 'Your Notes',
     'rejected_reason_notes' => 'Rejected Reason Notes',
   ),
-  'withdrawal' => 
+  'withdrawal' =>
   array (
     'withdrawal' => 'Withdrawal',
     'edit_withdrawal' => 'Edit Withdrawal',
@@ -534,7 +534,7 @@
     'charge_type' => 'Charge Type',
     'charge' => 'Charge',
   ),
-  'dashboards' => 
+  'dashboards' =>
   array (
     'registration_on' => 'Registration On',
     'total_users' => 'Total Users',
@@ -548,7 +548,7 @@
     'number_of_donation' => 'Number Of Donation',
     'total_commission_amount' => 'Total Commission Amount',
   ),
-  'front_landing' => 
+  'front_landing' =>
   array (
     'home' => 'الرئيسية',
     'about' => 'عن المؤسسة',
@@ -629,7 +629,7 @@
     'association_reports' => 'التقارير',
     'our_partners' => 'شركائنا',
   ),
-  'payout_setting' => 
+  'payout_setting' =>
   array (
     'payout_settings' => 'Payout Settings',
     'paypal' => 'PayPal',
