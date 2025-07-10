@@ -17,6 +17,9 @@ Route::middleware(['xss', 'setLanguage'])->group(function () {
     Route::get('/projects/{category?}', [LandingController::class, 'campaign'])->name('landing.causes');
     Route::get('/contact-us', [LandingController::class, 'contact'])->name('landing.contact');
     Route::post('/contact-us/get-in-touch', [LandingController::class, 'store'])->name('landing.contact.store');
+    Route::get('/complaints', [LandingController::class, 'complaints'])->name('landing.complaints');
+    Route::post('/complaints', [LandingController::class, 'complaints'])->name('landing.complaints');
+
     Route::get('/terms-conditions', [LandingController::class, 'termCondition'])->name('landing.terms-conditions');
     Route::get('/privacy-policy', [LandingController::class, 'privacyPolicy'])->name('landing.privacy-policy');
     Route::post('/email-subscribe', [EmailSubscribeController::class, 'store'])->name('email.subscribe.store');

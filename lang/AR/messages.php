@@ -11,7 +11,7 @@
   'first_cms' => 'First CMS',
   'front_cms_Third' => 'Third CMS',
   'front_cms_2' => 'Second CMS',
-  'pages' => 'Pages',
+  'pages' => 'التقارير',
   'languages' => 'Languages',
   'translation_manager' => 'Translation Manager',
   'search' => 'Search',
@@ -118,7 +118,7 @@
   array (
     'campaign_categories' => 'Campaign Categories',
     'edit_category' => 'Edit Category',
-    'campaigns' => 'Campaigns',
+    'campaigns' => 'البرامج',
     'languages' => 'Languages',
     'add_campaign' => 'Add Campaign',
     'edit_campaign' => 'Edit Campaign',
@@ -218,7 +218,7 @@
   ),
   'faqs' =>
   array (
-    'faqs' => 'FAQs',
+    'faqs' => 'الأسئلة الشائعة',
     'add_faqs' => 'Add FAQ',
     'edit_faqs' => 'Edit FAQ',
     'faq_details' => 'FAQ Details',
@@ -398,7 +398,7 @@
   ),
   'about_us' =>
   array (
-    'about_us' => 'About Us',
+    'about_us' => 'معلومات عنا',
     'years_of_exp' => 'Years Of Experience',
     'menu_title' => 'Menu Title English',
     'menu_title_ar' => 'Menu Title Arabic',
@@ -628,6 +628,10 @@
     'complaints_tab' => 'الشكاوى',
     'association_reports' => 'التقارير',
     'our_partners' => 'شركائنا',
+    'complaints' => 'الشكاوي',
+    'get_in_complaints' => 'تقديم الشكاوى',
+
+
   ),
   'payout_setting' =>
   array (

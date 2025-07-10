@@ -11,7 +11,7 @@
   'first_cms' => 'First CMS',
   'front_cms_Third' => 'Third CMS',
   'front_cms_2' => 'Second CMS',
-  'pages' => 'Pages',
+  'pages' => 'Reports',
   'languages' => 'Languages',
   'translation_manager' => 'Translation Manager',
   'search' => 'Search',
@@ -118,7 +118,7 @@
   array (
     'campaign_categories' => 'Campaign Categories',
     'edit_category' => 'Edit Category',
-    'campaigns' => 'Campaigns',
+    'campaigns' => 'Programs',
     'languages' => 'Languages',
     'add_campaign' => 'Add Campaign',
     'edit_campaign' => 'Edit Campaign',
@@ -232,7 +232,7 @@
   ),
   'brand' =>
   array (
-    'brands' => 'Brands',
+    'brands' => 'Partners',
     'add_brand' => 'Add Brand',
     'new_brand' => 'New Brand',
     'edit_brand' => 'Edit Brand',
@@ -628,6 +628,8 @@
     'complaints_tab' => 'Complaints',
     'association_reports' => 'Reports',
     'our_partners' => 'Our partners',
+    'complaints' => 'Complaints',
+    'get_in_complaints' => 'Get In Complaints',
 
   ),
   'payout_setting' =>
