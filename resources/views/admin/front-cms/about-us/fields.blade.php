@@ -3,7 +3,11 @@
         <div class="row">
             <div class="col-md-12 mb-5">
                 {{ Form::label('menu_title', __('messages.about_us.menu_title_ar').':', ['class' => ' form-label mb-2']) }}
+{{--
                 {{ Form::text('menu_title_ar', json_decode($aboutUs['menu_title_lang'], true)['ar'] ,['class' => 'form-control', 'placeholder' => __('messages.about_us.menu_title'), 'max' => '45']) }}
+--}}
+                {{ Form::text('menu_title_ar', optional(json_decode($aboutUs['menu_title_lang'] ?? '', true))['ar'] ?? '', ['class' => 'form-control', 'placeholder' => __('messages.about_us.menu_title'), 'max' => '45']) }}
+
             </div>
             <div class="col-md-12 mb-5">
                 {{ Form::label('title', __('messages.common.title').':', ['class' => 'required form-label mb-2']) }}
@@ -21,32 +25,61 @@
     </div>
     <div class="col-6">
         <div class="row">
-            
+
             <div class="col-md-12 mb-5">
                 {{ Form::label('menu_title', __('messages.about_us.menu_title').':', ['class' => 'required form-label mb-2']) }}
                 {{ Form::text('menu_title', $aboutUs['menu_title'] ,['class' => 'form-control', 'placeholder' => __('messages.about_us.menu_title'), 'required', 'max' => '45']) }}
             </div>
             <div class="col-md-12 mb-5">
                 {{ Form::label('menu_title', __('messages.about_us.menu_title_tr').':', ['class' => ' form-label mb-2']) }}
+{{--
                 {{ Form::text('menu_title_tr', json_decode($aboutUs['menu_title_lang'], true)['tr'] ,['class' => 'form-control', 'placeholder' => __('messages.about_us.menu_title'), 'max' => '45']) }}
+--}}
+                {{ Form::text('menu_title_tr', optional(json_decode($aboutUs['menu_title_lang'] ?? '', true))['tr'] ?? '', ['class' => 'form-control', 'placeholder' => __('messages.about_us.menu_title'), 'max' => '45']) }}
+
             </div>
 
             <div class="col-md-12 mb-5">
                 {{ Form::label('title', __('messages.common.title arabic').':', ['class' => ' form-label mb-2']) }}
+{{--
                 {{ Form::text('title_ar', json_decode($aboutUs['title_lang'], true)['ar'] ,['class' => 'form-control', 'placeholder' => __('messages.about_us.about_us_title'), 'max' => '45']) }}
+--}}
+                {{ Form::text('title_ar', optional(json_decode($aboutUs['title_lang'] ?? '', true))['ar'] ?? '', ['class' => 'form-control', 'placeholder' => __('messages.about_us.about_us_title'), 'max' => '45']) }}
+
             </div>
             <div class="col-md-12 mb-5">
                 {{ Form::label('title', __('messages.common.title turkish').':', ['class' => ' form-label mb-2']) }}
+{{--
                 {{ Form::text('title_tr', json_decode($aboutUs['title_lang'], true)['tr'] ,['class' => 'form-control', 'placeholder' => __('messages.about_us.about_us_title'), 'max' => '45']) }}
+--}}
+                {{ Form::text('title_tr', optional(json_decode($aboutUs['title_lang'] ?? '', true))['tr'] ?? '', ['class' => 'form-control', 'placeholder' => __('messages.about_us.about_us_title'), 'max' => '45']) }}
+
+
             </div>
 
             <div class="col-md-12 mb-5">
                 {{ Form::label('short_description', __('messages.common.short_description_ar').':', ['class' => ' form-label mb-2']) }}
+{{--
                 {{ Form::textarea('short_description_ar', json_decode($aboutUs['short_description_lang'], true)['ar'] ,['class' => 'form-control', 'placeholder' => __('messages.common.short_description'), 'maxLength'=>2000]) }}
+--}}
+                {{ Form::textarea(
+    'short_description_ar',
+    optional(json_decode($aboutUs['short_description_lang'] ?? '', true))['ar'] ?? '',
+    ['class' => 'form-control', 'placeholder' => __('messages.common.short_description'), 'maxLength' => 2000]
+) }}
+
             </div>
             <div class="col-md-12 mb-5">
                 {{ Form::label('short_description', __('messages.common.short_description_tr').':', ['class' => ' form-label mb-2']) }}
+{{--
                 {{ Form::textarea('short_description_tr', json_decode($aboutUs['short_description_lang'], true)['tr'] ,['class' => 'form-control', 'placeholder' => __('messages.common.short_description'), 'maxLength'=>2000]) }}
+--}}
+                {{ Form::textarea(
+    'short_description_tr',
+    optional(json_decode($aboutUs['short_description_lang'] ?? '', true))['tr'] ?? '',
+    ['class' => 'form-control', 'placeholder' => __('messages.common.short_description'), 'maxLength' => 2000]
+) }}
+
             </div>
             {{-- <div class="col-md-12 mb-5">
                 {{ Form::label('point_1', __('messages.about_us.point_1').':', ['class' => 'required form-label mb-2']) }}
@@ -83,11 +116,11 @@
                 </div>
                 <span class="picker-edit rounded-circle text-gray-500 fs-small" data-bs-toggle="tooltip"
                       data-placement="top" data-bs-original-title="Change Image">
-                        <label> 
-                            <i class="fa-solid fa-pen" id="profileImageIcon"></i> 
+                        <label>
+                            <i class="fa-solid fa-pen" id="profileImageIcon"></i>
                             <input type="file" name="menu_bg_image" id="menu_bg_image" class="image-upload d-none"
                                    accept="image/*"/>
-                        </label> 
+                        </label>
                     </span>
             </div>
         </div>
@@ -107,11 +140,11 @@
                 </div>
                 <span class="picker-edit rounded-circle text-gray-500 fs-small" data-bs-toggle="tooltip"
                       data-placement="top" data-bs-original-title="Change Image">
-                        <label> 
-                            <i class="fa-solid fa-pen" id="profileImageIcon"></i> 
+                        <label>
+                            <i class="fa-solid fa-pen" id="profileImageIcon"></i>
                             <input type="file" name="image_1" id="image_1" class="image-upload d-none"
                                    accept="image/*"/>
-                         </label> 
+                         </label>
                     </span>
             </div>
         </div>
@@ -131,11 +164,11 @@
                 </div>
                 <span class="picker-edit rounded-circle text-gray-500 fs-small" data-bs-toggle="tooltip"
                       data-placement="top" data-bs-original-title="Change Image">
-                        <label> 
-                            <i class="fa-solid fa-pen" id="profileImageIcon"></i> 
+                        <label>
+                            <i class="fa-solid fa-pen" id="profileImageIcon"></i>
                             <input type="file" name="image_2" id="image_2" class="image-upload d-none"
                                    accept="image/*"/>
-                         </label> 
+                         </label>
                     </span>
             </div>
         </div>

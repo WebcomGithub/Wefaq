@@ -160,7 +160,7 @@
     @include('landing.layouts.footer-three')
 @endif
 
-<a href="https://wa.me/123456789" class="floating-contact-button" target="_blank">
+<a href="{{$settings['phone'] }}" class="floating-contact-button" target="_blank">
     <img src="{{ asset('front_landing/images/WhatsApp.svg') }}" alt="WhatsApp" />
 </a>
 
@@ -191,5 +191,39 @@
     });
 </script>
 
+<script>
+    listen('submit', '#getIncomplaintForm', function (e) {
+        e.preventDefault();
+
+        let form = $(this)[0];
+        let formData = new FormData(form);
+
+        $.ajax({
+            url: route('landing.complaints'),
+            type: 'post',
+            data: formData,
+            processData: false,  // prevent jQuery from messing with FormData
+            contentType: false,  // let browser set correct multipart/form-data
+            success: function (result) {
+                if (result.success) {
+                    iziToast.success({
+                        title: 'Success',
+                        message: result.message,
+                        position: 'topRight',
+                    });
+                    form.reset();
+                }
+            },
+            error: function (result) {
+                iziToast.error({
+                    title: 'Error.',
+                    message: result.responseJSON?.message || 'An error occurred',
+                    position: 'topRight',
+                });
+            },
+        });
+    });
+
+</script>
 </body>
 </html>

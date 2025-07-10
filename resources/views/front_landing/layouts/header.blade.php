@@ -179,14 +179,6 @@
                                 <a class="nav-link text-dark  fw-5  fs-14 {{ Request::is('contact-us') ? 'active' : '' }}"
                                     href="{{ route('landing.contact') }}">{{ __('messages.contact_us.contact_us') }}</a>
                             </li>
-                            {{--تقدييم شكوى--}}
-                            <li class="nav-item">
-                                <a class="btn btn-danger fw-bold px-3 py-2 ms-lg-2 {{ Request::is('contact-us') ? 'active' : '' }}"
-                                   href="{{ route('landing.contact') }}">
-                                    {{ __('messages.front_landing.complaints_tab') }}
-                                </a>
-                            </li>
-
                             {{--تقارير الجمعية--}}
                             <li class="nav-item">
                                 <a class="nav-link text-dark  fw-5  fs-14 {{ Request::is('contact-us') ? 'active' : '' }}"
@@ -201,6 +193,14 @@
                                         @endif
                                     @endforeach
                                 </ul>
+                            </li>
+
+                            {{--تقدييم شكوى--}}
+                            <li class="nav-item">
+                                <a class="btn btn-danger fw-bold px-3 py-2 ms-lg-2 {{ Request::is('contact-us') ? 'active' : '' }}"
+                                   href="{{ route('landing.complaints') }}">
+                                    {{ __('messages.front_landing.complaints_tab') }}
+                                </a>
                             </li>
                             <li class="nav-item">
                                 <a href="#" class="nav-link text-dark fw-5  fs-14">
