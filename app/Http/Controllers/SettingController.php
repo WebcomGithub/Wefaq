@@ -66,7 +66,6 @@ class SettingController extends AppBaseController
         }
 
         $input = $request->all();
-
         if (isset($input['donation_commission'])) {
             $input['donation_commission'] = number_format($input['donation_commission'], 2);
         }

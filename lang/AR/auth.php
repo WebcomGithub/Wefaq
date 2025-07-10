@@ -2,66 +2,77 @@
 
 return [
 
-    'failed' => 'بيانات الاعتماد هذه لا تتطابق مع سجلاتنا.',
-    'throttle' => 'محاولات تسجيل الدخول كثيرة جدًا. يرجى المحاولة مرة أخرى بعد :seconds ثواني.',
+    /*
+    |--------------------------------------------------------------------------
+    | Authentication Language Lines
+    |--------------------------------------------------------------------------
+    |
+    | The following language lines are used during authentication for various
+    | messages that we need to display to the user. You are free to modify
+    | these language lines according to your application's requirements.
+    |
+    */
 
-    'full_name' => 'الاسم الكامل',
-    'email' => 'البريد الإلكتروني',
-    'password' => 'كلمة المرور',
-    'confirm_password' => 'تأكيد كلمة المرور',
-    'remember_me' => 'تذكرني',
-    'sign_in' => 'تسجيل الدخول',
-    'sign_out' => 'تسجيل الخروج',
-    'register' => 'تسجيل حساب جديد',
+    'failed' => 'These credentials do not match our records.',
+    'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
+
+    'full_name' => 'Full Name',
+    'email' => 'Email',
+    'password' => 'Password',
+    'confirm_password' => 'Confirm Password',
+    'remember_me' => 'Remember Me',
+    'sign_in' => 'Sign In',
+    'sign_out' => 'Sign out',
+    'register' => 'Register',
 
     'login' => [
-        'title' => 'تسجيل الدخول لبدء الجلسة',
-        'forgot_password' => 'نسيت كلمة المرور',
-        'register_membership' => 'تسجيل عضوية جديدة',
-        'enter_email' => 'أدخل البريد الإلكتروني',
-        'password' => 'كلمة المرور',
-        'confirm_password' => 'تأكيد كلمة المرور',
-        'new_password' => 'كلمة مرور جديدة',
-        'current_password' => 'كلمة المرور الحالية',
+        'title' => 'Sign in to start your session',
+        'forgot_password' => 'I forgot my password',
+        'register_membership' => 'Register a new membership',
+        'enter_email' => 'Enter Email',
+        'password' => 'Password',
+        'confirm_password' => 'Confirm Password',
+        'new_password' => 'New Password',
+        'current_password' => 'Current Password',
     ],
 
     'registration' => [
-        'title' => 'تسجيل عضوية جديدة',
-        'i_agree' => 'أوافق على',
-        'terms' => 'الشروط',
-        'have_membership' => 'لدي عضوية بالفعل',
-        'first_name' => 'أدخل الاسم الأول',
-        'last_name' => 'أدخل اسم العائلة',
+        'title' => 'Register a new membership',
+        'i_agree' => 'I agree to',
+        'terms' => 'the terms',
+        'have_membership' => 'I already have a membership',
+        'first_name' => 'Enter First Name',
+        'last_name' => 'Enter Last Name',
     ],
 
     'forgot_password' => [
-        'title' => 'أدخل البريد الإلكتروني لإعادة تعيين كلمة المرور',
-        'send_pwd_reset' => 'إرسال رابط إعادة تعيين كلمة المرور',
+        'title' => 'Enter Email to reset password',
+        'send_pwd_reset' => 'Send Password Reset Link',
     ],
 
     'reset_password' => [
-        'title' => 'إعادة تعيين كلمة المرور',
-        'reset_pwd_btn' => 'إعادة تعيين كلمة المرور',
+        'title' => 'Reset your password',
+        'reset_pwd_btn' => 'Reset Password',
     ],
 
     'emails' => [
         'password' => [
-            'reset_link' => 'اضغط هنا لإعادة تعيين كلمة المرور',
+            'reset_link' => 'Click here to reset your password',
         ],
     ],
 
     'app' => [
-        'member_since' => 'عضو منذ',
-        'messages' => 'الرسائل',
-        'settings' => 'الإعدادات',
-        'lock_account' => 'قفل الحساب',
-        'profile' => 'الملف الشخصي',
-        'online' => 'متصل',
-        'search' => 'بحث',
-        'create' => 'إنشاء',
-        'export' => 'تصدير',
-        'print' => 'طباعة',
-        'reset' => 'إعادة تعيين',
-        'reload' => 'إعادة تحميل',
+        'member_since' => 'Member since',
+        'messages' => 'Messages',
+        'settings' => 'Settings',
+        'lock_account' => 'Lock Account',
+        'profile' => 'Profile',
+        'online' => 'Online',
+        'search' => 'Search',
+        'create' => 'Create',
+        'export' => 'Export',
+        'print' => 'Print',
+        'reset' => 'Reset',
+        'reload' => 'Reload',
     ],
 ];

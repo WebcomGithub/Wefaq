@@ -20,37 +20,36 @@ $brands = brands();
                         @endfor
                     </div>
                     <div class="carousel-inner">
-                        @foreach($data['homepageThreeSliders'] as $slider)
+                        {{--@foreach($data['campaigns'] as $campaign)
                             <div class="carousel-item {{$loop->first ? 'active' : ''}}">
                                 <div class="inner-bgimg position-relative object-fit-cover"
-                                    style="background: url('{{ $slider->slider_image ? : asset('front_landing/images/hero-image.png')}}') no-repeat right;">
+                                     style="background: url('{{ $campaign->image ?: asset('front_landing/images/hero-image.png') }}') no-repeat right;">
                                     <div class="container">
                                         <div class="row">
                                             <div class="col-lg-5 col-md-7 parallelogram-shape">
                                                 <div class="text-white inner-text position-relative">
+                                                    --}}{{-- العنوان الأول --}}{{--
+                                                    @if (App::getLocale() == 'AR' && $campaign->title_lang)
+                                                        <p class="fs-18 fw-5">{{ $campaign->title_lang['ar'] ?? '' }}</p>
+                                                    @elseif (App::getLocale() == 'TR' && $campaign->title_lang)
+                                                        <p class="fs-18 fw-5">{{ $campaign->title_lang['tr'] ?? '' }}</p>
+                                                    @else
+                                                        <p class="fs-18 fw-5">{{ $campaign->title }}</p>
+                                                    @endif
 
-                                                    <p class="fs-18 fw-5">
-                                                        @if (App::getLocale() == 'AR' && $slider->title_1_lang != null)
-                                                            {{ $slider->title_1_lang['ar'] ??  ''}}
-                                                        @elseif (App::getLocale() == 'TR' && $slider->title_1_lang != null)
-                                                            {{ $slider->title_1_lang['tr'] ??  ''}}
-                                                        @else
-                                                            <p class="fs-18 fw-5">{{ $slider->title_1 }}</p>
-                                                        @endif
-                                                    </p>
-
-                                                    <h2 class="fs-1 mb-0 fw-6">
-                                                        @if (App::getLocale() == 'AR' && $slider->title_2_lang != null)
-                                                            {{ $slider->title_2_lang['ar'] ??  ''}}
-                                                        @elseif (App::getLocale() == 'TR' && $slider->title_2_lang != null)
-                                                            {{ $slider->title_2_lang['tr'] ??  ''}}
-                                                        @else
-                                                            <p class="fs-18 fw-5">{{ $slider->title_2 }}</p>
-                                                        @endif
-                                                    </h2>
+                                                    --}}{{-- العنوان الثاني --}}{{--
+                                                    @if (App::getLocale() == 'AR' && $campaign->short_description_lang)
+                                                        <h2 class="fs-1 mb-0 fw-6">{{ $campaign->short_description_lang['ar'] ?? '' }}</h2>
+                                                    @elseif (App::getLocale() == 'TR' && $campaign->short_description_lang)
+                                                        <h2 class="fs-1 mb-0 fw-6">{{ $campaign->short_description_lang['tr'] ?? '' }}</h2>
+                                                    @else
+                                                        <h2 class="fs-1 mb-0 fw-6">{{ $campaign->short_description }}</h2>
+                                                    @endif
                                                 </div>
                                             </div>
-                                            {{-- <div class="col-lg-7 col-md-5 mt-3 mt-md-4">
+
+                                            --}}{{-- عمود ثاني لضمان البنية --}}{{--
+                                            <div class="col-lg-7 col-md-5 mt-3 mt-md-4">
                                                 <div class="video-play-btn m-lg-auto ms-md-auto">
                                                     <button type="button"
                                                             class="play-video popup-video fs-4 border-0 slider-popup-video"
@@ -58,12 +57,56 @@ $brands = brands();
                                                         <i class="fas fa-play text-primary"></i>
                                                     </button>
                                                 </div>
-                                            </div> --}}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        @endforeach
+                        @endforeach--}}
+                         @foreach($data['homepageThreeSliders'] as $slider)
+                             <div class="carousel-item {{$loop->first ? 'active' : ''}}">
+                                 <div class="inner-bgimg position-relative object-fit-cover"
+                                     style="background: url('{{ $slider->slider_image ? : asset('front_landing/images/hero-image.png')}}') no-repeat right;">
+                                     <div class="container">
+                                         <div class="row">
+                                             <div class="col-lg-5 col-md-7 parallelogram-shape">
+                                                 <div class="text-white inner-text position-relative">
+
+                                                     <p class="fs-18 fw-5">
+                                                         @if (App::getLocale() == 'AR' && $slider->title_1_lang != null)
+                                                             {{ $slider->title_1_lang['ar'] ??  ''}}
+                                                         @elseif (App::getLocale() == 'TR' && $slider->title_1_lang != null)
+                                                             {{ $slider->title_1_lang['tr'] ??  ''}}
+                                                         @else
+                                                             <p class="fs-18 fw-5">{{ $slider->title_1 }}</p>
+                                                         @endif
+                                                     </p>
+
+                                                     <h2 class="fs-1 mb-0 fw-6">
+                                                         @if (App::getLocale() == 'AR' && $slider->title_2_lang != null)
+                                                             {{ $slider->title_2_lang['ar'] ??  ''}}
+                                                         @elseif (App::getLocale() == 'TR' && $slider->title_2_lang != null)
+                                                             {{ $slider->title_2_lang['tr'] ??  ''}}
+                                                         @else
+                                                             <p class="fs-18 fw-5">{{ $slider->title_2 }}</p>
+                                                         @endif
+                                                     </h2>
+                                                 </div>
+                                             </div>
+                                              <div class="col-lg-7 col-md-5 mt-3 mt-md-4">
+                                                 <div class="video-play-btn m-lg-auto ms-md-auto">
+                                                     <button type="button"
+                                                             class="play-video popup-video fs-4 border-0 slider-popup-video"
+                                                             data-src="https://ummeti.mynet.net/video/ummeti1.mp4">
+                                                         <i class="fas fa-play text-primary"></i>
+                                                     </button>
+                                                 </div>
+                                             </div>
+                                         </div>
+                                     </div>
+                                 </div>
+                             </div>
+                         @endforeach
                         <!-- Modal -->
                         <div class="modal fade" id="homePageVideoModal" tabindex="-1"
                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -84,6 +127,83 @@ $brands = brands();
                                 </div>
                             </div>
                     </div>
+                    {{--<div class="carousel-inner">
+                        @foreach($allSlides as $slide)
+                            <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
+                                <div class="inner-bgimg position-relative object-fit-cover"
+                                     style="background: url('{{ $slide->image ?? $slide->slider_image ?? asset('front_landing/images/hero-image.png')}}') no-repeat right;">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-lg-5 col-md-7 parallelogram-shape">
+                                                <div class="text-white inner-text position-relative">
+
+                                                    --}}{{-- العنوان الأول --}}{{--
+                                                    <p class="fs-18 fw-5">
+                                                        @if (isset($slide->title_lang))
+                                                            --}}{{-- campaign --}}{{--
+                                                            @if (App::getLocale() == 'AR')
+                                                                {{ $slide->title_lang['ar'] ?? '' }}
+                                                            @elseif (App::getLocale() == 'TR')
+                                                                {{ $slide->title_lang['tr'] ?? '' }}
+                                                            @else
+                                                                {{ $slide->title }}
+                                                            @endif
+                                                        @else
+                                                            --}}{{-- slider --}}{{--
+                                                            @if (App::getLocale() == 'AR')
+                                                                {{ $slide->title_1_lang['ar'] ?? '' }}
+                                                            @elseif (App::getLocale() == 'TR')
+                                                                {{ $slide->title_1_lang['tr'] ?? '' }}
+                                                            @else
+                                                                {{ $slide->title_1 }}
+                                                            @endif
+                                                        @endif
+                                                    </p>
+
+                                                    --}}{{-- الوصف --}}{{--
+                                                    <h2 class="fs-1 mb-0 fw-6">
+                                                        @if (isset($slide->short_description_lang))
+                                                            --}}{{-- campaign --}}{{--
+                                                            @if (App::getLocale() == 'AR')
+                                                                {{ $slide->short_description_lang['ar'] ?? '' }}
+                                                            @elseif (App::getLocale() == 'TR')
+                                                                {{ $slide->short_description_lang['tr'] ?? '' }}
+                                                            @else
+                                                                {{ $slide->short_description }}
+                                                            @endif
+                                                        @else
+                                                            --}}{{-- slider --}}{{--
+                                                            @if (App::getLocale() == 'AR')
+                                                                {{ $slide->title_2_lang['ar'] ?? '' }}
+                                                            @elseif (App::getLocale() == 'TR')
+                                                                {{ $slide->title_2_lang['tr'] ?? '' }}
+                                                            @else
+                                                                {{ $slide->title_2 }}
+                                                            @endif
+                                                        @endif
+                                                    </h2>
+                                                </div>
+                                            </div>
+
+                                            --}}{{-- إذا كان slider وليس campaign أضف الفيديو --}}{{--
+                                            @if (isset($slide->slider_image))
+                                                <div class="col-lg-7 col-md-5 mt-3 mt-md-4">
+                                                    <div class="video-play-btn m-lg-auto ms-md-auto">
+                                                        <button type="button"
+                                                                class="play-video popup-video fs-4 border-0 slider-popup-video"
+                                                                data-src="https://ummeti.mynet.net/video/ummeti1.mp4">
+                                                            <i class="fas fa-play text-primary"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>--}}
+
                     <div class="d-none d-xl-block">
                         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
                                 data-bs-slide="prev">
@@ -323,10 +443,10 @@ $brands = brands();
                                     @else
                                         {{ $data['aboutUs']['title'] }}
                                     @endif
-                                    
+
                                 </h2>
                                 <p class="text-dark fs-16 fw-5 mb-4 pb-lg-3">
-                                    
+
                                     @if (App::getLocale() == 'AR' && $data['aboutUs']['short_description_lang'] != null)
                                         {{ Str::words(strip_tags(json_decode($data['aboutUs']['short_description_lang'], true)['ar']), 100, '...') }}
                                     @elseif (App::getLocale() == 'TR' && $data['aboutUs']['short_description_lang'] != null)
@@ -387,22 +507,46 @@ $brands = brands();
                         <div class="row position-relative">
                             <div class="col-md-8">
                                 <h2 class="fs-6 fw-6 text-primary">
-                                    @if (App::getLocale() == 'AR' && $data['homepageThreeVideo']['short_title_lang'] != null)
+                                    {{--@if (App::getLocale() == 'AR' && $data['homepageThreeVideo']['short_title_lang'] != null)
                                         {{ json_decode($data['homepageThreeVideo']['short_title_lang'], true)['ar'] }}
                                     @elseif (App::getLocale() == 'TR' && $data['aboutUs']['short_description_lang'] != null)
                                         {{ json_decode($data['homepageThreeVideo']['short_title_lang'], true)['tr'] }}
                                     @else
                                         {{ $data['homepageThreeVideo']['short_title'] }}
+                                    @endif--}}
+                                    @if (App::getLocale() == 'AR' && !empty($data['homepageThreeVideo']['short_title_lang']))
+                                        {{ json_decode($data['homepageThreeVideo']['short_title_lang'], true)['ar'] ?? $data['homepageThreeVideo']['short_title'] }}
+                                    @elseif (App::getLocale() == 'TR' && !empty($data['homepageThreeVideo']['short_title_lang']))
+                                        {{ json_decode($data['homepageThreeVideo']['short_title_lang'], true)['tr'] ?? $data['homepageThreeVideo']['short_title'] }}
+                                    @else
+                                        {{ $data['homepageThreeVideo']['short_title'] }}
                                     @endif
+
                                 </h2>
                                 <h3 class="fs-2 fw-6 mb-0 text-white">
-                                    @if (App::getLocale() == 'AR' && $data['homepageThreeVideo']['title_lang'] != null)
+                                    {{--@if (App::getLocale() == 'AR' && $data['homepageThreeVideo']['title_lang'] != null)
                                         {{ json_decode($data['homepageThreeVideo']['title_lang'], true)['ar'] }}
                                     @elseif (App::getLocale() == 'TR' && $data['homepageThreeVideo']['title_lang'] != null)
                                         {{ json_decode($data['homepageThreeVideo']['title_lang'], true)['tr'] }}
                                     @else
                                         {{ $data['homepageThreeVideo']['title'] }}
+                                    @endif--}}
+                                    @if (
+    App::getLocale() == 'AR' &&
+    !empty($data['homepageThreeVideo']['title_lang']) &&
+    json_decode($data['homepageThreeVideo']['title_lang'], true)['ar'] ?? false
+)
+                                        {{ json_decode($data['homepageThreeVideo']['title_lang'], true)['ar'] }}
+                                    @elseif (
+                                        App::getLocale() == 'TR' &&
+                                        !empty($data['homepageThreeVideo']['title_lang']) &&
+                                        json_decode($data['homepageThreeVideo']['title_lang'], true)['tr'] ?? false
+                                    )
+                                        {{ json_decode($data['homepageThreeVideo']['title_lang'], true)['tr'] }}
+                                    @else
+                                        {{ $data['homepageThreeVideo']['title'] ?? '' }}
                                     @endif
+
                                 </h3>
                             </div>
                             <div class="col-md-4 mt-3 mt-md-0">
@@ -423,7 +567,7 @@ $brands = brands();
                                             </div>
                                             <div class="modal-body w-100">
                                                 <video class="w-100 h-100" frameborder="0"
-                                                        
+
                                                         allowfullscreen controls>
                                                     <source src="https://ummeti.mynet.net/video/ummeti1.mp4" type="video/mp4">
                                                     </video>

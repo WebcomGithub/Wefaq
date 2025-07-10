@@ -10,6 +10,7 @@ use App\Http\Controllers\CampaignFaqController;
 use App\Http\Controllers\CampaignUpdatesController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CategoryThirdController;
+use App\Http\Controllers\ComplaintsController;
 use App\Http\Controllers\ContactUsController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\DashboardController;
@@ -65,6 +66,9 @@ Route::prefix('admin')->middleware('auth', 'xss', 'valid.user','role:admin')->gr
         Route::delete('/inquiries/{inquiry}', [InquiryController::class, 'destroy'])->name('inquiries.destroy');
         Route::get('/inquiries/{inquiry}', [InquiryController::class, 'show'])->name('inquiries.show');
     });
+
+    Route::get('/complaints', [ComplaintsController::class, 'index'])->name('complaints.index');
+
 
     //call to actions routes
     Route::middleware('permission:manage_call_to_action')->group(function () {
