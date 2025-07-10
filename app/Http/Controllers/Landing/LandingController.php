@@ -14,6 +14,7 @@ use App\Models\CampaignCategory;
 use App\Models\CampaignDonation;
 use App\Models\Category;
 use App\Models\CategoryThird;
+use App\Models\Complaints;
 use App\Models\ContactUs;
 use App\Models\DonationGift;
 use App\Models\Event;
@@ -94,6 +95,8 @@ class LandingController extends AppBaseController
 
         $data['latestNewsFeeds'] = News::with('newsCategory')->latest()->first();
 
+        $latestFiveNews = News::latest()->take(5)->get();
+
         $data['oldNewsFeeds'] = News::where('id', '!=',
             $data['latestNewsFeeds'] != null ? $data['latestNewsFeeds']->id : '')->limit(3)->get();
 
@@ -102,7 +105,9 @@ class LandingController extends AppBaseController
 
         $data['brands'] = Brand::all();
 
-        return view("front_landing.$homepage", compact('data'));
+        $allSlides = collect($data['campaigns'])->merge($data['homepageThreeSliders']);
+
+        return view("front_landing.$homepage", compact('data','latestFiveNews','allSlides'));
     }
 
     /**
@@ -113,8 +118,12 @@ class LandingController extends AppBaseController
         $aboutUs = AboutUs::pluck('value', 'key')->toArray();
         $brands = Brand::all();
         $successStories = SuccessStory::all();
+        $latestFiveNews = News::latest()->take(5)->get();
+        $data['campaigns'] = Campaign::with('campaignCategory', 'user')->where('status',
+            Campaign::STATUS_ACTIVE)->latest()->take(6)->orderBy('is_emergency', 'desc')->get();
 
-        return view('front_landing.about', compact('aboutUs', 'brands', 'successStories'));
+
+        return view('front_landing.about', compact('aboutUs', 'brands', 'successStories','latestFiveNews','data'));
     }
 
     /**
@@ -134,8 +143,12 @@ class LandingController extends AppBaseController
                 $q->where('status', '=', Campaign::STATUS_ACTIVE);
             },
         ])->get();
+        $latestFiveNews = News::latest()->take(5)->get();
 
-        return view('front_landing.campaigns', compact('campaignCategories', 'contactUs', 'campaignCategoryId'));
+        $data['campaigns'] = Campaign::with('campaignCategory', 'user')->where('status',
+            Campaign::STATUS_ACTIVE)->latest()->take(6)->orderBy('is_emergency', 'desc')->get();
+
+        return view('front_landing.campaigns', compact('campaignCategories', 'contactUs', 'campaignCategoryId','latestFiveNews','data'));
     }
 
     /**
@@ -144,8 +157,35 @@ class LandingController extends AppBaseController
     public function contact()
     {
         $contactUs = ContactUs::pluck('value', 'key')->toArray();
+        $latestFiveNews = News::latest()->take(5)->get();
+        $data['campaigns'] = Campaign::with('campaignCategory', 'user')->where('status',
+            Campaign::STATUS_ACTIVE)->latest()->take(6)->orderBy('is_emergency', 'desc')->get();
 
-        return view('front_landing.contact', compact('contactUs'));
+
+        return view('front_landing.contact', compact('contactUs','latestFiveNews','data'));
+    }
+
+    public function complaints(Request $request)
+    {
+        $contactUs = ContactUs::pluck('value', 'key')->toArray();
+        $latestFiveNews = News::latest()->take(5)->get();
+        $data['campaigns'] = Campaign::with('campaignCategory', 'user')->where('status',
+            Campaign::STATUS_ACTIVE)->latest()->take(6)->orderBy('is_emergency', 'desc')->get();
+        if ($request->isMethod('post')) {
+            $input = $request->except('_token'); // Exclude the CSRF token
+            // Handle the file upload
+            if ($request->hasFile('file') && $request->file('file')->isValid()) {
+                $path = $request->file('file')->store('file', 'public');
+                $input['file'] = $path;
+            }
+
+            Complaints::create($input);
+
+            return $this->sendSuccess('complaints sent successfully.');
+        }
+
+        return view('front_landing.complaints', compact('contactUs','latestFiveNews','data'));
+
     }
 
     /**
@@ -190,9 +230,13 @@ class LandingController extends AppBaseController
 
         $newsImg = ContactUs::pluck('value', 'key')->toArray();
 
+        $latestFiveNews = News::latest()->take(5)->get();
+
+        $data['campaigns'] = Campaign::with('campaignCategory', 'user')->where('status',
+            Campaign::STATUS_ACTIVE)->latest()->take(6)->orderBy('is_emergency', 'desc')->get();
+
         return view('front_landing.news',
-            compact('newsCategories', 'newsTags', 'latestFourNews', 'mostUser', 'newsCategoryId', 'newsTagId',
-                'newsImg'));
+            compact('newsCategories', 'newsTags', 'latestFourNews', 'mostUser', 'newsCategoryId', 'newsTagId', 'newsImg','latestFiveNews','data'));
     }
 
     /**
@@ -219,9 +263,15 @@ class LandingController extends AppBaseController
 
         $newsDetailsImg = ContactUs::pluck('value', 'key')->toArray();
 
+        $latestFiveNews = News::latest()->take(5)->get();
+
+        $data['campaigns'] = Campaign::with('campaignCategory', 'user')->where('status',
+            Campaign::STATUS_ACTIVE)->latest()->take(6)->orderBy('is_emergency', 'desc')->get();
+
+
         return view('front_landing.news-details',
             compact('news', 'newsies', 'newsCategories', 'newsTags', 'latestFourNews', 'allCommnets', 'relatedPosts',
-                'newsDetailsImg'));
+                'newsDetailsImg','latestFiveNews','data'));
     }
 
     /**
@@ -243,8 +293,12 @@ class LandingController extends AppBaseController
         $faqs = Faqs::all();
 
         $faqsImg = ContactUs::pluck('value', 'key')->toArray();
+        $latestFiveNews = News::latest()->take(5)->get();
 
-        return view('front_landing.faqs', compact('faqs', 'faqsImg'));
+        $data['campaigns'] = Campaign::with('campaignCategory', 'user')->where('status',
+            Campaign::STATUS_ACTIVE)->latest()->take(6)->orderBy('is_emergency', 'desc')->get();
+
+        return view('front_landing.faqs', compact('faqs', 'faqsImg','latestFiveNews','data'));
     }
 
     /**
@@ -282,9 +336,14 @@ class LandingController extends AppBaseController
         $donationEnableGifts = Campaign::with('campaignGifts')->where('id', '=', $campaign->id)->where('gift_status',
             '=', true)->first();
 
+        $latestFiveNews = News::latest()->take(5)->get();
+
+        $data['campaigns'] = Campaign::with('campaignCategory', 'user')->where('status',
+            Campaign::STATUS_ACTIVE)->latest()->take(6)->orderBy('is_emergency', 'desc')->get();
+
         return view('front_landing.campaign-details',
             compact('campaign', 'campaignCategories', 'medias', 'contactUs', 'campaignFaqs', 'campaignUpdates',
-                'sidebarCampaignCategories', 'allDonors', 'donationEnableGifts'));
+                'sidebarCampaignCategories', 'allDonors', 'donationEnableGifts','latestFiveNews','data'));
     }
 
     /**
@@ -308,8 +367,12 @@ class LandingController extends AppBaseController
     public function termCondition()
     {
         $termsConditions = Setting::where('key', 'terms_conditions')->first();
+        $latestFiveNews = News::latest()->take(5)->get();
 
-        return view('front_landing.terms-conditions', compact('termsConditions'));
+        $data['campaigns'] = Campaign::with('campaignCategory', 'user')->where('status',
+            Campaign::STATUS_ACTIVE)->latest()->take(6)->orderBy('is_emergency', 'desc')->get();
+
+        return view('front_landing.terms-conditions', compact('termsConditions','latestFiveNews','data'));
     }
 
     /**
@@ -318,8 +381,12 @@ class LandingController extends AppBaseController
     public function privacyPolicy()
     {
         $privacyPolicy = Setting::where('key', 'privacy_policy')->first();
+        $latestFiveNews = News::latest()->take(5)->get();
 
-        return view('front_landing.privacy-policy', compact('privacyPolicy'));
+        $data['campaigns'] = Campaign::with('campaignCategory', 'user')->where('status',
+            Campaign::STATUS_ACTIVE)->latest()->take(6)->orderBy('is_emergency', 'desc')->get();
+
+        return view('front_landing.privacy-policy', compact('privacyPolicy','latestFiveNews','data'));
     }
 
     /**
@@ -380,9 +447,14 @@ class LandingController extends AppBaseController
 
 //        return view('front_landing.payment', compact('campaign', 'stripeWithdraw', 'paypalWithdraw', 'totalAmount', 'chargeAmount'));
 
+        $latestFiveNews = News::latest()->take(5)->get();
+
+        $data['campaigns'] = Campaign::with('campaignCategory', 'user')->where('status',
+            Campaign::STATUS_ACTIVE)->latest()->take(6)->orderBy('is_emergency', 'desc')->get();
+
         return view('front_landing.payment',
             compact('campaign', 'totalAmount', 'chargeAmount', 'typeOfCommission', 'donationCommission',
-                'donationAsGiftDetails', 'allDonors', 'donationEnableGifts'));
+                'donationAsGiftDetails', 'allDonors', 'donationEnableGifts','latestFiveNews','data'));
     }
 
     public function changeLanguage($language)

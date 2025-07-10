@@ -90,6 +90,12 @@
         </a>
     </li>
 @endcan
+    <li class="nav-item {{ Request::is('admin/complaints*') ? 'active' : '' }}">
+        <a class="nav-link d-flex align-items-center py-3" aria-current="page" href="{{ route('complaints.index') }}">
+            <span class="aside-menu-icon pe-3"><i class="fa fa-question-circle fs-3"></i></span>
+            <span class="aside-menu-title">{{ __('messages.front_landing.complaints') }}</span>
+        </a>
+    </li>
 @can('manage_language')
     <li class="nav-item {{ Request::is('admin/languages*') ? 'active' : '' }}">
         <a class="nav-link d-flex align-items-center py-3" aria-current="page" href="{{ route('languages.index') }}">

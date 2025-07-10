@@ -3,6 +3,7 @@
 use App\Models\Brand;
 use App\Models\Campaign;
 use App\Models\CampaignDonation;
+use App\Models\ContactUs;
 use App\Models\Language;
 use App\Models\News;
 use App\Models\Page;
@@ -42,7 +43,16 @@ function settings()
 {
     return Setting::toBase()->pluck('value', 'key')->toArray();
 }
+function contact_us()
+{
+    $contactUs = ContactUs::toBase()->pluck('value', 'key')->toArray();
+    return $contactUs;
+}
 
+function faq()
+{
+    return \App\Models\Faqs::all();
+}
 function getSettingValue($key)
 {
     $value = null;
@@ -74,6 +84,13 @@ function pages()
     $page = Page::all();
 
     return $page;
+}
+function latestFiveNews()
+{
+    $latestFiveNews = News::latest()->take(5)->get();
+
+    return $latestFiveNews;
+
 }
 
 /**
