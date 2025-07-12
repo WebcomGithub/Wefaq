@@ -197,7 +197,7 @@
                                             <li>
                                                 <a href="{{route('landing.news-details',$news->slug)}}"
                                                    class="fs-14 fw-5 text-dark {{ Request::is('page/' . $news->id) ? 'active' : '' }}">{!! nl2br(\Illuminate\Support\Str::limit($news->title)) !!}
-                                                
+
                                                     <small class="mt-1 mt-md-0 fs-12 d-flex align-items-center">
                                                         <span class="font-weight-500">
                                                             - {{ $news->created_at->translatedFormat('d M Y') }}
@@ -214,7 +214,7 @@
                             </li>
                             {{--تقارير الجمعية--}}
                             <li class="nav-item">
-                                <a class="nav-link text-dark  fw-5  fs-14 {{ Request::is('contact-us') ? 'active' : '' }}"
+                                <a class="nav-link text-dark  fw-5  fs-14 {{ Request::is('page') ? 'active' : '' }}"
                                    href="{{ route('landing.contact') }}">{{ __('messages.front_landing.association_reports') }}</a>
                                 <ul class="dropdown-nav ps-0">
                                     @foreach ($pages as $page)
@@ -230,7 +230,7 @@
 
                             {{--تقدييم شكوى--}}
                             <li class="nav-item">
-                                <a class="btn fw-bold px-3 py-2 ms-lg-2 {{ Request::is('contact-us') ? 'active' : '' }}"
+                                <a class="btn fw-bold px-3 py-2 ms-lg-2 {{ Request::is('complaints') ? 'active' : '' }}"
                                    href="{{ route('landing.complaints') }}" style="background-color: #00c5ff; color:white">
                                     {{ __('messages.front_landing.complaints_tab') }}
                                 </a>
@@ -279,7 +279,7 @@
                                         {{ __('messages.front_landing.home') }}
                                     </a>
                                 </div>
-                                
+
                                 <div class="nav-item mb-2">
                                     <a class="nav-link d-flex align-items-center py-2 px-3 rounded-3 fw-semibold fs-14 {{ Request::is('about-us') ? 'active bg-primary-soft text-primary' : 'text-dark' }}"
                                     href="{{ route('landing.about') }}">
@@ -287,7 +287,7 @@
                                         {{ __('messages.front_landing.about') }}
                                     </a>
                                 </div>
-                                
+
                                 <div class="nav-item mb-2">
                                     <a class="nav-link d-flex align-items-center py-2 px-3 rounded-3 fw-semibold fs-14 {{ Request::is('causes', 'c/*') ? 'active bg-primary-soft text-primary' : 'text-dark' }}"
                                     href="{{ route('landing.causes') }}">
@@ -295,14 +295,14 @@
                                         {{ __('messages.front_landing.causes') }}
                                     </a>
                                 </div>
-                                
+
                                 <!-- Pages Dropdown -->
                                 <div class="accordion mb-2" id="pagesAccordion">
                                     <div class="accordion-item border-0">
                                         <h2 class="accordion-header">
-                                            <button class="accordion-button nav-link d-flex align-items-center py-2 px-3 rounded-3 fw-semibold fs-14 {{ Request::is('faqs', 'events', 'page*', 'event-details/*') ? 'active bg-primary-soft text-primary' : 'text-dark' }} collapsed" 
-                                                    type="button" 
-                                                    data-bs-toggle="collapse" 
+                                            <button class="accordion-button nav-link d-flex align-items-center py-2 px-3 rounded-3 fw-semibold fs-14 {{ Request::is('faqs', 'events', 'page*', 'event-details/*') ? 'active bg-primary-soft text-primary' : 'text-dark' }} collapsed"
+                                                    type="button"
+                                                    data-bs-toggle="collapse"
                                                     data-bs-target="#pagesCollapse">
                                                 <i class="fas fa-file-alt me-3"></i>
                                                 {{ __('messages.pages') }}
@@ -342,7 +342,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 <!-- News -->
                                 <div class="nav-item mb-2">
                                     <a class="nav-link d-flex align-items-center py-2 px-3 rounded-3 fw-semibold fs-14 {{ Request::is('news', 'news-details*') ? 'active bg-primary-soft text-primary' : 'text-dark' }}"
@@ -351,7 +351,7 @@
                                         {{ __('messages.news.news') }}
                                     </a>
                                 </div>
-                                
+
                                 <!-- Team -->
                                 <div class="nav-item mb-2">
                                     <a class="nav-link d-flex align-items-center py-2 px-3 rounded-3 fw-semibold fs-14 {{ Request::is('teams') ? 'active bg-primary-soft text-primary' : 'text-dark' }}"
@@ -360,7 +360,7 @@
                                         {{ __('messages.front_landing.team') }}
                                     </a>
                                 </div>
-                                
+
                                 <!-- Contact -->
                                 <div class="nav-item mb-4">
                                     <a class="nav-link d-flex align-items-center py-2 px-3 rounded-3 fw-semibold fs-14 {{ Request::is('contact-us') ? 'active bg-primary-soft text-primary' : 'text-dark' }}"
@@ -369,14 +369,14 @@
                                         {{ __('messages.front_landing.contact') }}
                                     </a>
                                 </div>
-                                
+
                                 <!-- Language Dropdown -->
                                 <div class="accordion mb-4" id="languageAccordion">
                                     <div class="accordion-item border-0">
                                         <h2 class="accordion-header">
-                                            <button class="accordion-button nav-link d-flex align-items-center py-2 px-3 rounded-3 fw-semibold fs-14 text-dark collapsed" 
-                                                    type="button" 
-                                                    data-bs-toggle="collapse" 
+                                            <button class="accordion-button nav-link d-flex align-items-center py-2 px-3 rounded-3 fw-semibold fs-14 text-dark collapsed"
+                                                    type="button"
+                                                    data-bs-toggle="collapse"
                                                     data-bs-target="#languageCollapse">
                                                 <i class="fas fa-globe me-3"></i>
                                                 {{ getHeaderLanguageName() }}
@@ -400,7 +400,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 <!-- Auth Buttons -->
                                 <div class="d-flex flex-column mt-4">
                                 @if (getLogInUser())

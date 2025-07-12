@@ -63,7 +63,51 @@ $brands = brands();
                                 </div>
                             </div>
                         @endforeach--}}
-                         @foreach($data['homepageThreeSliders'] as $slider)
+                        @foreach($data['programs'] as $programs_slider)
+                            <div class="carousel-item {{$loop->first ? 'active' : ''}}">
+                                <div class="inner-bgimg position-relative object-fit-cover"
+                                     style="background: url('{{ $programs_slider->slider_image ? : asset('front_landing/images/hero-image.png')}}') no-repeat right;">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-lg-5 col-md-7 parallelogram-shape">
+                                                <div class="text-white inner-text position-relative">
+
+                                                    <p class="fs-18 fw-5">
+                                                    @if (App::getLocale() == 'AR' && $slider->title_1_lang != null)
+                                                        {{ $slider->title_1_lang['ar'] ??  ''}}
+                                                    @elseif (App::getLocale() == 'TR' && $slider->title_1_lang != null)
+                                                        {{ $slider->title_1_lang['tr'] ??  ''}}
+                                                    @else
+                                                        <p class="fs-18 fw-5">{{ $slider->title_1 }}</p>
+                                                        @endif
+                                                        </p>
+
+                                                        <h2 class="fs-1 mb-0 fw-6">
+                                                            @if (App::getLocale() == 'AR' && $slider->title_2_lang != null)
+                                                                {{ $slider->title_2_lang['ar'] ??  ''}}
+                                                            @elseif (App::getLocale() == 'TR' && $slider->title_2_lang != null)
+                                                                {{ $slider->title_2_lang['tr'] ??  ''}}
+                                                            @else
+                                                                <p class="fs-18 fw-5">{{ $slider->title_2 }}</p>
+                                                            @endif
+                                                        </h2>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-7 col-md-5 mt-3 mt-md-4">
+                                                <div class="video-play-btn m-lg-auto ms-md-auto">
+                                                    <button type="button"
+                                                            class="play-video popup-video fs-4 border-0 slider-popup-video"
+                                                            data-src="https://ummeti.mynet.net/video/ummeti1.mp4">
+                                                        <i class="fas fa-play text-primary"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                         {{--@foreach($data['homepageThreeSliders'] as $slider)
                              <div class="carousel-item {{$loop->first ? 'active' : ''}}">
                                  <div class="inner-bgimg position-relative object-fit-cover"
                                      style="background: url('{{ $slider->slider_image ? : asset('front_landing/images/hero-image.png')}}') no-repeat right;">
@@ -106,7 +150,7 @@ $brands = brands();
                                      </div>
                                  </div>
                              </div>
-                         @endforeach
+                         @endforeach--}}
                         <!-- Modal -->
                         <div class="modal fade" id="homePageVideoModal" tabindex="-1"
                                 aria-labelledby="exampleModalLabel" aria-hidden="true">

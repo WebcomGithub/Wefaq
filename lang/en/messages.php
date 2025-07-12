@@ -630,6 +630,9 @@
     'our_partners' => 'Our partners',
     'complaints' => 'Complaints',
     'get_in_complaints' => 'Get In Complaints',
+    'All rights reserved to Wifaq Association © 2025' => 'All rights reserved to Wifaq Association © 2025',
+    'More frequently asked questions' => 'More frequently asked questions',
+
 
   ),
   'payout_setting' =>

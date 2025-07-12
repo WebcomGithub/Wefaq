@@ -185,7 +185,7 @@
                     @endforeach
                 </ul>
                 <a href="{{route('landing.faqs')}}" class="btn btn-sm mt-2" style="background-color: #00c5ff; color: white;">
-                    المزيد من الأسئلة الشائعة
+                    {{__('messages.front_landing.More frequently asked questions')}}
                 </a>
             </div>
 
@@ -236,7 +236,7 @@
         </div>
         <hr class="bg-light mt-4">
         <div class="text-center fs-14">
-            جميع الحقوق محفوظة لدى مركز شؤون المرأة © 2025
+            {{__('messages.front_landing.All rights reserved to Wifaq Association © 2025')}}
         </div>
     </div>
 </footer>

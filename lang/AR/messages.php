@@ -630,6 +630,9 @@
     'our_partners' => 'شركائنا',
     'complaints' => 'الشكاوي',
     'get_in_complaints' => 'تقديم شكوى ',
+    'All rights reserved to Wifaq Association © 2025' => 'جميع الحقوق محفوظة لدى جمعية وفاق © 2025',
+    'More frequently asked questions' => 'المزيد من الأسئلة الشائعة',
+
 
 
   ),
