@@ -350,9 +350,9 @@
   ),
   'event' =>
   array (
-    'events' => 'Events',
-    'event_categories' => 'Event Categories',
-    'event_category' => 'Event Category',
+    'events' => 'الأحداث',
+    'event_categories' => 'اقسام الأحداث',
+    'event_category' => 'قسم الحدث',
     'edit_category' => 'Edit Category',
     'notes' => 'Notes',
     'event_title' => 'Event Title',
