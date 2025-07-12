@@ -574,8 +574,8 @@
     'enter_first_name' => 'أدخل الاسم',
     'enter_email_address' => 'أدخل الايميل',
     'enter_phone_number' => 'أدخل رقم الجوال',
-    'enter_subject' => 'أدخل موضوع الشكوى',
-    'enter_message' => 'تفاصيل الشكوى',
+    'enter_subject' => 'أدخل الموضوع ',
+    'enter_message' => 'التفاصيل',
     'upcoming_events' => 'الأحداث القادمة',
     'all_categories' => 'جميع الفئات',
     'no_events_available_at_this_moment' => 'No Events available at this moment.',
@@ -615,7 +615,7 @@
     'popular_tags' => 'Popular tags',
     'our_team' => 'Our Team',
     'join_with_us' => 'Join With Us',
-    'get_in_touch' => 'Get In Touch',
+    'get_in_touch' => 'اتصل بنا',
     'our_mission_food_education_medicine' => 'Our Mission : Food, Education, Medicine',
     'your_donation' => 'Your Donation :',
     'the_goal_amount_should_be_greater_than_0' => 'The goal amount should be greater than 0.',
@@ -632,7 +632,8 @@
     'get_in_complaints' => 'تقديم شكوى ',
     'All rights reserved to Wifaq Association © 2025' => 'جميع الحقوق محفوظة لدى جمعية وفاق © 2025',
     'More frequently asked questions' => 'المزيد من الأسئلة الشائعة',
-
+    'enter_compalint_subject' => 'أدخل موضوع الشكوى',
+    'enter_compalint_message' => 'تفاصيل الشكوى',
 
 
   ),

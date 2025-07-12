@@ -570,7 +570,7 @@
     'no_campaigns_available_at_this_moment' => 'No Campaigns available at this moment.',
     'email_address' => 'Email Address',
     'office_address' => 'Office Address',
-    'get_a_quote' => 'Get a Quote',
+    'get_a_quote' => 'Send',
     'enter_first_name' => 'Enter first name',
     'enter_email_address' => 'Enter email address',
     'enter_phone_number' => 'Enter phone number',
@@ -633,6 +633,8 @@
     'All rights reserved to Wifaq Association © 2025' => 'All rights reserved to Wifaq Association © 2025',
     'More frequently asked questions' => 'More frequently asked questions',
 
+    'enter_compalint_subject' => 'Enter compalint subject',
+    'enter_compalint_message' => 'Enter compalint message',
 
   ),
   'payout_setting' =>

@@ -101,13 +101,13 @@
                                     <div class="col-lg-6 mb-3 pb-1">
                                         <input type="text" id="subject" name="subject"
                                                class="form-control fs-14 text-dark"
-                                               placeholder="{{(__('messages.front_landing.enter_subject'))}} *"
+                                               placeholder="{{(__('messages.front_landing.enter_compalint_subject'))}} *"
                                                required>
                                     </div>
                                     <div class="col-12 mb-4 pb-2">
                                         <textarea class="form-control fs-14 text-dark" id="message" name="message"
                                                   rows="4"
-                                                  placeholder="{{(__('messages.front_landing.enter_message'))}} *"
+                                                  placeholder="{{(__('messages.front_landing.enter_compalint_message'))}} *"
                                                   required></textarea>
                                     </div>
                                     <div class="col-12 mb-4 pb-2">
