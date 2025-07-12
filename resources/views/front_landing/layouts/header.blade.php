@@ -116,7 +116,7 @@
                 </div>
 
                 {{-- أيقونات التواصل بشكل أفقي --}}
-                <div class="social-icons d-flex flex-row gap-2 me-5">
+                <div class="social-icons d-flex flex-row gap-2 {{ App::isLocale('AR') ? 'me-auto' : 'ms-auto' }}">
                     <a href="{{ $settings['facebook_url'] }}" target="_blank" class="social-icon facebook">
                         <i class="fab fa-facebook-f"></i>
                     </a>
