@@ -105,9 +105,9 @@ class LandingController extends AppBaseController
 
         $data['brands'] = Brand::all();
 
-        $allSlides = collect($data['campaigns'])->merge($data['homepageThreeSliders']);
 
-        return view("front_landing.$homepage", compact('data','latestFiveNews','allSlides'));
+
+        return view("front_landing.$homepage", compact('data','latestFiveNews'));
     }
 
     /**

@@ -20,49 +20,6 @@ $brands = brands();
                         @endfor
                     </div>
                     <div class="carousel-inner">
-                        {{--@foreach($data['campaigns'] as $campaign)
-                            <div class="carousel-item {{$loop->first ? 'active' : ''}}">
-                                <div class="inner-bgimg position-relative object-fit-cover"
-                                     style="background: url('{{ $campaign->image ?: asset('front_landing/images/hero-image.png') }}') no-repeat right;">
-                                    <div class="container">
-                                        <div class="row">
-                                            <div class="col-lg-5 col-md-7 parallelogram-shape">
-                                                <div class="text-white inner-text position-relative">
-                                                    --}}{{-- العنوان الأول --}}{{--
-                                                    @if (App::getLocale() == 'AR' && $campaign->title_lang)
-                                                        <p class="fs-18 fw-5">{{ $campaign->title_lang['ar'] ?? '' }}</p>
-                                                    @elseif (App::getLocale() == 'TR' && $campaign->title_lang)
-                                                        <p class="fs-18 fw-5">{{ $campaign->title_lang['tr'] ?? '' }}</p>
-                                                    @else
-                                                        <p class="fs-18 fw-5">{{ $campaign->title }}</p>
-                                                    @endif
-
-                                                    --}}{{-- العنوان الثاني --}}{{--
-                                                    @if (App::getLocale() == 'AR' && $campaign->short_description_lang)
-                                                        <h2 class="fs-1 mb-0 fw-6">{{ $campaign->short_description_lang['ar'] ?? '' }}</h2>
-                                                    @elseif (App::getLocale() == 'TR' && $campaign->short_description_lang)
-                                                        <h2 class="fs-1 mb-0 fw-6">{{ $campaign->short_description_lang['tr'] ?? '' }}</h2>
-                                                    @else
-                                                        <h2 class="fs-1 mb-0 fw-6">{{ $campaign->short_description }}</h2>
-                                                    @endif
-                                                </div>
-                                            </div>
-
-                                            --}}{{-- عمود ثاني لضمان البنية --}}{{--
-                                            <div class="col-lg-7 col-md-5 mt-3 mt-md-4">
-                                                <div class="video-play-btn m-lg-auto ms-md-auto">
-                                                    <button type="button"
-                                                            class="play-video popup-video fs-4 border-0 slider-popup-video"
-                                                            data-src="https://ummeti.mynet.net/video/ummeti1.mp4">
-                                                        <i class="fas fa-play text-primary"></i>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach--}}
                          @foreach($data['homepageThreeSliders'] as $slider)
                              <div class="carousel-item {{$loop->first ? 'active' : ''}}">
                                  <div class="inner-bgimg position-relative object-fit-cover"

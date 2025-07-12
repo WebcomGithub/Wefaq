@@ -185,7 +185,7 @@
                     @endforeach
                 </ul>
                 <a href="{{route('landing.faqs')}}" class="btn btn-sm mt-2" style="background-color: #00c5ff; color: white;">
-                    المزيد من الأسئلة الشائعة
+                    {{__('messages.front_landing.More frequently asked questions')}}
                 </a>
             </div>
 
@@ -198,9 +198,13 @@
                         $contactUs = contact_us();
                     @endphp
                     @if (App::getLocale() == 'AR')
-                        {{ json_decode($contactUs['menu_title_lang'], true)['ar'] }}
+                        @if(!empty($contactUs['menu_title_lang']) && json_decode($contactUs['menu_title_lang'], true)['ar'] != null)
+                            {{ json_decode($contactUs['menu_title_lang'], true)['ar'] }}
+                        @endif
                     @elseif(App::getLocale() == 'tr')
-                        {{ json_decode($contactUs['menu_title_lang'], true)['tr'] }}
+                        @if(!empty($contactUs['menu_title_lang']) && json_decode($contactUs['menu_title_lang'], true)['tr'] != null)
+                            {{ json_decode($contactUs['menu_title_lang'], true)['tr'] }}
+                        @endif
                     @else
                         {{ $contactUs['menu_title'] }}
                     @endif
@@ -236,8 +240,7 @@
         </div>
         <hr class="bg-light mt-4">
         <div class="text-center fs-14">
-            جميع الحقوق محفوظة لدى مركز شؤون المرأة © 2025
+            {{__('messages.front_landing.All rights reserved to Wifaq Association © 2025')}}
         </div>
     </div>
 </footer>
-
