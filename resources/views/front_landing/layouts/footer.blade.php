@@ -196,12 +196,11 @@
                     <i class="fa fa-map-marker-alt me-2"></i>
                     @php
                         $contactUs = contact_us();
-                        $menuTitleLang = json_decode($contactUs['menu_title_lang'], true);
                     @endphp
                     @if (App::getLocale() == 'AR')
-                        {{ $menuTitleLang['ar'] }}
+                        {{ json_decode($contactUs['menu_title_lang'], true)['ar'] }}
                     @elseif(App::getLocale() == 'tr')
-                        {{ $menuTitleLang['tr'] }}
+                        {{ json_decode($contactUs['menu_title_lang'], true)['tr'] }}
                     @else
                         {{ $contactUs['menu_title'] }}
                     @endif
