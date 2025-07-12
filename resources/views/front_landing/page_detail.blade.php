@@ -36,16 +36,19 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach ($files as $report)
-                        <tr>
-                            <td style="border: 1px solid #000; padding: 8px;">
-                                {{ $report['title'] }}
-                            </td>
-                            <td style="border: 1px solid #000; padding: 8px;">
-                                <a href="{{ asset('uploads/' . $report['filename']) }}" target="_blank" style="color: blue;">عرض</a>
-                            </td>
-                        </tr>
-                    @endforeach
+                    @if(isset($files))
+                        @foreach ($files as $report)
+                            <tr>
+                                <td style="border: 1px solid #000; padding: 8px;">
+                                    {{ $report['title'] }}
+                                </td>
+                                <td style="border: 1px solid #000; padding: 8px;">
+                                    <a href="{{ asset('uploads/' . $report['filename']) }}" target="_blank" style="color: blue;">عرض</a>
+                                </td>
+                            </tr>
+                        @endforeach
+
+                    @endif
                     </tbody>
                 </table>
             </div>

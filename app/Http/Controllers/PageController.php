@@ -97,7 +97,9 @@ class PageController extends AppBaseController
      */
     public function edit(Page $page)
     {
-        return view('admin.pages.edit', compact('page'));
+        $pageFiles = $page->files ? json_decode($page->files, true) : [];
+
+        return view('admin.pages.edit', compact('page','pageFiles'));
     }
 
     /**
@@ -109,7 +111,41 @@ class PageController extends AppBaseController
     {
         $input = $request->all();
         $input['is_active'] = (isset($input['is_active'])) ? 1 : 0;
-        $this->pageRepo->update($input, $page->id);
+        /*$this->pageRepo->update($input, $page->id);*/
+
+        // 1️⃣ ابدأ بجمع القديم
+        $finalFiles = [];
+
+        if ($request->has('existing_attachments')) {
+            foreach ($request->existing_attachments as $item) {
+                $finalFiles[] = [
+                    'title' => $item['title'],
+                    'filename' => $item['filename']
+                ];
+            }
+        }
+// 2️⃣ أضف الملفات الجديدة
+        if ($request->has('attachments')) {
+            foreach ($request->attachments as $index => $attachment) {
+                if ($request->hasFile("attachments.$index.file")) {
+                    $file = $request->file("attachments.$index.file");
+                    $storedPath = $file->store('uploads/reports');
+                    $finalFiles[] = [
+                        'title' => $attachment['title'],
+                        'filename' => $storedPath
+                    ];
+                }
+            }
+        }
+
+// 3️⃣ خزن في قاعدة البيانات
+        $page->name = $request->name;
+        $page->title = $request->title;
+        $page->description = $request->description;
+        $page->is_active = $request->has('is_active');
+        $page->files = json_encode($finalFiles);
+        $page->save();
+
         Flash::success('Page updated successfully.');
 
         return redirect(route('pages.index'));
