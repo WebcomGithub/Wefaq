@@ -99,8 +99,7 @@
 }
 
     .userway_buttons_wrapper {
-        top: 83.5% !important;
-        bottom: auto !important;
+        top: 50.5% !important;
     }
 </style>
 <header class="sticky-top bg-white shadow-sm">
@@ -159,7 +158,7 @@
                                     @foreach ($data['campaigns'] as $campaign)
                                         <li>
                                             <a href="{{ route('landing.campaign.details',$campaign->slug) }}"
-                                               class="fs-14 fw-5 text-dark {{ Request::is('page/' . $campaign->id) ? 'active' : '' }}">
+                                               class="fs-14 fw-5 text-dark">
                                                 {{ App::getLocale() == 'AR' && $campaign->title_lang
                                                     ? Str::limit($campaign->title_lang['ar'] ?? '', 70)
                                                     : (App::getLocale() == 'TR' && $campaign->title_lang
@@ -204,7 +203,7 @@
                                     @foreach ($latestFiveNews as $news)
                                             <li>
                                                 <a href="{{route('landing.news-details',$news->slug)}}"
-                                                   class="fs-14 fw-5 text-dark {{ Request::is('page/' . $news->id) ? 'active' : '' }}">{!! nl2br(\Illuminate\Support\Str::limit($news->title)) !!}
+                                                   class="fs-14 fw-5 text-dark">{!! nl2br(\Illuminate\Support\Str::limit($news->title)) !!}
 
                                                     <small class="mt-1 mt-md-0 fs-12 d-flex align-items-center">
                                                         <span class="font-weight-500">
@@ -229,7 +228,7 @@
                                         @if ($page->is_active)
                                             <li>
                                                 <a href="{{ route('landing.page.detail', $page->id) }}"
-                                                   class="fs-14 fw-5 text-dark {{ Request::is('page/' . $page->id) ? 'active' : '' }}">{!! nl2br(\Illuminate\Support\Str::limit($page->name)) !!}</a>
+                                                   class="fs-14 fw-5 text-dark">{!! nl2br(\Illuminate\Support\Str::limit($page->name)) !!}</a>
                                             </li>
                                         @endif
                                     @endforeach
@@ -238,7 +237,7 @@
 
                             {{--تقدييم شكوى--}}
                             <li class="nav-item">
-                                <a class="btn fw-bold px-3 py-2 ms-lg-2 {{ Request::is('complaints') ? 'active' : '' }}"
+                                <a class="btn fw-bold px-3 py-2 ms-lg-2"
                                    href="{{ route('landing.complaints') }}" style="background-color: #00c5ff; color:white">
                                     {{ __('messages.front_landing.complaints_tab') }}
                                 </a>
