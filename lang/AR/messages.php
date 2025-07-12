@@ -370,10 +370,10 @@
   ),
   'page' =>
   array (
-    'page_name' => 'Page Name',
-    'add_page' => 'Add Page',
-    'page_detail' => 'Page Detail',
-    'edit_page' => 'Edit Page',
+    'page_name' => 'Report Name',
+    'add_page' => 'Add Report',
+    'page_detail' => 'Report Detail',
+    'edit_page' => 'Edit Report',
     'cause_details' => 'Projects Details',
   ),
   'email_subscribes' =>

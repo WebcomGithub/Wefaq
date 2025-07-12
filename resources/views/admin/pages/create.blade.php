@@ -17,7 +17,7 @@
                 <div class="card">
                     <div class="card-body">
                         {{ Form::hidden('page_description', null, ['id' => 'pageDescriptionData']) }}
-                        {{ Form::open(['route' => 'pages.store','files' => 'true','id'=>'pageCreateForm']) }}
+                        {{ Form::open(['route' => 'pages.store','files' => 'true','id'=>'pageCreateForm','enctype' => 'multipart/form-data']) }}
                         @include('admin.pages.fields')
                         {{ Form::close() }}
                     </div>
@@ -26,4 +26,33 @@
         </div>
     </div>
 @endsection
- 
+@section('js')
+    <script>
+        let attachmentIndex = 1;
+        document.getElementById('add-attachment').addEventListener('click', function() {
+            let wrapper = document.getElementById('attachments-wrapper');
+            let newItem = document.createElement('div');
+            newItem.classList.add('attachment-item', 'mb-3', 'row');
+            newItem.innerHTML = `
+            <div class="col-md-5">
+                <input type="text" name="attachments[${attachmentIndex}][title]" class="form-control mb-2" placeholder="File Title">
+            </div>
+            <div class="col-md-5">
+                <input type="file" name="attachments[${attachmentIndex}][file]" class="form-control mb-2">
+            </div>
+            <div class="col-md-2">
+                <button type="button" class="btn btn-danger remove-attachment">Remove</button>
+            </div>
+        `;
+            wrapper.appendChild(newItem);
+            attachmentIndex++;
+        });
+
+        document.addEventListener('click', function(e) {
+            if (e.target && e.target.classList.contains('remove-attachment')) {
+                e.target.closest('.attachment-item').remove();
+            }
+        });
+    </script>
+@endsection
+

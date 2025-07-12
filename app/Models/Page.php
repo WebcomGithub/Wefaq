@@ -36,6 +36,7 @@ class Page extends Model
         'title',
         'description',
         'is_active',
+        'files',
     ];
 
     const ALL = 2;

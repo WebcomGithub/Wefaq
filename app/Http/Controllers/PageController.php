@@ -60,7 +60,33 @@ class PageController extends AppBaseController
     {
         $input = $request->all();
         $input['is_active'] = (isset($input['is_active'])) ? 1 : 0;
-        $this->pageRepo->create($input);
+        /*$this->pageRepo->create($input);*/
+        $attachmentsData = [];
+
+        if ($request->has('attachments')) {
+            foreach ($request->attachments as $index => $attachment) {
+                $title = $attachment['title'];
+                $fileInput = "attachments.$index.file";
+
+                if ($request->hasFile($fileInput)) {
+                    $file = $request->file($fileInput);
+                    $storedPath = $file->store('uploads/reports'); // يمكنك تحديد disk إن أردت
+                    $attachmentsData[] = [
+                        'title' => $title,
+                        'filename' => $storedPath,
+                    ];
+                }
+            }
+        } // مثال: إنشاء سجل في جدول pages
+        $page = new Page();
+        $page->name = $request->name;
+        $page->title = $request->title;
+        $page->description = $request->description;
+        $page->is_active = $request->has('is_active');
+        // هنا نحول المصفوفة الى JSON
+        $page->files = json_encode($attachmentsData);
+        $page->save();
+
         Flash::success('Page created successfully.');
 
         return redirect(route('pages.index'));
@@ -126,9 +152,9 @@ class PageController extends AppBaseController
             Campaign::STATUS_ACTIVE)->latest()->take(6)->orderBy('is_emergency', 'desc')->get();
         $latestFiveNews = News::latest()->take(5)->get();
 
-
-
-        return view('front_landing.page_detail', compact('page','data','latestFiveNews'));
+        // فك تشفير JSON إلى مصفوفة
+        $files = json_decode($page->files, true);
+        return view('front_landing.page_detail', compact('page','data','latestFiveNews','files'));
     }
 
     /**
