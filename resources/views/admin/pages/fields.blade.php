@@ -8,17 +8,39 @@
     <div class="col-lg-12">
         <div class="mb-5">
             {{ Form::label('title', __('messages.common.title').':', ['class' => 'required form-label']) }}
+{{--
             {{ Form::text('title',null, ['class' => 'form-control', 'placeholder' => __('messages.common.title'),'maxlength'=>'30']) }}
+--}}
             {{ Form::text('title',null, ['class' => 'form-control', 'placeholder' => __('messages.common.title'),'maxlength'=>'25']) }}
         </div>
     </div>
     <div class="col-lg-12">
         <div class="mb-5">
-            {{ Form::label('description', __('messages.common.description').':', ['class' => 'required form-label']) }}
+            {{ Form::label('description', __('messages.common.description').':', ['class' => 'form-label']) }}
             <div id="pageDescription"
                  class="editor-height"></div> {{ Form::hidden('description', null, ['class' => 'form-control', 'name'=>'description']) }}
         </div>
     </div>
+    <div class="col-lg-12">
+        <div class="mb-5">
+            {{ Form::label('', 'Attachments:', ['class' => 'form-label']) }}
+            <div id="attachments-wrapper">
+                <div class="attachment-item mb-3 row">
+                    <div class="col-md-5">
+                        <input type="text" name="attachments[0][title]" class="form-control mb-2" placeholder="File Title">
+                    </div>
+                    <div class="col-md-5">
+                        <input type="file" name="attachments[0][file]" class="form-control mb-2">
+                    </div>
+                    <div class="col-md-2">
+                        <button type="button" class="btn btn-danger remove-attachment">Remove</button>
+                    </div>
+                </div>
+            </div>
+            <button type="button" class="btn btn-success" id="add-attachment">Add Another File</button>
+        </div>
+    </div>
+
     <div class="d-flex col-lg-12">
         <div class="mb-5">
             {{ Form::label('is_active',__('messages.common.is_active').(':'), ['class' => 'form-label']) }}

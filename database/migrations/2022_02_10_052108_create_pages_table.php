@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('title');
             $table->longText('description');
             $table->boolean('is_active')->default(true);
+            $table->longText('files')->nullable();
             $table->timestamps();
         });
     }

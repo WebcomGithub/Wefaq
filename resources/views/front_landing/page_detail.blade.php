@@ -22,14 +22,41 @@
             </div>
         </section>
         <!-- end hero-section -->
+        <section class="blog-section pt-100 pb-100">
+            <h3 style="color: red; text-align: center;">
+                {{$page->title}}
+            </h3>
 
+            <div style="display: flex; justify-content: center;">
+                <table style="width: 50%; border-collapse: collapse; text-align: center;">
+                    <thead>
+                    <tr style="background-color: #f2f2f2;">
+                        <th style="border: 1px solid #000; padding: 8px;">التقرير</th>
+                        <th style="border: 1px solid #000; padding: 8px;">الرابط</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach ($files as $report)
+                        <tr>
+                            <td style="border: 1px solid #000; padding: 8px;">
+                                {{ $report['title'] }}
+                            </td>
+                            <td style="border: 1px solid #000; padding: 8px;">
+                                <a href="{{ asset('uploads/' . $report['filename']) }}" target="_blank" style="color: blue;">عرض</a>
+                            </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </section>
         <!-- start blog-section  -->
         <section class="blog-section pt-100 pb-100">
             <div class="container">
                 <p class="fs-16 fw-5 text-dark mb-4 pb-lg-2">
                     {!! nl2br($page->description) !!}
                 </p>
-               
+
             </div>
         </section>
         <!-- end blog-section  -->
