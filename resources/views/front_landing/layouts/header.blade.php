@@ -98,6 +98,10 @@
     box-shadow: 0 0 1px rgba(0,0,0,0.5);
 }
 
+    .userway_buttons_wrapper {
+        top: 83.5% !important;
+        bottom: auto !important;
+    }
 </style>
 <header class="sticky-top bg-white shadow-sm">
     <div class="container">
@@ -218,8 +222,8 @@
                             </li>
                             {{--تقارير الجمعية--}}
                             <li class="nav-item">
-                                <a class="nav-link text-dark  fw-5  fs-14 {{ Request::is('page') ? 'active' : '' }}"
-                                   href="{{ route('landing.contact') }}">{{ __('messages.front_landing.association_reports') }}</a>
+                                <a class="nav-link text-dark  fw-5  fs-14 {{ Request::is('page*') ? 'active' : '' }}"
+                                   href="#">{{ __('messages.front_landing.association_reports') }}</a>
                                 <ul class="dropdown-nav ps-0">
                                     @foreach ($pages as $page)
                                         @if ($page->is_active)

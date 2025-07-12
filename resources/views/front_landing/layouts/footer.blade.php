@@ -198,9 +198,13 @@
                         $contactUs = contact_us();
                     @endphp
                     @if (App::getLocale() == 'AR')
-                        {{ json_decode($contactUs['menu_title_lang'], true)['ar'] }}
+                        @if(!empty($contactUs['menu_title_lang']) && json_decode($contactUs['menu_title_lang'], true)['ar'] != null)
+                            {{ json_decode($contactUs['menu_title_lang'], true)['ar'] }}
+                        @endif
                     @elseif(App::getLocale() == 'tr')
-                        {{ json_decode($contactUs['menu_title_lang'], true)['tr'] }}
+                        @if(!empty($contactUs['menu_title_lang']) && json_decode($contactUs['menu_title_lang'], true)['tr'] != null)
+                            {{ json_decode($contactUs['menu_title_lang'], true)['tr'] }}
+                        @endif
                     @else
                         {{ $contactUs['menu_title'] }}
                     @endif
@@ -240,4 +244,3 @@
         </div>
     </div>
 </footer>
-

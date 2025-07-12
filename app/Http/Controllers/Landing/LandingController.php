@@ -105,7 +105,7 @@ class LandingController extends AppBaseController
 
         $data['brands'] = Brand::all();
 
-        $data['programs'] = Campaign::all();
+
 
         return view("front_landing.$homepage", compact('data','latestFiveNews'));
     }

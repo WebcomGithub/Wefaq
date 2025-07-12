@@ -137,7 +137,10 @@
     </script>
     <script src="{{ mix('js/front-pages.js') }}"></script>
     <script src="https://js.stripe.com/v3/"></script>
-    @yield('page_js')
+    <script src="https://cdn.userway.org/widget.js" data-account="ZUGBkHHNS8"></script>
+
+        @yield('page_js')
+
 </head>
 
 <body class="body-wrapper">
@@ -164,7 +167,8 @@
     <img src="{{ asset('front_landing/images/WhatsApp.svg') }}" alt="WhatsApp" />
 </a>
 
-<button id="backToTopBtn" class="back-to-top" style="background-color: #00c5ff">
+
+<button id="backToTopBtn" class="back-to-top" style="background-color: #00c5ff; margin-inline-end:35px;margin-inline-start:35px">
     ▲
 </button>
 
