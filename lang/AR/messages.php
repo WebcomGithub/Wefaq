@@ -299,7 +299,7 @@
     'prefix' => 'Prefix',
     'postal_code' => 'Postal Code',
     'app_name' => 'App Name',
-    'phone_number' => 'Phone Number',
+    'phone_number' => 'رقم التواصل',
     'app_logo' => 'App Logo',
     'about_us' => 'About Us English',
     'about_us_ar' => 'About Us Arabic',
@@ -424,7 +424,7 @@
   ),
   'contact_us' =>
   array (
-    'contact_us' => 'تواصل معنا',
+    'contact_us' => 'اتصل بنا',
     'menu_title' => 'Menu Title',
     'menu_image' => 'Menu Image',
     'enter_title' => 'Enter Title',
@@ -481,7 +481,7 @@
   ),
   'profile' =>
   array (
-    'phone_number' => 'Phone Number',
+    'phone_number' => 'رقم التواصل',
   ),
   'language' =>
   array (
@@ -551,10 +551,10 @@
   'front_landing' =>
   array (
     'home' => 'الرئيسية',
-    'about' => 'عن المؤسسة',
+    'about' => 'من نحن',
     'causes' => 'البرامج',
     'team' => 'Team',
-    'contact' => 'تواصل معنا',
+    'contact' => 'اتصل بنا',
     'sign_up' => 'Sign Up',
     'get_updates' => 'Get Updates',
     'subscribe' => 'Subscribe',
@@ -568,14 +568,14 @@
     'share' => 'Share',
     'all' => 'All',
     'no_campaigns_available_at_this_moment' => 'No Campaigns available at this moment.',
-    'email_address' => 'Email Address',
-    'office_address' => 'Office Address',
+    'email_address' => 'الايميل',
+    'office_address' => 'العنوان',
     'get_a_quote' => 'Get a Quote',
-    'enter_first_name' => 'Enter first name',
-    'enter_email_address' => 'Enter email address',
-    'enter_phone_number' => 'Enter phone number',
-    'enter_subject' => 'Enter subject',
-    'enter_message' => 'Enter message',
+    'enter_first_name' => 'أدخل الاسم',
+    'enter_email_address' => 'أدخل الايميل',
+    'enter_phone_number' => 'أدخل رقم الجوال',
+    'enter_subject' => 'أدخل موضوع الشكوى',
+    'enter_message' => 'تفاصيل الشكوى',
     'upcoming_events' => 'Upcoming Events',
     'all_categories' => 'All Categories',
     'no_events_available_at_this_moment' => 'No Events available at this moment.',
@@ -629,7 +629,7 @@
     'association_reports' => 'التقارير',
     'our_partners' => 'شركائنا',
     'complaints' => 'الشكاوي',
-    'get_in_complaints' => 'تقديم الشكاوى',
+    'get_in_complaints' => 'تقديم شكوى ',
 
 
   ),

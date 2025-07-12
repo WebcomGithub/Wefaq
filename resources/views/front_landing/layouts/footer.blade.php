@@ -184,7 +184,7 @@
                         @endif
                     @endforeach
                 </ul>
-                <a href="{{route('landing.faqs')}}" class="btn btn-sm btn-danger mt-2">
+                <a href="{{route('landing.faqs')}}" class="btn btn-sm mt-2" style="background-color: #00c5ff; color: white;">
                     المزيد من الأسئلة الشائعة
                 </a>
             </div>
@@ -228,7 +228,7 @@
                     <a href="{{ $settings['linkedin_url'] }}" target="_blank" class="text-white me-3">
                         <i class="fab fa-linkedin-in"></i>
                     </a>
-                    <a href="{{ $settings['youtube_url'] }}" target="_blank" class="text-white">
+                    <a href="{{ $settings['youtube_url'] }}" target="_blank" class="text-white me-3">
                         <i class="fab fa-youtube"></i>
                     </a>
                 </div>

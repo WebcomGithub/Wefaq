@@ -164,7 +164,7 @@
     <img src="{{ asset('front_landing/images/WhatsApp.svg') }}" alt="WhatsApp" />
 </a>
 
-<button id="backToTopBtn" class="back-to-top" style="background-color: #009e74">
+<button id="backToTopBtn" class="back-to-top" style="background-color: #00c5ff">
     ▲
 </button>
 
