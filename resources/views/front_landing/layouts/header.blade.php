@@ -60,6 +60,10 @@
         background-color: #c0edfa;
     }
 
+    .active {
+        color: #6ac9e3 !important;
+    }
+
 /* Offcanvas styling */
 .offcanvas-body {
     scrollbar-width: thin;
@@ -215,7 +219,7 @@
                             {{--تقارير الجمعية--}}
                             <li class="nav-item">
                                 <a class="nav-link text-dark  fw-5  fs-14 {{ Request::is('contact-us') ? 'active' : '' }}"
-                                   href="{{ route('landing.contact') }}">{{ __('messages.front_landing.association_reports') }}</a>
+                                   href="#">{{ __('messages.front_landing.association_reports') }}</a>
                                 <ul class="dropdown-nav ps-0">
                                     @foreach ($pages as $page)
                                         @if ($page->is_active)
@@ -330,7 +334,7 @@
                                                         @if ($page->is_active)
                                                             <li class="mb-2">
                                                                 <a href="{{ route('landing.page.detail', $page->id) }}"
-                                                                class="d-flex align-items-center py-2 px-3 rounded-3 fs-14 fw-semibold {{ Request::is('page/' . $page->id) ? 'active bg-primary-soft text-primary' : 'text-dark' }}">
+                                                                class="d-flex align-items-center py-2 px-3 rounded-3 fs-14 fw-semibold {{ Request::is('page/' . $page->id) ? 'bg-primary-soft text-primary' : 'text-dark' }}">
                                                                     <i class="fas fa-file me-3"></i>
                                                                     {{ $page->name }}
                                                                 </a>
