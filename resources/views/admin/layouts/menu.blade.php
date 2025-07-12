@@ -34,27 +34,11 @@
     </a>
 </li> --}}
 
-@can('manage_events')
-    <li class="nav-item {{ Request::is('admin/events*','admin/event-categories*') ? 'active' : '' }}">
-        <a class="nav-link d-flex align-items-center py-3" aria-current="page" href="{{ route('events.index') }}">
-            <span class="aside-menu-icon pe-3"><i class="fas fa-calendar fs-3"></i></span>
-            <span class="aside-menu-title">{{__('messages.events.events')}}</span>
-        </a>
-    </li>
-@endcan
 @can('manage_news')
     <li class="nav-item {{ Request::is('admin/news*','admin/news-categories*','admin/news-tags*') ? 'active' : '' }}">
         <a class="nav-link d-flex align-items-center py-3" aria-current="page" href="{{ route('news.index') }}">
             <span class="aside-menu-icon pe-3"><i class="fas fa-newspaper fs-3"></i></span>
             <span class="aside-menu-title">{{__('messages.news.news')}}</span>
-        </a>
-    </li>
-@endcan
- @can('manage_users')
-    <li class="nav-item {{ Request::is('admin/users*') ? 'active' : '' }}">
-        <a class="nav-link d-flex align-items-center py-3" aria-current="page" href="{{ route('users.index') }}">
-            <span class="aside-menu-icon pe-3"><i class="fas fa-users fs-3"></i></span>
-            <span class="aside-menu-title">{{__('messages.users')}}</span>
         </a>
     </li>
 @endcan
@@ -66,19 +50,52 @@
         </a>
     </li>
 @endcan
-@can('manage_roles')
-    <li class="nav-item {{ Request::is('admin/roles*') ? 'active' : '' }}" href="{{ route('roles.index') }}">
-        <a class="nav-link d-flex align-items-center py-3" aria-current="page" href="{{ route('roles.index') }}">
-            <span class="aside-menu-icon pe-3"><i class="fas fa-user fs-3"></i></span>
-            <span class="aside-menu-title">{{__('messages.roles')}}</span>
+    <li class="nav-item {{ Request::is('admin/complaints*') ? 'active' : '' }}">
+        <a class="nav-link d-flex align-items-center py-3" aria-current="page" href="{{ route('complaints.index') }}">
+            <span class="aside-menu-icon pe-3"><i class="fa fa-question-circle fs-3"></i></span>
+            <span class="aside-menu-title">{{ __('messages.front_landing.complaints') }}</span>
         </a>
     </li>
-@endcan
+
 @can('manage_brands')
     <li class="nav-item {{ Request::is('admin/brands*') ? 'active' : '' }}" href="{{ route('brands.index') }}">
         <a class="nav-link d-flex align-items-center py-3" aria-current="page" href="{{ route('brands.index') }}">
             <span class="aside-menu-icon pe-3"><i class="fa fa-adjust fs-3"></i></span>
             <span class="aside-menu-title">{{__('messages.brand.brands')}}</span>
+        </a>
+    </li>
+@endcan
+
+@can('manage_language')
+    <li class="nav-item {{ Request::is('admin/languages*') ? 'active' : '' }}">
+        <a class="nav-link d-flex align-items-center py-3" aria-current="page" href="{{ route('languages.index') }}">
+            <span class="aside-menu-icon pe-3"><i class="fa fa-language fs-3"></i></span>
+            <span class="aside-menu-title">{{__('messages.languages')}}</span>
+        </a>
+    </li>
+@endcan
+
+@can('manage_events')
+    <li class="nav-item {{ Request::is('admin/events*','admin/event-categories*') ? 'active' : '' }}">
+        <a class="nav-link d-flex align-items-center py-3" aria-current="page" href="{{ route('events.index') }}">
+            <span class="aside-menu-icon pe-3"><i class="fas fa-calendar fs-3"></i></span>
+            <span class="aside-menu-title">{{__('messages.events.events')}}</span>
+        </a>
+    </li>
+@endcan
+ @can('manage_users')
+    <li class="nav-item {{ Request::is('admin/users*') ? 'active' : '' }}">
+        <a class="nav-link d-flex align-items-center py-3" aria-current="page" href="{{ route('users.index') }}">
+            <span class="aside-menu-icon pe-3"><i class="fas fa-users fs-3"></i></span>
+            <span class="aside-menu-title">{{__('messages.users')}}</span>
+        </a>
+    </li>
+@endcan
+@can('manage_roles')
+    <li class="nav-item {{ Request::is('admin/roles*') ? 'active' : '' }}" href="{{ route('roles.index') }}">
+        <a class="nav-link d-flex align-items-center py-3" aria-current="page" href="{{ route('roles.index') }}">
+            <span class="aside-menu-icon pe-3"><i class="fas fa-user fs-3"></i></span>
+            <span class="aside-menu-title">{{__('messages.roles')}}</span>
         </a>
     </li>
 @endcan
@@ -90,21 +107,6 @@
         </a>
     </li>
 @endcan
-    <li class="nav-item {{ Request::is('admin/complaints*') ? 'active' : '' }}">
-        <a class="nav-link d-flex align-items-center py-3" aria-current="page" href="{{ route('complaints.index') }}">
-            <span class="aside-menu-icon pe-3"><i class="fa fa-question-circle fs-3"></i></span>
-            <span class="aside-menu-title">{{ __('messages.front_landing.complaints') }}</span>
-        </a>
-    </li>
-@can('manage_language')
-    <li class="nav-item {{ Request::is('admin/languages*') ? 'active' : '' }}">
-        <a class="nav-link d-flex align-items-center py-3" aria-current="page" href="{{ route('languages.index') }}">
-            <span class="aside-menu-icon pe-3"><i class="fa fa-language fs-3"></i></span>
-            <span class="aside-menu-title">{{__('messages.languages')}}</span>
-        </a>
-    </li>
-@endcan
-
 
 @canany(['manage_sliders_third','manage_categories_third','manage_video_section_third','manage_success_stories','manage_email_subscribe','manage_about_us','manage_contact_us','manage_faqs','manage_teams','manage_terms_conditions'])
     <li class="nav-item {{ Request::is('admin/third-slider*','admin/third-categories*','admin/third-video-section*','admin/success-stories*','admin/email-subscribe*','admin/about-us*','admin/contact-us*','admin/faqs*','admin/team-members*','admin/terms-conditions*') ? 'active' : '' }}">
