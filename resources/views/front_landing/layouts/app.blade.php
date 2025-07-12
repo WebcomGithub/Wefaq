@@ -163,12 +163,12 @@
     @include('landing.layouts.footer-three')
 @endif
 
-<a href="{{$settings['phone'] }}" class="floating-contact-button" target="_blank">
+<a href="{{$settings['phone'] }}" class="floating-contact-button" target="_blank" style="margin-inline-end:35px;margin-inline-start:35px">
     <img src="{{ asset('front_landing/images/WhatsApp.svg') }}" alt="WhatsApp" />
 </a>
 
 
-<button id="backToTopBtn" class="back-to-top" style="background-color: #00c5ff; margin-inline-end:35px;margin-inline-start:35px">
+<button id="backToTopBtn" class="back-to-top" style="background-color: #00c5ff">
     ▲
 </button>
 
