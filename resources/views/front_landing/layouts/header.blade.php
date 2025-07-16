@@ -19,14 +19,40 @@
     }
 
     .social-icon.facebook:hover {
-        background-color: #3b5998;
+        background-color: #1877F2;
         color: white;
+        transform: scale(1.05); 
+        transition: all 0.2s ease;
     }
 
     .social-icon.twitter:hover {
-        background-color: #1da1f2;
+        background-color: #000000;
         color: white;
+        transform: scale(1.05);
+        transition: all 0.2s ease;
     }
+
+    .social-icon.linkedin:hover {
+        background-color: #0A66C2;
+        color: white;
+        transform: scale(1.05); 
+        transition: all 0.2s ease;
+    }
+
+    .social-icon.instagram:hover {
+        background-color: #E1306C;
+        color: white;
+        transform: scale(1.05); 
+        transition: all 0.2s ease;
+    }
+
+    .social-icon.youtube:hover {
+        background-color: #E60000;
+        color: white;
+        transform: scale(1.05); 
+        transition: all 0.2s ease;
+    }
+
     .nav-item {
         position: relative;
     }
@@ -52,16 +78,16 @@
     .dropdown-nav li a {
         display: block;
         padding: 8px 16px;
-        color: #333;
+        color: #c4d4fa;
         text-decoration: none;
     }
 
     .dropdown-nav li a:hover {
-        background-color: #c0edfa;
+        background-color: #c4d4fa;
     }
 
     .active {
-        color: #6ac9e3 !important;
+        color: #4664aa !important;
     }
 
 /* Offcanvas styling */
@@ -101,6 +127,10 @@
     .userway_buttons_wrapper {
         top: 50.5% !important;
     }
+
+header .navbar .navbar-nav .nav-item .dropdown-nav li .active, header .navbar .navbar-nav .nav-item .dropdown-nav li:hover {
+    background-color: #FFFFFF !important;
+}
 </style>
 <header class="sticky-top bg-white shadow-sm">
     <div class="container">
@@ -120,15 +150,15 @@
                         <i class="fab fa-facebook-f"></i>
                     </a>
                     <a href="{{ $settings['twitter_url'] }}" target="_blank" class="social-icon twitter">
-                        <i class="fab fa-twitter"></i>
+                        <i class="fab fa-x"></i>
                     </a>
-                    <a href="{{ $settings['linkedin_url'] }}" target="_blank" class="social-icon twitter">
+                    <a href="{{ $settings['linkedin_url'] }}" target="_blank" class="social-icon linkedin">
                         <i class="fab fa-linkedin"></i>
                     </a>
-                    <a href="{{ $settings['instagram_url'] }}" target="_blank" class="social-icon twitter">
+                    <a href="{{ $settings['instagram_url'] }}" target="_blank" class="social-icon instagram">
                         <i class="fab fa-instagram"></i>
                     </a>
-                    <a href="{{ $settings['youtube_url'] }}" target="_blank" class="social-icon twitter">
+                    <a href="{{ $settings['youtube_url'] }}" target="_blank" class="social-icon youtube">
                         <i class="fab fa-youtube"></i>
                     </a>
                 </div>
@@ -238,7 +268,7 @@
                             {{--تقدييم شكوى--}}
                             <li class="nav-item">
                                 <a class="btn fw-bold px-3 py-2 ms-lg-2"
-                                   href="{{ route('landing.complaints') }}" style="background-color: #00c5ff; color:white">
+                                   href="{{ route('landing.complaints') }}" style="background-color: #4664aa; color:white">
                                     {{ __('messages.front_landing.complaints_tab') }}
                                 </a>
                             </li>
@@ -249,7 +279,7 @@
                                 <ul class="dropdown-nav ps-0">
                                     @foreach (getAllLanguage() as $language)
                                         <li>
-                                            <a class="fs-14 fw-5 {{ $language->iso_code == App::getLocale() ? 'active' : '' }}"
+                                            <a class="fs-14 fw-5 text-dark {{ $language->iso_code == App::getLocale() ? 'active' : '' }}"
                                                 href="{{ route('landing.change-language', $language->iso_code) }}"
                                                 data-prefix-value="{{ $language->iso_code }}">
                                                 {{ $language->name }}

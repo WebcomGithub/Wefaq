@@ -184,7 +184,7 @@
                         @endif
                     @endforeach
                 </ul>
-                <a href="{{route('landing.faqs')}}" class="btn btn-sm mt-2" style="background-color: #00c5ff; color: white;">
+                <a href="{{route('landing.faqs')}}" class="btn btn-sm mt-2" style="background-color: #4664aa; color: white;">
                     {{__('messages.front_landing.More frequently asked questions')}}
                 </a>
             </div>
@@ -223,7 +223,7 @@
                         <i class="fab fa-facebook-f"></i>
                     </a>
                     <a href="{{ $settings['twitter_url'] }}" target="_blank" class="text-white me-3">
-                        <i class="fab fa-twitter"></i>
+                        <i class="fab fa-x"></i>
                     </a>
                     <a href="{{ $settings['instagram_url'] }}" target="_blank" class="text-white me-3">
                         <i class="fab fa-instagram"></i>
