@@ -16,7 +16,7 @@
                         <div class="col-lg-6 col-md-7 parallelogram-shape">
                             <div class="text-white inner-text position-relative">
                                 <p class="fs-18 fw-5 mb-md-3 pb-lg-2 mb-2">
-                                    @if (App::getLocale() == 'AR' && $contactUs['menu_title_lang'] != null)
+                                @if (App::getLocale() == 'AR' && isset($contactUs['menu_title_lang']) && $contactUs['menu_title_lang'] != null)
                                         {{ json_decode($contactUs['menu_title_lang'], true)['ar'] }}
                                     @elseif (App::getLocale() == 'TR' && $contactUs['menu_title_lang'] != null)
                                         {{ json_decode($contactUs['menu_title_lang'], true)['tr'] }}
