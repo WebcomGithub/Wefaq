@@ -18,7 +18,7 @@
                                 <p class="fs-18 fw-5 mb-md-3 pb-lg-2 mb-2">
                                 @if (App::getLocale() == 'AR' && isset($contactUs['menu_title_lang']) && $contactUs['menu_title_lang'] != null)
                                         {{ json_decode($contactUs['menu_title_lang'], true)['ar'] }}
-                                    @elseif (App::getLocale() == 'TR' && $contactUs['menu_title_lang'] != null)
+                                    @elseif (App::getLocale() == 'TR' && isset($contactUs['menu_title_lang']) && $contactUs['menu_title_lang'] != null)
                                         {{ json_decode($contactUs['menu_title_lang'], true)['tr'] }}
                                     @else
                                         {{ $contactUs['menu_title'] }}
