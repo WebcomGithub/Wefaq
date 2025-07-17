@@ -14,8 +14,8 @@
     </div>
 
     <div class="col-md-6 mb-5">
-        {{ Form::label('title_2', __('messages.slider.title_2').':', ['class' => 'required form-label ']) }}
-        {{ Form::text('title_2', isset($thirdSlider) ? $thirdSlider->title_2 : '',['class' => 'form-control', 'placeholder' => __('messages.slider.slider_title_2'), 'required', 'max' => '40']) }}
+        {{ Form::label('title_2', __('messages.slider.title_2').':', ['class' => 'form-label ']) }}
+        {{ Form::text('title_2', isset($thirdSlider) ? $thirdSlider->title_2 : '',['class' => 'form-control', 'placeholder' => __('messages.slider.slider_title_2'), 'max' => '40']) }}
     </div>
      <div class="col-md-6 mb-5">
         {{ Form::label('title_2', __('messages.slider.title_2_ar').':', ['class' => ' form-label ']) }}

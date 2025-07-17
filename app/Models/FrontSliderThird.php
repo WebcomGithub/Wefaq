@@ -41,7 +41,7 @@ class FrontSliderThird extends Model implements HasMedia
 
     public static $rules = [
         'title_1' => 'required|max:50',
-        'title_2' => 'required|max:50',
+        'title_2' => 'max:50',
         'image' => 'required',
     ];
 
