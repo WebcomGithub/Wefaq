@@ -125,7 +125,7 @@
 }
 
     .userway_buttons_wrapper {
-        top: 50.5% !important;
+        top: 60% !important;
     }
 
 header .navbar .navbar-nav .nav-item .dropdown-nav li .active, header .navbar .navbar-nav .nav-item .dropdown-nav li:hover {

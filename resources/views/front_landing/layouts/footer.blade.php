@@ -257,14 +257,17 @@
 
     function showItem(index) {
         const item = items[index];
-        const type = item.dataset.type;
-        const src = item.src || item.getAttribute('src') || item.dataset.src;
+        const type = item.dataset.type || 'image'; // Default to 'image' if no type specified
+        const src = item.dataset.src || item.src || item.getAttribute('src');
 
         mediaContent.innerHTML = '';
 
         if (type === 'image') {
             const img = document.createElement('img');
             img.src = src;
+            img.style.maxWidth = '100%';
+            img.style.maxHeight = '100%';
+            img.style.objectFit = 'contain';
             mediaContent.appendChild(img);
         } else if (type === 'video') {
             const video = document.createElement('video');
@@ -298,12 +301,12 @@
     });
 
     nextBtn.addEventListener('click', () => {
-        currentIndex = (currentIndex + 1) % items.length;
+        currentIndex = (currentIndex - 1 + items.length) % items.length; // Previous
         showItem(currentIndex);
     });
 
     prevBtn.addEventListener('click', () => {
-        currentIndex = (currentIndex - 1 + items.length) % items.length;
+        currentIndex = (currentIndex + 1) % items.length; // Next
         showItem(currentIndex);
     });
 
