@@ -24,6 +24,7 @@ use App\Http\Controllers\FrontSliderController;
 use App\Http\Controllers\FrontSliderThirdController;
 use App\Http\Controllers\InquiryController;
 use App\Http\Controllers\LanguageController;
+use App\Http\Controllers\MediaController;
 use App\Http\Controllers\NewsCommentsController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\NewsTagsController;
@@ -178,6 +179,10 @@ Route::prefix('admin')->middleware('auth', 'xss', 'valid.user','role:admin')->gr
         Route::post('edit-brand/{brand}',
             [BrandController::class, 'update'])->name('brands.update');
     });
+ // media Route
+        Route::resource('media', MediaController::class);
+        Route::post('edit-media/{media}',
+            [MediaController::class, 'media'])->name('media.update');
 
     // Email Subscribe Route
     Route::middleware('permission:manage_email_subscribe')->group(function () {

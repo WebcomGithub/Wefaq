@@ -244,3 +244,74 @@
         </div>
     </div>
 </footer>
+
+<script>
+    const items = document.querySelectorAll('.gallery-item');
+    const popup = document.getElementById('imagePopup');
+    const mediaContent = document.getElementById('mediaContent');
+    const closeBtn = document.querySelector('.popup .close');
+    const prevBtn = document.querySelector('.prev-btn');
+    const nextBtn = document.querySelector('.next-btn');
+
+    let currentIndex = 0;
+
+    function showItem(index) {
+        const item = items[index];
+        const type = item.dataset.type;
+        const src = item.src || item.getAttribute('src') || item.dataset.src;
+
+        mediaContent.innerHTML = '';
+
+        if (type === 'image') {
+            const img = document.createElement('img');
+            img.src = src;
+            mediaContent.appendChild(img);
+        } else if (type === 'video') {
+            const video = document.createElement('video');
+            video.src = src;
+            video.controls = true;
+            video.autoplay = true;
+            mediaContent.appendChild(video);
+        } else if (type === 'youtube' || type === 'vimeo') {
+            const iframe = document.createElement('iframe');
+            iframe.src = src;
+            iframe.width = '800';
+            iframe.height = '450';
+            iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+            iframe.allowFullscreen = true;
+            iframe.style.border = 'none';
+            mediaContent.appendChild(iframe);
+        }
+    }
+
+    items.forEach((item, index) => {
+        item.addEventListener('click', () => {
+            popup.style.display = 'flex';
+            currentIndex = index;
+            showItem(currentIndex);
+        });
+    });
+
+    closeBtn.addEventListener('click', () => {
+        popup.style.display = 'none';
+        mediaContent.innerHTML = '';
+    });
+
+    nextBtn.addEventListener('click', () => {
+        currentIndex = (currentIndex + 1) % items.length;
+        showItem(currentIndex);
+    });
+
+    prevBtn.addEventListener('click', () => {
+        currentIndex = (currentIndex - 1 + items.length) % items.length;
+        showItem(currentIndex);
+    });
+
+    popup.addEventListener('click', (e) => {
+        if (e.target === popup) {
+            popup.style.display = 'none';
+            mediaContent.innerHTML = '';
+        }
+    });
+</script>
+

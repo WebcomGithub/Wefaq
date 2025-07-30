@@ -2,16 +2,24 @@
     <div class="row gx-10 mb-5">
         <div class="col-md-12 mb-5">
             {{ Form::label('short_title', __('messages.video_section.short_title_ar').':', ['class' => ' form-label']) }}
-            {{ Form::text('short_title_ar', json_decode($thirdVideoSection['short_title_lang'], true)['ar'],['class' => 'form-control', 'placeholder' => __('messages.video_section.enter_short_title'), 'max' => '45']) }}
+            {{ Form::text(
+                'short_title_ar',
+                data_get(json_decode($thirdVideoSection['short_title_lang'] ?? '{}', true), 'ar', ''),
+                ['class' => 'form-control', 'placeholder' => __('messages.video_section.enter_short_title'), 'max' => '45']
+            ) }}
         </div>
         <div class="col-md-12 mb-5">
             {{ Form::label('short_title', __('messages.video_section.short_title').':', ['class' => 'required form-label']) }}
             {{ Form::text('short_title', $thirdVideoSection['short_title'],['class' => 'form-control', 'placeholder' => __('messages.video_section.enter_short_title'), 'required', 'max' => '45']) }}
         </div>
-        
+
         <div class="col-md-12 mb-5">
             {{ Form::label('short_title', __('messages.video_section.short_title_tr').':', ['class' => ' form-label']) }}
-            {{ Form::text('short_title_tr', json_decode($thirdVideoSection['short_title_lang'], true)['tr'],['class' => 'form-control', 'placeholder' => __('messages.video_section.enter_short_title'), 'max' => '45']) }}
+            {{ Form::text(
+                'short_title_tr',
+                data_get(json_decode($thirdVideoSection['short_title_lang'] ?? '{}', true), 'tr', ''),
+                ['class' => 'form-control', 'placeholder' => __('messages.video_section.enter_short_title'), 'max' => '45']
+            ) }}
         </div>
 
 
@@ -21,12 +29,28 @@
         </div>
         <div class="col-md-12 mb-5">
             {{ Form::label('title', __('messages.common.title arabic').':', ['class' => ' form-label']) }}
-            {{ Form::text('title_ar', json_decode($thirdVideoSection['title_lang'], true)['ar'],['class' => 'form-control', 'placeholder' => __('messages.contact_us.enter_title'), 'max' => '45']) }}
+            {{ Form::text(
+                'title_ar',
+                data_get(json_decode($thirdVideoSection['title_lang'] ?? '{}', true), 'ar', ''),
+                [
+                    'class' => 'form-control',
+                    'placeholder' => __('messages.contact_us.enter_title'),
+                    'max' => '45'
+                ]
+            ) }}
 
         </div>
         <div class="col-md-12 mb-5">
             {{ Form::label('title', __('messages.common.title turkish').':', ['class' => ' form-label']) }}
-            {{ Form::text('title_tr', json_decode($thirdVideoSection['title_lang'], true)['tr'],['class' => 'form-control', 'placeholder' => __('messages.contact_us.enter_title'), 'max' => '45']) }}
+            {{ Form::text(
+                'title_tr',
+                data_get(json_decode($thirdVideoSection['title_lang'] ?? '{}', true), 'tr', ''),
+                [
+                    'class' => 'form-control',
+                    'placeholder' => __('messages.contact_us.enter_title'),
+                    'max' => '45'
+                ]
+            ) }}
         </div>
 
 
@@ -52,10 +76,10 @@
                         </div>
                         <span class="picker-edit rounded-circle text-gray-500 fs-small" data-bs-toggle="tooltip"
                               data-placement="top" data-bs-original-title="Change Image">
-                        <label> 
-                            <i class="fa-solid fa-pen" id="profileImageIcon"></i> 
-                            <input type="file" name="bg_image" class="image-upload d-none" id="bg_image" accept="image/*" /> 
-                        </label> 
+                        <label>
+                            <i class="fa-solid fa-pen" id="profileImageIcon"></i>
+                            <input type="file" name="bg_image" class="image-upload d-none" id="bg_image" accept="image/*" />
+                        </label>
                     </span>
                     </div>
                 </div>
@@ -73,6 +97,6 @@
     </div>
 
 
-    
+
 
 

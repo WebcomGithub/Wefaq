@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateBookRequest;
 use App\Http\Requests\CreateEventRequest;
 use App\Http\Requests\UpdateEventRequest;
+use App\Models\Campaign;
 use App\Models\Event;
 use App\Models\EventCategory;
 use App\Models\EventParticipant;
+use App\Models\News;
 use App\Repositories\EventRepository;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -130,7 +132,16 @@ class EventController extends AppBaseController
 
         $eventCategories = EventCategory::withCount('events')->get();
 
-        return view('front_landing.events', compact('eventCategories', 'eventCategoryId'));
+        $data['campaigns'] = Campaign::with('campaignCategory', 'user')->where('status',
+            Campaign::STATUS_ACTIVE)->latest()->take(6)->orderBy('is_emergency', 'desc')->get();
+
+        $data['latestNewsFeeds'] = News::with('newsCategory')->latest()->first();
+
+
+        $latestFiveNews = News::latest()->take(5)->get();
+
+
+        return view('front_landing.events', compact('eventCategories', 'eventCategoryId','data','latestFiveNews'));
     }
 
     /**
