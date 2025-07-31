@@ -23,15 +23,18 @@ class MedieSection extends Model implements HasMedia
      */
     public static $rules = [
         'name' => 'required|unique:brands|max:30',
-        'image' => 'required|mimes:jpg,jpeg,png',
+        'type' => 'required|in:image,video',
+        'video_url' => 'nullable',
+        'image' => 'nullable|mimes:jpg,jpeg,png',
     ];
 
-    protected $table = 'brands';
+
+    protected $table = 'medie_section';
 
     /**
      * @var string[]
      */
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'type', 'video_url'];
 
     protected $casts = ['name' => 'string'];
 

@@ -23,6 +23,7 @@ use App\Models\FrontSlider;
 use App\Models\FrontSlider2;
 use App\Models\FrontSliderThird;
 use App\Models\Inquiry;
+use App\Models\MedieSection;
 use App\Models\News;
 use App\Models\NewsCategory;
 use App\Models\NewsComment;
@@ -104,6 +105,8 @@ class LandingController extends AppBaseController
             Campaign::STATUS_ACTIVE)->latest()->take(6)->orderBy('is_emergency', 'desc')->get();
 
         $data['brands'] = Brand::all();
+
+        $data['media'] = MedieSection::all();
 
 
 

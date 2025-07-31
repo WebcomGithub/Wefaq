@@ -7,7 +7,7 @@ use App\Models\MedieSection;
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 
-class MedieSectionTable extends LivewireTableComponent
+class MediaSectionTable extends LivewireTableComponent
 {
     public $paginationTheme = 'bootstrap-5';
 

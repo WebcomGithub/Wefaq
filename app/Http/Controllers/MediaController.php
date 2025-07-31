@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateBrandRequest;
+use App\Http\Requests\CreateMediaRequest;
 use App\Http\Requests\UpdateBrandRequest;
 use App\Models\Brand;
 use App\Repositories\BrandRepository;
@@ -41,10 +42,10 @@ class MediaController extends AppBaseController
     }
 
     /**
-     * @param  CreateBrandRequest  $request
+     * @param  CreateMediaRequest  $request
      * @return JsonResponse
      */
-    public function store(CreateBrandRequest $request)
+    public function store(CreateMediaRequest $request)
     {
         $input = $request->all();
         $this->brandRepo->store($input);

@@ -428,19 +428,16 @@ $brands = brands();
             <h2 class="text-center" style="text-align:right; padding:10px; color: #333;">📷 مكتبة الصور والفيديوهات</h2>
 
             <div class="gallery-container">
-                <img src="https://i.pinimg.com/736x/56/f3/12/56f312a5b648bb3ecd80d484ed22c847.jpg" alt="صورة 1" class="gallery-item" data-type="image">
-                <img src="https://www.cairo24.com/Upload/libfiles/79/6/48.jpg" alt="صورة 2" class="gallery-item" data-type="image">
-                <!-- مثال على فيديو YouTube -->
-                <div class="gallery-item" data-type="youtube" data-src="https://www.youtube.com/embed/qXJBI0PUj6w" style="display:inline-block; width: 200px; height: 120px; background:#000; cursor:pointer;">
-                    <img src="https://img.youtube.com/vi/qXJBI0PUj6w/0.jpg" style="width:100%; height:100%;">
-                </div>
-                <img src="https://i.pinimg.com/736x/56/f3/12/56f312a5b648bb3ecd80d484ed22c847.jpg" alt="صورة 3" class="gallery-item" data-type="image">
-                <img src="https://www.cairo24.com/UploadCache/libfiles/79/6/600x338o/111.jpg" alt="صورة 4" class="gallery-item" data-type="image">
-                <img src="https://i.pinimg.com/736x/56/f3/12/56f312a5b648bb3ecd80d484ed22c847.jpg" alt="صورة 4" class="gallery-item" data-type="image">
-                <img src="https://i.pinimg.com/736x/56/f3/12/56f312a5b648bb3ecd80d484ed22c847.jpg" alt="صورة 4" class="gallery-item" data-type="image">
-                <img src="https://www.cairo24.com/Upload/libfiles/79/6/47.jpg" alt="صورة 4" class="gallery-item" data-type="image">
-                <img src="https://i.pinimg.com/736x/56/f3/12/56f312a5b648bb3ecd80d484ed22c847.jpg" alt="صورة 4" class="gallery-item" data-type="image">
-                <img src="https://www.cairo24.com/Upload/libfiles/79/6/45.jpg" alt="صورة 4" class="gallery-item" data-type="image">
+                @foreach($data['media'] as $media)
+                    @if($media->type == 'image')
+                        <img src="{{ $media->image_url ? : asset('front_landing/images/duragas.png')}}" alt="صورة 1" class="gallery-item" data-type="image">
+                    @else
+                        <!-- مثال على فيديو YouTube -->
+                        <div class="gallery-item" data-type="youtube" data-src="https://www.youtube.com/embed/qXJBI0PUj6w" style="display:inline-block; width: 200px; height: 120px; background:#000; cursor:pointer;">
+                            <img src="https://img.youtube.com/vi/qXJBI0PUj6w/0.jpg" style="width:100%; height:100%;">
+                        </div>
+                    @endif
+                @endforeach
             </div>
 
             <!-- Popup Modal -->

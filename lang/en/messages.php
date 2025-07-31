@@ -648,4 +648,6 @@
     'account_holder_name' => 'Account Holder Name',
   ),
   'save' => 'Save',
+  'add_photo' => 'Add Photo OR link Video',
+
 )?>

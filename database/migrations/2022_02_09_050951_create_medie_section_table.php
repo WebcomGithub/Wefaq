@@ -16,7 +16,8 @@ return new class extends Migration
         Schema::create('medie_section', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('type');
+            $table->enum('type', ['image', 'video'])->default('image');
+            $table->string('video_url')->nullable();
             $table->timestamps();
         });
     }
