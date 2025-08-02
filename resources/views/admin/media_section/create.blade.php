@@ -1,4 +1,4 @@
-<div class="modal fade" id="addBrandModal" tabindex="-1" aria-hidden="true">
+<div class="modal fade" id="addMediaModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -14,7 +14,7 @@
 
                 {{-- نوع المحتوى --}}
                 <div class="mb-5">
-                    {{ Form::label('type', __('نوع المحتوى').':', ['class' => 'form-label required']) }}
+                    {{ Form::label('type', __('messages.common.content_type').':', ['class' => 'form-label required']) }}
                     {{ Form::select('type', ['image' => 'صورة', 'video' => 'فيديو'], 'image', ['class' => 'form-select', 'id' => 'mediaType']) }}
                 </div>
 
@@ -52,7 +52,7 @@
 
                 {{-- حقل رابط الفيديو --}}
                 <div class="mb-5 d-none" id="videoInputSection">
-                    {{ Form::label('video_url', 'رابط الفيديو:', ['class' => 'form-label required']) }}
+                    {{ Form::label('video_url', __('messages.common.video_link'), ['class' => 'form-label required']) }}
                     {{ Form::text('video_url', null, ['class' => 'form-control', 'placeholder' => 'أدخل رابط الفيديو مثل يوتيوب أو Vimeo']) }}
                 </div>
 

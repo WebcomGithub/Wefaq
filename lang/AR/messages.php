@@ -85,6 +85,9 @@
     'enter_notes' => 'أدخل الملاحظات',
     'previous' => 'السابق',
     'next' => 'التالي',
+    'content_type' => 'نوع المحتوى',
+    'video_link' => 'رابط الفيديو',
+
   ),
   'user' =>
   array (
@@ -650,4 +653,6 @@
   ),
   'save' => 'Save',
   'add_photo' => 'اضافة صورة',
+  'media' => 'media',
+
 )?>
