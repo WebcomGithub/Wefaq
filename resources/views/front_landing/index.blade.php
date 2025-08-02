@@ -7,6 +7,31 @@ $brands = brands();
     {{__('messages.front_landing.home')}}
 @endsection
 @php $styleCss = 'style'; @endphp
+
+<style>
+    .image-container {
+        position: relative;
+        display: inline-block;
+        margin: 5px;
+    }
+    
+    .image-caption {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(0, 0, 0, 0.7);
+        color: white;
+        padding: 5px 10px;
+        text-align: center;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+    
+    .image-container:hover .image-caption {
+        opacity: 1;
+    }
+</style>
 @section('content')
     <div class="home-page">
         <!-- start hero-section -->
@@ -427,10 +452,17 @@ $brands = brands();
         <section id="media-gallery" dir="rtl" style="padding: 20px; background-color: #f9f9f9;">
             <h2 class="text-center" style="text-align:right; padding:10px; color: #333;">📷 مكتبة الصور والفيديوهات</h2>
 
-            <div class="gallery-container">
+           <div class="gallery-container">
                 @foreach($data['media'] as $media)
                     @if($media->type == 'image')
-                        <img src="{{ $media->image_url ? : asset('front_landing/images/duragas.png')}}" alt="صورة 1" class="gallery-item" data-type="image">
+                        <div class="image-container" style="position: relative; display: inline-block;">
+                            <img src="{{ $media->image_url ? : asset('front_landing/images/duragas.png')}}" 
+                                alt="{{ $media->name }}" 
+                                class="gallery-item" 
+                                data-type="image" 
+                                style="width:250px; height:190px;">
+                            <div class="image-caption">{{ $media->name }}</div>
+                        </div>
                     @else
                         @php
                             $videoId = null;
@@ -442,8 +474,11 @@ $brands = brands();
                             }
                         @endphp
                         @if($videoId)
-                            <div class="gallery-item" data-type="youtube" data-src="https://www.youtube.com/embed/{{ $videoId }}" style="display:inline-block; width: 200px; height: 120px; background:#000; cursor:pointer;">
-                                <img src="https://img.youtube.com/vi/{{ $videoId }}/0.jpg" style="width:100%; height:200%;">
+                            <div class="image-container" style="position: relative; display: inline-block;">
+                                <div class="gallery-item" data-type="youtube" data-src="https://www.youtube.com/embed/{{ $videoId }}" style="display:inline-block; background:#000; cursor:pointer;">
+                                    <img src="https://img.youtube.com/vi/{{ $videoId }}/0.jpg" style="width:250px; height:190px;">
+                                </div>
+                                <div class="image-caption">{{ $media->name }}</div>
                             </div>
                         @endif
                     @endif
@@ -454,7 +489,7 @@ $brands = brands();
             <div class="popup" id="imagePopup">
                 <span class="close">&times;</span>
                 <button class="nav-button next-btn">&#10094;</button>
-                <div id="mediaContent">
+                <div id="mediaContent" style="width: 800px; height: 450px;">
                     <!-- هنا نعرض صورة أو فيديو -->
                 </div>
 

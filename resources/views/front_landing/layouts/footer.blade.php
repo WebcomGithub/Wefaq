@@ -316,5 +316,15 @@
             mediaContent.innerHTML = '';
         }
     });
+    
+    items.forEach((item, index) => {
+        const clickTarget = item.classList.contains('gallery-item') ? item : item.querySelector('.gallery-item');
+        
+        clickTarget.addEventListener('click', () => {
+            popup.style.display = 'flex';
+            currentIndex = index;
+            showItem(currentIndex);
+        });
+    });
 </script>
 
