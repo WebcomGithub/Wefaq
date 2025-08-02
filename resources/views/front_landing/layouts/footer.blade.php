@@ -326,5 +326,49 @@
             showItem(currentIndex);
         });
     });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        // Counter animation function
+        function animateCounter(element) {
+            const target = parseInt(element.getAttribute('data-countto'));
+            const duration = parseInt(element.getAttribute('data-duration')) || 2000;
+            const start = 0;
+            const increment = target / (duration / 16); // 60fps
+            
+            let current = start;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    clearInterval(timer);
+                    current = target;
+                }
+                element.textContent = Math.floor(current) + (element.textContent.includes('M') ? '' : '');
+            }, 16);
+        }
+
+        // Initialize counters on page load
+        function initCounters() {
+            document.querySelectorAll('.counter').forEach(counter => {
+                if (!counter.classList.contains('animated')) {
+                    animateCounter(counter);
+                    counter.classList.add('animated');
+                }
+            });
+        }
+
+        // Initialize on page load
+        initCounters();
+
+        // Reset and animate on hover
+        document.querySelectorAll('.counter-item').forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                const counter = this.querySelector('.counter');
+                counter.textContent = '0';
+                counter.classList.remove('animated');
+                animateCounter(counter);
+                counter.classList.add('animated');
+            });
+        });
+    });
 </script>
 

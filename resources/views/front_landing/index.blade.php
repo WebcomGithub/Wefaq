@@ -31,6 +31,15 @@ $brands = brands();
     .image-container:hover .image-caption {
         opacity: 1;
     }
+
+    .counter-item {
+    transition: transform 0.3s ease;
+    }
+
+    .counter-item:hover {
+        transform: scale(1.5);
+        cursor: pointer;
+    }
 </style>
 @section('content')
     <div class="home-page">
@@ -352,7 +361,7 @@ $brands = brands();
                                                         $goal = getRaisedAmountPercentage($campaign->campaignDonations->sum('donated_amount'),$campaign->goal);
                                                     @endphp
                                                     <div data-progress="{{$goal}}" style="--progress:{{$goal.'%'}};"
-                                                        class="progress m-auto"></div>
+                                                        class="progress m-auto counter-item"></div>
                                                     <div class="ms-0 ps-3">
                                                         <div class="mb-2">
                                                     <span class="count-num text-dark fs-14 fw-5 me-1">
@@ -398,7 +407,7 @@ $brands = brands();
                                         </div>
                                         <div class="about-content-box bg-primary ">
                                             <div class="about-content d-flex flex-column align-items-center justify-content-center ">
-                                                <h2 class="number-big text-white fs-1 fw-6 counter"
+                                                <h2 class="number-big text-white fs-1 fw-6 counter counter-item"
                                                     data-countto="{{ $data['aboutUs']['years_of_exp'] }}"
                                                     data-duration="3000">
                                                 </h2>
@@ -450,7 +459,7 @@ $brands = brands();
             <!-- end about-section -->
 
         <section id="media-gallery" dir="rtl" style="padding: 20px; background-color: #f9f9f9;">
-            <h2 class="text-center" style="text-align:right; padding:10px; color: #333;">📷 مكتبة الصور والفيديوهات</h2>
+            <h2 class="text-center" style="text-align:right; padding:10px; color: #333;">📷 {{__('messages.media')}} </h2>
 
            <div class="gallery-container">
                 @foreach($data['media'] as $media)
@@ -500,30 +509,30 @@ $brands = brands();
 
 
             <!-- start count-section -->
-            <section class="count-section bg-primary py-4">
+           <section class="count-section bg-primary py-4">
                 <div class="container">
                     <div class="row">
-                        <div class="col-lg-3 col-6 text-white text-center py-4">
+                        <div class="col-lg-3 col-6 text-white text-center py-4 counter-item">
                             <h2 class="fs-1 fw-6">
-                                <span class="counter" data-countto="5" data-duration="3000">0</span>M+
+                                <span class="counter" data-countto="100" data-duration="3000">0</span>+
                             </h2>
                             <h3 class="fs-6 mb-0">{{__('messages.front_landing.projects_done')}}</h3>
                         </div>
-                        <div class="col-lg-3 col-6 text-white text-center py-4">
+                        <div class="col-lg-3 col-6 text-white text-center py-4 counter-item">
                             <h2 class="fs-1 fw-6">
-                                <span class="counter" data-countto="3" data-duration="3000">0</span>M+
+                                <span class="counter" data-countto="30" data-duration="3000">0</span>+
                             </h2>
                             <h3 class="fs-6 mb-0">{{__('messages.front_landing.hopeless_child')}}</h3>
                         </div>
-                        <div class="col-lg-3 col-6 text-white text-center py-4">
+                        <div class="col-lg-3 col-6 text-white text-center py-4 counter-item">
                             <h2 class="fs-1 fw-6">
                                 <span class="counter" data-countto="99" data-duration="3000">0</span>+
                             </h2>
                             <h3 class="fs-6 mb-0">{{__('messages.front_landing.team_member')}}</h3>
                         </div>
-                        <div class="col-lg-3 col-6 text-white text-center py-4">
+                        <div class="col-lg-3 col-6 text-white text-center py-4 counter-item">
                             <h2 class="fs-1 fw-6">
-                                <span class="counter" data-countto="10" data-duration="3000">0</span>+
+                                <span class="counter" data-countto="25" data-duration="3000">0</span>+
                             </h2>
                             <h3 class="fs-6 mb-0">{{__('messages.front_landing.get_regards')}}</h3>
                         </div>
