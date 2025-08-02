@@ -20,7 +20,7 @@
 
                 <div class="mb-5">
                     {{ Form::label('name',__('messages.common.name').(':'), ['class' => 'form-label required']) }}
-                    {{ Form::text('name', null, ['class' => 'form-control','required', 'placeholder' => __('messages.brand.enter_brand_name')]) }}
+                    {{ Form::text('name', null, ['class' => 'form-control','required', 'placeholder' => __('messages.common.title')]) }}
                 </div>
 
                 {{-- حقل رفع الصورة --}}
