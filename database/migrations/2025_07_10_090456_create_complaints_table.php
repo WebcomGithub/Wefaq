@@ -13,13 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('pages', function (Blueprint $table) {
+        Schema::create('complaints', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('title');
-            $table->longText('description');
-            $table->boolean('is_active')->default(true);
-            $table->longText('files')->nullable();
+            $table->string('email');
+            $table->string('phone')->nullable();
+            $table->string('subject');
+            $table->text('message');
+            $table->text('file')->nullable();
+            $table->boolean('status')->default(false);
             $table->timestamps();
         });
     }
@@ -31,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pages');
+        Schema::dropIfExists('complaints');
     }
 };

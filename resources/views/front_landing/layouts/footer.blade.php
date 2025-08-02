@@ -1,4 +1,5 @@
-{{--<!-- start-companies-logo section -->--}}
+{{--<!-- start-companies-logo section -->--}}{{--
+
 <section class="companies-logo-section pt-100 pb-100 bg-gray" style="direction: ltr">
     <div class="container">
         <div class="text-center mb-10">
@@ -32,13 +33,15 @@
                         </a>
                     </div>
                     <p class="fs-14 text-white mb-0">
-                       {{-- @if (App::getLocale() == 'AR' && $settings['about_us_lang'] != null)
+                       --}}
+{{-- @if (App::getLocale() == 'AR' && $settings['about_us_lang'] != null)
                             {{ json_decode($settings['about_us_lang'], true)['ar'] }}
                         @elseif (App::getLocale() == 'TR' && $settings['about_us_lang'] != null)
                             {{ json_decode($settings['about_us_lang'], true)['tr'] }}
                         @else
                             {{ Str::limit($settings['about_us'] , 350) }}
-                        @endif--}}
+                        @endif--}}{{--
+
                         @if (
     App::getLocale() == 'AR' &&
     !empty($settings['about_us_lang']) &&
@@ -115,4 +118,213 @@
     </div>
 </footer>
 <!-- end footer-section -->
+
+--}}
+<section class="companies-logo-section pt-100 pb-100 bg-gray" style="direction: ltr">
+    <div class="container">
+        <div class="text-center mb-10">
+            <h2 class="fs-6 fw-6 text-primary">{{__('messages.front_landing.our_partners')}}</h2>
+            <br>
+            <br>
+        </div>
+        <div class="slick-slider">
+            @foreach($brands as $brand)
+                <div class="slide d-flex justify-content-center">
+                    <div class="company-logo ">
+                        <img src="{{ $brand->image_url ? : asset('front_landing/images/duragas.png')}}"
+                             alt="duragas-logo"
+                             class="w-100 h-100 object-fit-cover" title="{{ $brand->name }}"/>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    </div>
+</section>
+<footer class="bg-secondary text-white pt-5 pb-4">
+    <div class="container">
+        <div class="row gy-4 justify-content-between">
+
+            <!-- Right column: نبذة عن المركز -->
+            <div class="col-lg-4 col-md-6">
+                <h5 class="mb-3 fs-18">{{ __('messages.about_us.about_us') }}</h5>
+                <p class="fs-14">
+                    @if (
+                        App::getLocale() == 'AR' &&
+                        !empty($settings['about_us_lang']) &&
+                        json_decode($settings['about_us_lang'], true)['ar'] ?? false
+                    )
+                        {{ json_decode($settings['about_us_lang'], true)['ar'] }}
+                    @elseif (
+                        App::getLocale() == 'TR' &&
+                        !empty($settings['about_us_lang']) &&
+                        json_decode($settings['about_us_lang'], true)['tr'] ?? false
+                    )
+                        {{ json_decode($settings['about_us_lang'], true)['tr'] }}
+                    @else
+                        {{ Str::limit($settings['about_us'] ?? '', 350) }}
+                    @endif
+                </p>
+            </div>
+
+            <!-- Middle column: الأسئلة الشائعة -->
+            <div class="col-lg-3 col-md-6">
+                <h5 class="mb-3 fs-18">{{ __('messages.faqs.faqs') }}</h5>
+                <ul class="list-unstyled fs-14">
+                    @php
+                        $faqs = faq();
+                    @endphp
+                    @foreach ($faqs as $index=>$faq)
+                        @if($index<3)
+                            <li class="mb-2">
+
+                                <a href="#" class="text-white text-decoration-none">
+                                    {{ $faq->title }}
+                                </a>
+                            </li>
+                        @endif
+                    @endforeach
+                </ul>
+                <a href="{{route('landing.faqs')}}" class="btn btn-sm mt-2" style="background-color: #4664aa; color: white;">
+                    {{__('messages.front_landing.More frequently asked questions')}}
+                </a>
+            </div>
+
+            <!-- Left column: تواصل معنا -->
+            <div class="col-lg-4 col-md-12">
+                <h5 class="mb-3 fs-18">{{ __('messages.contact_us.contact_us') }}</h5>
+                <p class="fs-14 mb-2">
+                    <i class="fa fa-map-marker-alt me-2"></i>
+                    @php
+                        $contactUs = contact_us();
+                    @endphp
+                    @if (App::getLocale() == 'AR')
+                        @if(!empty($contactUs['menu_title_lang']) && json_decode($contactUs['menu_title_lang'], true)['ar'] != null)
+                            {{ json_decode($contactUs['menu_title_lang'], true)['ar'] }}
+                        @endif
+                    @elseif(App::getLocale() == 'tr')
+                        @if(!empty($contactUs['menu_title_lang']) && json_decode($contactUs['menu_title_lang'], true)['tr'] != null)
+                            {{ json_decode($contactUs['menu_title_lang'], true)['tr'] }}
+                        @endif
+                    @else
+                        {{ $contactUs['menu_title'] }}
+                    @endif
+
+                </p>
+                <p class="fs-14 mb-2">
+                    <i class="fa fa-phone me-2"></i>
+                    {{$settings['phone'] }}
+                </p>
+                <p class="fs-14 mb-2">
+                    <i class="fa fa-envelope me-2"></i>
+                    <a href="mailto:{{ $settings['email'] }}" class="text-white text-decoration-none">{{ $settings['email'] }}</a>
+                </p>
+                <div class="d-flex mt-3">
+                    <a href="{{ $settings['facebook_url'] }}" target="_blank" class="text-white me-3">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="{{ $settings['twitter_url'] }}" target="_blank" class="text-white me-3">
+                        <i class="fab fa-x"></i>
+                    </a>
+                    <a href="{{ $settings['instagram_url'] }}" target="_blank" class="text-white me-3">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="{{ $settings['linkedin_url'] }}" target="_blank" class="text-white me-3">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="{{ $settings['youtube_url'] }}" target="_blank" class="text-white me-3">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+        <hr class="bg-light mt-4">
+        <div class="text-center fs-14">
+            {{__('messages.front_landing.All rights reserved to Wifaq Association © 2025')}}
+        </div>
+    </div>
+</footer>
+
+<script>
+    const items = document.querySelectorAll('.gallery-item');
+    const popup = document.getElementById('imagePopup');
+    const mediaContent = document.getElementById('mediaContent');
+    const closeBtn = document.querySelector('.popup .close');
+    const prevBtn = document.querySelector('.prev-btn');
+    const nextBtn = document.querySelector('.next-btn');
+
+    let currentIndex = 0;
+
+    function showItem(index) {
+        const item = items[index];
+        const type = item.dataset.type || 'image'; // Default to 'image' if no type specified
+        const src = item.dataset.src || item.src || item.getAttribute('src');
+
+        mediaContent.innerHTML = '';
+
+        if (type === 'image') {
+            const img = document.createElement('img');
+            img.src = src;
+            img.style.maxWidth = '100%';
+            img.style.maxHeight = '100%';
+            img.style.objectFit = 'contain';
+            mediaContent.appendChild(img);
+        } else if (type === 'video') {
+            const video = document.createElement('video');
+            video.src = src;
+            video.controls = true;
+            video.autoplay = true;
+            mediaContent.appendChild(video);
+        } else if (type === 'youtube' || type === 'vimeo') {
+            const iframe = document.createElement('iframe');
+            iframe.src = src;
+            iframe.width = '800';
+            iframe.height = '450';
+            iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+            iframe.allowFullscreen = true;
+            iframe.style.border = 'none';
+            mediaContent.appendChild(iframe);
+        }
+    }
+
+    items.forEach((item, index) => {
+        item.addEventListener('click', () => {
+            popup.style.display = 'flex';
+            currentIndex = index;
+            showItem(currentIndex);
+        });
+    });
+
+    closeBtn.addEventListener('click', () => {
+        popup.style.display = 'none';
+        mediaContent.innerHTML = '';
+    });
+
+    nextBtn.addEventListener('click', () => {
+        currentIndex = (currentIndex - 1 + items.length) % items.length; // Previous
+        showItem(currentIndex);
+    });
+
+    prevBtn.addEventListener('click', () => {
+        currentIndex = (currentIndex + 1) % items.length; // Next
+        showItem(currentIndex);
+    });
+
+    popup.addEventListener('click', (e) => {
+        if (e.target === popup) {
+            popup.style.display = 'none';
+            mediaContent.innerHTML = '';
+        }
+    });
+    
+    items.forEach((item, index) => {
+        const clickTarget = item.classList.contains('gallery-item') ? item : item.querySelector('.gallery-item');
+        
+        clickTarget.addEventListener('click', () => {
+            popup.style.display = 'flex';
+            currentIndex = index;
+            showItem(currentIndex);
+        });
+    });
+</script>
 

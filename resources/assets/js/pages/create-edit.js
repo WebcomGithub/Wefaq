@@ -32,7 +32,7 @@ function loadPageCreate() {
             keyboard: {
                 bindings: bindings
             },
-            
+
         },
         placeholder: 'Description',
         theme: 'snow'

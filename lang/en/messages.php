@@ -11,7 +11,7 @@
   'first_cms' => 'First CMS',
   'front_cms_Third' => 'Third CMS',
   'front_cms_2' => 'Second CMS',
-  'pages' => 'Pages',
+  'pages' => 'Reports',
   'languages' => 'Languages',
   'translation_manager' => 'Translation Manager',
   'search' => 'Search',
@@ -85,6 +85,9 @@
     'enter_notes' => 'Enter Notes',
     'previous' => 'Previous',
     'next' => 'Next',
+    'content_type' => 'Content Type',
+    'video_link' => 'Video Link',
+
   ),
   'user' =>
   array (
@@ -118,7 +121,7 @@
   array (
     'campaign_categories' => 'Campaign Categories',
     'edit_category' => 'Edit Category',
-    'campaigns' => 'Campaigns',
+    'campaigns' => 'Programs',
     'languages' => 'Languages',
     'add_campaign' => 'Add Campaign',
     'edit_campaign' => 'Edit Campaign',
@@ -232,7 +235,7 @@
   ),
   'brand' =>
   array (
-    'brands' => 'Brands',
+    'brands' => 'Partners',
     'add_brand' => 'Add Brand',
     'new_brand' => 'New Brand',
     'edit_brand' => 'Edit Brand',
@@ -570,7 +573,7 @@
     'no_campaigns_available_at_this_moment' => 'No Campaigns available at this moment.',
     'email_address' => 'Email Address',
     'office_address' => 'Office Address',
-    'get_a_quote' => 'Get a Quote',
+    'get_a_quote' => 'Send',
     'enter_first_name' => 'Enter first name',
     'enter_email_address' => 'Enter email address',
     'enter_phone_number' => 'Enter phone number',
@@ -628,6 +631,13 @@
     'complaints_tab' => 'Complaints',
     'association_reports' => 'Reports',
     'our_partners' => 'Our partners',
+    'complaints' => 'Complaints',
+    'get_in_complaints' => 'Get In Complaints',
+    'All rights reserved to Wifaq Association © 2025' => 'All rights reserved to Wifaq Association © 2025',
+    'More frequently asked questions' => 'More frequently asked questions',
+
+    'enter_compalint_subject' => 'Enter compalint subject',
+    'enter_compalint_message' => 'Enter compalint message',
 
   ),
   'payout_setting' =>
@@ -641,4 +651,8 @@
     'account_holder_name' => 'Account Holder Name',
   ),
   'save' => 'Save',
+  'add_photo' => 'Add Photo OR link Video',
+  'edit_photo' => 'Edit Photo OR link Video',
+  'media' => 'media',
+
 )?>

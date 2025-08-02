@@ -134,7 +134,7 @@ class CampaignController extends AppBaseController
 
         return view('admin.campaigns.edit', compact('campaign', 'campaignCategory', 'country', 'status', 'currencies', 'donationGifts', 'giftIds'));
     }
-    
+
 
 
     public function updateLanguages(Request $request, $id) {
@@ -143,17 +143,17 @@ class CampaignController extends AppBaseController
             'ar' => $request->title_ar ?? '_',
             'tr' => $request->title_tr ?? '_',
         ];
-        
+
         $campaign->short_description_lang = [
             'ar' => $request->short_description_ar ?? '_',
             'tr' => $request->short_description_tr ?? '_',
         ];
-        
+
         $campaign->description_lang = [
             'ar' => $request->description_ar ?? '_',
             'tr' => $request->description_tr ?? '_',
         ];
-        
+
         $campaign->save();
         Flash::success('Campaign updated successfully.');
 

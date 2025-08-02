@@ -32,7 +32,6 @@ class DefaultUserSeeder extends Seeder
                     'password' => Hash::make('123456'),
                 'is_default' => true,
             ]);
-
             User::create([
                 'first_name' => 'John',
                 'last_name' => 'Doe',

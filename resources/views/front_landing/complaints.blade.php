@@ -3,7 +3,7 @@
 @endphp
 @extends('front_landing.layouts.app')
 @section('title')
-    {{__('messages.contact_us.contact_us')}}
+    {{__('messages.front_landing.complaints')}}
 @endsection
 @section('content')
     <div class="Contact-page">
@@ -16,14 +16,7 @@
                         <div class="col-lg-6 col-md-7 parallelogram-shape">
                             <div class="text-white inner-text position-relative">
                                 <p class="fs-18 fw-5 mb-md-3 pb-lg-2 mb-2">
-                                @if (App::getLocale() == 'AR' && isset($contactUs['menu_title_lang']) && $contactUs['menu_title_lang'] != null)
-                                        {{ json_decode($contactUs['menu_title_lang'], true)['ar'] }}
-                                    @elseif (App::getLocale() == 'TR' && isset($contactUs['menu_title_lang']) && $contactUs['menu_title_lang'] != null)
-                                        {{ json_decode($contactUs['menu_title_lang'], true)['tr'] }}
-                                    @else
-                                        {{ $contactUs['menu_title'] }}
-                                    @endif
-                                <h2 class="fs-1 mb-md-0 fw-6">{{__('messages.contact_us.contact_us')}}</h2>
+                                <h2 class="fs-1 mb-md-0 fw-6">{{__('messages.front_landing.complaints')}}</h2>
                             </div>
                         </div>
 
@@ -76,7 +69,7 @@
                 </div>
                 <div class="contact-form pt-60 pb-60">
                     <div class="text-center text-dark pb-20">
-                            <h1>{{__('messages.front_landing.get_in_touch')}}</h1>
+                        <h1>{{__('messages.front_landing.get_in_complaints')}}</h1>
                     </div>
                     <div class="row">
                         <div class="col-lg-4 mb-lg-0 mb-5">
@@ -86,7 +79,7 @@
                             </div>
                         </div>
                         <div class="col-lg-8">
-                            <form id="getInTouchForm" class="row conact-form" method="post">
+                            <form id="getIncomplaintForm"  class="row conact-form" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
                                     <div class="col-lg-6 mb-3 pb-1">
@@ -108,14 +101,17 @@
                                     <div class="col-lg-6 mb-3 pb-1">
                                         <input type="text" id="subject" name="subject"
                                                class="form-control fs-14 text-dark"
-                                               placeholder="{{(__('messages.front_landing.enter_subject'))}} *"
+                                               placeholder="{{(__('messages.front_landing.enter_compalint_subject'))}} *"
                                                required>
                                     </div>
                                     <div class="col-12 mb-4 pb-2">
                                         <textarea class="form-control fs-14 text-dark" id="message" name="message"
                                                   rows="4"
-                                                  placeholder="{{(__('messages.front_landing.enter_message'))}} *"
+                                                  placeholder="{{(__('messages.front_landing.enter_compalint_message'))}} *"
                                                   required></textarea>
+                                    </div>
+                                    <div class="col-12 mb-4 pb-2">
+                                        <input class="form-control" type="file" name="file">
                                     </div>
                                     <div class="col-12">
                                         <button type="submit" class="btn btn-primary me-3"

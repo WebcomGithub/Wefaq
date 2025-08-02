@@ -14,6 +14,7 @@ use App\Models\CampaignCategory;
 use App\Models\CampaignDonation;
 use App\Models\Category;
 use App\Models\CategoryThird;
+use App\Models\Complaints;
 use App\Models\ContactUs;
 use App\Models\DonationGift;
 use App\Models\Event;
@@ -22,6 +23,7 @@ use App\Models\FrontSlider;
 use App\Models\FrontSlider2;
 use App\Models\FrontSliderThird;
 use App\Models\Inquiry;
+use App\Models\MedieSection;
 use App\Models\News;
 use App\Models\NewsCategory;
 use App\Models\NewsComment;
@@ -104,9 +106,11 @@ class LandingController extends AppBaseController
 
         $data['brands'] = Brand::all();
 
-        $allSlides = collect($data['campaigns'])->merge($data['homepageThreeSliders']);
+        $data['media'] = MedieSection::all();
 
-        return view("front_landing.$homepage", compact('data','latestFiveNews','allSlides'));
+
+
+        return view("front_landing.$homepage", compact('data','latestFiveNews'));
     }
 
     /**
@@ -162,6 +166,29 @@ class LandingController extends AppBaseController
 
 
         return view('front_landing.contact', compact('contactUs','latestFiveNews','data'));
+    }
+
+    public function complaints(Request $request)
+    {
+        $contactUs = ContactUs::pluck('value', 'key')->toArray();
+        $latestFiveNews = News::latest()->take(5)->get();
+        $data['campaigns'] = Campaign::with('campaignCategory', 'user')->where('status',
+            Campaign::STATUS_ACTIVE)->latest()->take(6)->orderBy('is_emergency', 'desc')->get();
+        if ($request->isMethod('post')) {
+            $input = $request->except('_token'); // Exclude the CSRF token
+            // Handle the file upload
+            if ($request->hasFile('file') && $request->file('file')->isValid()) {
+                $path = $request->file('file')->store('file', 'public');
+                $input['file'] = $path;
+            }
+
+            Complaints::create($input);
+
+            return $this->sendSuccess('complaints sent successfully.');
+        }
+
+        return view('front_landing.complaints', compact('contactUs','latestFiveNews','data'));
+
     }
 
     /**

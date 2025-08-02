@@ -13,13 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('pages', function (Blueprint $table) {
+        Schema::create('medie_section', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('title');
-            $table->longText('description');
-            $table->boolean('is_active')->default(true);
-            $table->longText('files')->nullable();
+            $table->enum('type', ['image', 'video'])->default('image');
+            $table->string('video_url')->nullable();
             $table->timestamps();
         });
     }
@@ -31,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pages');
+        Schema::dropIfExists('brands');
     }
 };

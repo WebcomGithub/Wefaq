@@ -7,6 +7,31 @@ $brands = brands();
     {{__('messages.front_landing.home')}}
 @endsection
 @php $styleCss = 'style'; @endphp
+
+<style>
+    .image-container {
+        position: relative;
+        display: inline-block;
+        margin: 5px;
+    }
+    
+    .image-caption {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(0, 0, 0, 0.7);
+        color: white;
+        padding: 5px 10px;
+        text-align: center;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+    
+    .image-container:hover .image-caption {
+        opacity: 1;
+    }
+</style>
 @section('content')
     <div class="home-page">
         <!-- start hero-section -->
@@ -20,49 +45,6 @@ $brands = brands();
                         @endfor
                     </div>
                     <div class="carousel-inner">
-                        {{--@foreach($data['campaigns'] as $campaign)
-                            <div class="carousel-item {{$loop->first ? 'active' : ''}}">
-                                <div class="inner-bgimg position-relative object-fit-cover"
-                                     style="background: url('{{ $campaign->image ?: asset('front_landing/images/hero-image.png') }}') no-repeat right;">
-                                    <div class="container">
-                                        <div class="row">
-                                            <div class="col-lg-5 col-md-7 parallelogram-shape">
-                                                <div class="text-white inner-text position-relative">
-                                                    --}}{{-- العنوان الأول --}}{{--
-                                                    @if (App::getLocale() == 'AR' && $campaign->title_lang)
-                                                        <p class="fs-18 fw-5">{{ $campaign->title_lang['ar'] ?? '' }}</p>
-                                                    @elseif (App::getLocale() == 'TR' && $campaign->title_lang)
-                                                        <p class="fs-18 fw-5">{{ $campaign->title_lang['tr'] ?? '' }}</p>
-                                                    @else
-                                                        <p class="fs-18 fw-5">{{ $campaign->title }}</p>
-                                                    @endif
-
-                                                    --}}{{-- العنوان الثاني --}}{{--
-                                                    @if (App::getLocale() == 'AR' && $campaign->short_description_lang)
-                                                        <h2 class="fs-1 mb-0 fw-6">{{ $campaign->short_description_lang['ar'] ?? '' }}</h2>
-                                                    @elseif (App::getLocale() == 'TR' && $campaign->short_description_lang)
-                                                        <h2 class="fs-1 mb-0 fw-6">{{ $campaign->short_description_lang['tr'] ?? '' }}</h2>
-                                                    @else
-                                                        <h2 class="fs-1 mb-0 fw-6">{{ $campaign->short_description }}</h2>
-                                                    @endif
-                                                </div>
-                                            </div>
-
-                                            --}}{{-- عمود ثاني لضمان البنية --}}{{--
-                                            <div class="col-lg-7 col-md-5 mt-3 mt-md-4">
-                                                <div class="video-play-btn m-lg-auto ms-md-auto">
-                                                    <button type="button"
-                                                            class="play-video popup-video fs-4 border-0 slider-popup-video"
-                                                            data-src="https://ummeti.mynet.net/video/ummeti1.mp4">
-                                                        <i class="fas fa-play text-primary"></i>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach--}}
                          @foreach($data['homepageThreeSliders'] as $slider)
                              <div class="carousel-item {{$loop->first ? 'active' : ''}}">
                                  <div class="inner-bgimg position-relative object-fit-cover"
@@ -466,6 +448,56 @@ $brands = brands();
                 </div>
             </section>
             <!-- end about-section -->
+
+        <section id="media-gallery" dir="rtl" style="padding: 20px; background-color: #f9f9f9;">
+            <h2 class="text-center" style="text-align:right; padding:10px; color: #333;">📷 مكتبة الصور والفيديوهات</h2>
+
+           <div class="gallery-container">
+                @foreach($data['media'] as $media)
+                    @if($media->type == 'image')
+                        <div class="image-container" style="position: relative; display: inline-block;">
+                            <img src="{{ $media->image_url ? : asset('front_landing/images/duragas.png')}}" 
+                                alt="{{ $media->name }}" 
+                                class="gallery-item" 
+                                data-type="image" 
+                                style="width:250px; height:190px;">
+                            <div class="image-caption">{{ $media->name }}</div>
+                        </div>
+                    @else
+                        @php
+                            $videoId = null;
+                            if (Str::contains($media->video_url, 'v=')) {
+                                parse_str(parse_url($media->video_url, PHP_URL_QUERY), $query);
+                                $videoId = $query['v'] ?? null;
+                            } elseif (Str::contains($media->video_url, 'youtu.be')) {
+                                $videoId = Str::after($media->video_url, 'youtu.be/');
+                            }
+                        @endphp
+                        @if($videoId)
+                            <div class="image-container" style="position: relative; display: inline-block;">
+                                <div class="gallery-item" data-type="youtube" data-src="https://www.youtube.com/embed/{{ $videoId }}" style="display:inline-block; background:#000; cursor:pointer;">
+                                    <img src="https://img.youtube.com/vi/{{ $videoId }}/0.jpg" style="width:250px; height:190px;">
+                                </div>
+                                <div class="image-caption">{{ $media->name }}</div>
+                            </div>
+                        @endif
+                    @endif
+                @endforeach
+            </div>
+
+            <!-- Popup Modal -->
+            <div class="popup" id="imagePopup">
+                <span class="close">&times;</span>
+                <button class="nav-button next-btn">&#10094;</button>
+                <div id="mediaContent" style="width: 800px; height: 450px;">
+                    <!-- هنا نعرض صورة أو فيديو -->
+                </div>
+
+                <button class="nav-button prev-btn">&#10095;</button>
+            </div>
+
+        </section>
+
 
             <!-- start count-section -->
             <section class="count-section bg-primary py-4">
