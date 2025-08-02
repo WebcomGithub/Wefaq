@@ -10,6 +10,6 @@
             <livewire:media-section-table/>
         </div>
     </div>
-    @include('admin.brands.create')
-    @include('admin.brands.edit')
+    @include('admin.media_section.create')
+    @include('admin.media_section.edit')
 @endsection
