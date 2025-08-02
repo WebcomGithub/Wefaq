@@ -50,7 +50,7 @@ class MediaSectionTable extends LivewireTableComponent
                 'rows' => $this->rows,
                 'modalsView' => $this->modalsView(),
                 'bulkActions' => $this->bulkActions,
-                'componentName' => 'admin.brands.add-button',
+                'componentName' => 'admin.media_section.add-button',
             ]);
     }
 

@@ -85,6 +85,9 @@
     'enter_notes' => 'Enter Notes',
     'previous' => 'Previous',
     'next' => 'Next',
+    'content_type' => 'Content Type',
+    'video_link' => 'Video Link',
+
   ),
   'user' =>
   array (
@@ -649,5 +652,6 @@
   ),
   'save' => 'Save',
   'add_photo' => 'Add Photo OR link Video',
+  'media' => 'media',
 
 )?>

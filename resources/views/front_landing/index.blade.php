@@ -432,10 +432,20 @@ $brands = brands();
                     @if($media->type == 'image')
                         <img src="{{ $media->image_url ? : asset('front_landing/images/duragas.png')}}" alt="صورة 1" class="gallery-item" data-type="image">
                     @else
-                        <!-- مثال على فيديو YouTube -->
-                        <div class="gallery-item" data-type="youtube" data-src="https://www.youtube.com/embed/qXJBI0PUj6w" style="display:inline-block; width: 200px; height: 120px; background:#000; cursor:pointer;">
-                            <img src="https://img.youtube.com/vi/qXJBI0PUj6w/0.jpg" style="width:100%; height:100%;">
-                        </div>
+                        @php
+                            $videoId = null;
+                            if (Str::contains($media->video_url, 'v=')) {
+                                parse_str(parse_url($media->video_url, PHP_URL_QUERY), $query);
+                                $videoId = $query['v'] ?? null;
+                            } elseif (Str::contains($media->video_url, 'youtu.be')) {
+                                $videoId = Str::after($media->video_url, 'youtu.be/');
+                            }
+                        @endphp
+                        @if($videoId)
+                            <div class="gallery-item" data-type="youtube" data-src="https://www.youtube.com/embed/{{ $videoId }}" style="display:inline-block; width: 200px; height: 120px; background:#000; cursor:pointer;">
+                                <img src="https://img.youtube.com/vi/{{ $videoId }}/0.jpg" style="width:100%; height:200%;">
+                            </div>
+                        @endif
                     @endif
                 @endforeach
             </div>

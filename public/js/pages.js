@@ -7329,6 +7329,11 @@ listen('click', '#addBrandBtn', function () {
   resetModalForm('#addBrandForm');
   $('#previewImage').css('background-image', 'url("' + brandDefaultImage + '")');
 });
+listen('click', '#addMediaBtn', function () {
+  $('#addMediaModal').appendTo('body').modal('show');
+  resetModalForm('#addBrandForm');
+  $('#previewImage').css('background-image', 'url("' + brandDefaultImage + '")');
+});
 listen('click', '.brand-edit-btn', function (event) {
   var editBrandID = $(event.currentTarget).data('id');
   renderBrandsData(editBrandID);
