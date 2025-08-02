@@ -22,7 +22,7 @@ class MedieSection extends Model implements HasMedia
      * @var string[]
      */
     public static $rules = [
-        'name' => 'required|unique:brands|max:30',
+        'name' => 'required|unique:medie_section|max:30',
         'type' => 'required|in:image,video',
         'video_url' => 'nullable',
         'image' => 'nullable|mimes:jpg,jpeg,png',

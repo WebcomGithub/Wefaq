@@ -652,6 +652,7 @@
   ),
   'save' => 'Save',
   'add_photo' => 'Add Photo OR link Video',
+  'edit_photo' => 'Edit Photo OR link Video',
   'media' => 'media',
 
 )?>
