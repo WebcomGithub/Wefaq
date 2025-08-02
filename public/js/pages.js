@@ -7317,12 +7317,47 @@ listen('submit', '#editBrandForm', function (event) {
     }
   });
 });
+listen('submit', '#editMediaForm', function (event) {
+  event.preventDefault();
+  processingBtn('#editBrandForm', '#btnEditSave', 'loading');
+  $('#btnEditSave').prop('disabled', true);
+  var editBrandFormID = $('#editMediaId').val();
+  $.ajax({
+    url: route('media.update', editBrandFormID),
+    type: 'POST',
+    data: new FormData($(this)[0]),
+    processData: false,
+    contentType: false,
+    success: function success(result) {
+      if (result.success) {
+        displaySuccessMessage(result.message);
+        $('#editBrandModal').modal('hide');
+        $('#btnEditSave').prop('disabled', false);
+        Livewire.emit('refresh');
+      }
+    },
+    error: function error(result) {
+      displayErrorMessage(result.responseJSON.message);
+      $('#btnEditSave').prop('disabled', false);
+    },
+    complete: function complete() {
+      processingBtn('#editBrandForm', '#btnEditSave');
+    }
+  });
+});
 listen('click', '.brand-delete-btn', function (event) {
   var deleteBrandID = $(event.currentTarget).data('id');
   var url = route('brands.destroy', {
     brand: deleteBrandID
   });
   deleteItem(url, 'Brand');
+});
+listen('click', '.media-delete-btn', function (event) {
+  var deleteBrandID = $(event.currentTarget).data('id');
+  var url = route('media.destroy', {
+      medium: deleteBrandID
+  });
+  deleteItem(url, 'Media');
 });
 listen('click', '#addBrandBtn', function () {
   $('#addBrandModal').appendTo('body').modal('show');
@@ -7331,13 +7366,47 @@ listen('click', '#addBrandBtn', function () {
 });
 listen('click', '#addMediaBtn', function () {
   $('#addMediaModal').appendTo('body').modal('show');
-  resetModalForm('#addBrandForm');
+  resetModalForm('#addMediaDataForm');
   $('#previewImage').css('background-image', 'url("' + brandDefaultImage + '")');
 });
 listen('click', '.brand-edit-btn', function (event) {
   var editBrandID = $(event.currentTarget).data('id');
   renderBrandsData(editBrandID);
 });
+listen('click', '.media-edit-btn', function (event) {
+  var editBrandID = $(event.currentTarget).data('id');
+    renderMediaData(editBrandID);
+});
+function renderMediaData(id) {
+  $.ajax({
+    url: route('media.edit', id),
+    type: 'GET',
+    success: function success(result) {
+      if (result.success) {
+        Livewire.emit('refresh', 'refresh');
+        $('#editMediaId').val(result.data.id);
+        $('#editMediaName').val(result.data.name);
+          // تعيين نوع المحتوى (صورة أو فيديو)
+          $('#editmediaType').val(result.data.type).trigger('change');
+          // إذا كان النوع فيديو، عين رابط الفيديو
+          if (result.data.type === 'video') {
+              $('input[name="video_url"]').val(result.data.video_url);
+          } else {
+              $('input[name="video_url"]').val(''); // تفريغ الحقل إن لم يكن فيديو
+          }
+        if (isEmpty(result.data.image_url)) {
+          $('#editPreviewImage').css('background-image', 'url("' + brandDefaultImage + '")');
+        } else {
+          $('#editPreviewImage').css('background-image', 'url("' + result.data.image_url + '")');
+        }
+        $('#editMediaModal').modal('show').appendTo('body');
+      }
+    },
+    error: function error(result) {
+      displayErrorMessage(result.responseJSON.message);
+    }
+  });
+}
 function renderBrandsData(id) {
   $.ajax({
     url: route('brands.edit', id),

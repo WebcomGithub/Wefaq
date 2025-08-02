@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateBrandRequest;
 use App\Http\Requests\CreateMediaRequest;
 use App\Http\Requests\UpdateBrandRequest;
+use App\Http\Requests\UpdateMediaRequest;
 use App\Models\Brand;
+use App\Models\MedieSection;
 use App\Repositories\BrandRepository;
 use App\Repositories\MediaRepository;
 use Exception;
@@ -54,35 +56,39 @@ class MediaController extends AppBaseController
     }
 
     /**
-     * @param  Brand  $brand
+     * @param  MedieSection  $media
      * @return JsonResponse
      */
-    public function edit(Brand $brand)
+    public function edit(MedieSection $media , $id)
     {
-        return $this->sendResponse($brand, 'Brand retrieved successfully.');
+        $media_section = MedieSection::find($id);
+        return $this->sendResponse($media_section, 'Brand retrieved successfully.');
     }
 
     /**
-     * @param  UpdateBrandRequest  $request
-     * @param  Brand  $brand
+     * @param  UpdateMediaRequest  $request
+     * @param  MedieSection  $medie_section
      * @return JsonResponse
      */
-    public function update(UpdateBrandRequest $request, Brand $brand)
+    public function update(Request $request, MedieSection $medie_section)
     {
+
         $input = $request->all();
-        $this->brandRepo->update($input, $brand->id);
+        $this->brandRepo->update($input, $medie_section->id);
 
         return $this->sendSuccess('Brand updated successfully.');
     }
 
     /**
-     * @param  brand  $brand
+     * @param  MedieSection  $medie_section
      * @return JsonResponse
      */
-    public function destroy(Brand $brand)
+    public function destroy(MedieSection $medie_section , $id)
     {
-        $brand->delete();
+        $media_section = MedieSection::find($id);
 
-        return $this->sendSuccess('Brand successfully.');
+        $media_section->delete();
+
+        return $this->sendSuccess('Media Deleted successfully.');
     }
 }
