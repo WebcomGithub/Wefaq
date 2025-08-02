@@ -652,7 +652,8 @@
     'account_holder_name' => 'Account Holder Name',
   ),
   'save' => 'Save',
-  'add_photo' => 'اضافة ميديا',
+  'edit_photo' => 'تعديل الصورة او الفيديو',
+  'add_photo' => 'اضافة صورة/فيديو',
   'media' => 'ألبوم الصور والفيديوهات',
 
 )?>

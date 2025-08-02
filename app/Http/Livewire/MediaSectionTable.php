@@ -25,6 +25,7 @@ class MediaSectionTable extends LivewireTableComponent
     {
         return [
             Column::make(__('messages.common.name'), 'name')->sortable()->searchable(),
+            Column::make(__('messages.common.content_type'), 'name')->sortable()->searchable(),
             Column::make(__('messages.common.action'))->addClass('w-125px'),
         ];
     }

@@ -181,8 +181,8 @@ Route::prefix('admin')->middleware('auth', 'xss', 'valid.user','role:admin')->gr
     });
  // media Route
         Route::resource('media', MediaController::class);
-        Route::post('edit-media/{media}',
-            [MediaController::class, 'media'])->name('media.update');
+    Route::post('edit-media/{medie_section}', [MediaController::class, 'update'])->name('media.update');
+
 
     // Email Subscribe Route
     Route::middleware('permission:manage_email_subscribe')->group(function () {
