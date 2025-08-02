@@ -631,7 +631,7 @@
     'selected_gift' => 'Selected gift',
     'complaints_tab' => 'الشكاوى',
     'association_reports' => 'التقارير',
-    'our_partners' => 'شركائنا',
+    'our_partners' => 'شركاؤنا',
     'complaints' => 'الشكاوي',
     'get_in_complaints' => 'تقديم شكوى ',
     'All rights reserved to Wifaq Association © 2025' => 'جميع الحقوق محفوظة لدى جمعية وفاق © 2025',
@@ -652,8 +652,8 @@
     'account_holder_name' => 'Account Holder Name',
   ),
   'save' => 'Save',
-  'add_photo' => 'اضافة صورة',
   'edit_photo' => 'تعديل الصورة او الفيديو',
-  'media' => 'media',
+  'add_photo' => 'اضافة صورة/فيديو',
+  'media' => 'ألبوم الصور والفيديوهات',
 
 )?>
