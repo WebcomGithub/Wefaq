@@ -137,10 +137,10 @@ header .navbar .navbar-nav .nav-item .dropdown-nav li .active, header .navbar .n
         <div class="row align-items-center">
             <div class="col-lg-3 col-4 d-flex align-items-center">
                 {{-- الشعار --}}
-                <div class="header-logo me-2" style="max-width: 60px;">
+                <div class="header-logo me-2" style="width: 160px; height: 50px;">
                     <a href="{{ route('landing.home') }}">
                         <img src="{{ getLogoUrl() ?: asset('front_landing/images/wefaq-logo.jpg') }}" alt="Jobs"
-                             class="img-fluid" />
+                            class="img-fluid" style="width: 160px; max-width: 250px !important; height:50px !important; object-fit: contain;" />
                     </a>
                 </div>
 

@@ -43,6 +43,49 @@ $brands = brands();
             cursor: pointer;
         }
 
+        .card-img img {
+            transition: transform 0.3s ease;
+        }
+        .card-img:hover img {
+            transform: scale(1.2);
+        }
+        
+        .card-image img {
+            transition: transform 0.3s ease;
+        }
+        .card-image:hover img {
+            transform: scale(1.5);
+        }
+
+        .category-card {
+            transition: filter 0.3s ease;      
+        }
+        .category-card:hover {
+            filter: brightness(0.7);
+        }
+
+        .about-1 img {
+            transition: transform 0.3s ease;
+        }
+
+        .about-1:hover img {
+            transform: scale(1.1);
+        }
+
+        .about-2 img {
+            transition: transform 0.3s ease;
+        }
+        .about-2:hover img {
+            transform: scale(1.1);            
+        }
+
+        .company-logo img{
+            transition: transform 0.3s ease;            
+        }
+
+        .company-logo:hover img{
+            transform: scale(1.4);
+        }
     </style>
 
     <div class="home-page">
@@ -389,7 +432,7 @@ $brands = brands();
                     </div>
                     <div class="text-center">
                         <a href="{{ route('landing.causes') }}"
-                        class="btn btn-secondary px-5">{{__('messages.front_landing.view_all')}}</a>
+                        class="btn btn-primary px-5">{{__('messages.front_landing.view_all')}}</a>
                     </div>
                 </div>
             </section>

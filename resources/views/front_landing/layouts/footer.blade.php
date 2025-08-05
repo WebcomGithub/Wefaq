@@ -120,7 +120,7 @@
 <!-- end footer-section -->
 
 --}}
-<section class="companies-logo-section pt-100 pb-100 bg-gray" style="direction: ltr">
+<section class="companies-logo-section pb-50 bg-gray" style="direction: ltr; padding-top: 30px">
     <div class="container">
         <div class="text-center mb-10">
             <h2 class="fs-6 fw-6 text-primary">{{__('messages.front_landing.our_partners')}}</h2>
@@ -130,7 +130,7 @@
         <div class="slick-slider">
             @foreach($brands as $brand)
                 <div class="slide d-flex justify-content-center">
-                    <div class="company-logo ">
+                    <div class="company-logo" style="height: 140px !important">
                         <img src="{{ $brand->image_url ? : asset('front_landing/images/duragas.png')}}"
                              alt="duragas-logo"
                              class="w-100 h-100 object-fit-cover" title="{{ $brand->name }}"/>
