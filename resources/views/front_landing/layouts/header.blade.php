@@ -90,47 +90,51 @@
         color: #4664aa !important;
     }
 
-/* Offcanvas styling */
-.offcanvas-body {
-    scrollbar-width: thin;
-    scrollbar-color: var(--primary) transparent;
-}
+    .mobile_active {
+        color: white !important;
+    }
 
-/* Active state */
-.bg-primary-soft {
-    background-color: rgba(var(--primary-rgb), 0.1);
-}
+    /* Offcanvas styling */
+    .offcanvas-body {
+        scrollbar-width: thin;
+        scrollbar-color: var(--primary) transparent;
+    }
 
-.nav-link.active:hover {
-    background-color: rgba(var(--primary-rgb), 0.15);
-}
+    /* Active state */
+    .bg-primary-soft {
+        background-color: rgba(var(--primary-rgb), 0.1);
+    }
 
-/* Accordion overrides */
-.accordion-button:not(.collapsed) {
-    background-color: transparent;
-    box-shadow: none;
-}
+    .nav-link.active:hover {
+        background-color: rgba(var(--primary-rgb), 0.15);
+    }
 
-.accordion-button:focus {
-    box-shadow: none;
-    border-color: transparent;
-}
+    /* Accordion overrides */
+    .accordion-button:not(.collapsed) {
+        background-color: transparent;
+        box-shadow: none;
+    }
 
-/* Country flags (requires flag-icons.css) */
-.fi {
-    width: 1.2em;
-    height: 1em;
-    border-radius: 2px;
-    box-shadow: 0 0 1px rgba(0,0,0,0.5);
-}
+    .accordion-button:focus {
+        box-shadow: none;
+        border-color: transparent;
+    }
+
+    /* Country flags (requires flag-icons.css) */
+    .fi {
+        width: 1.2em;
+        height: 1em;
+        border-radius: 2px;
+        box-shadow: 0 0 1px rgba(0,0,0,0.5);
+    }
 
     .userway_buttons_wrapper {
         top: 60% !important;
     }
 
-header .navbar .navbar-nav .nav-item .dropdown-nav li .active, header .navbar .navbar-nav .nav-item .dropdown-nav li:hover {
-    background-color: #FFFFFF !important;
-}
+    header .navbar .navbar-nav .nav-item .dropdown-nav li .active, header .navbar .navbar-nav .nav-item .dropdown-nav li:hover {
+        background-color: #FFFFFF !important;
+    }
 </style>
 <header class="sticky-top bg-white shadow-sm">
     <div class="container">
@@ -297,79 +301,128 @@ header .navbar .navbar-nav .nav-item .dropdown-nav li .active, header .navbar .n
                     </div>
                 </nav>
                 <!--start mobile-menu -->
-                <div class="offcanvas-toggle d-lg-none d-block text-end">
+                <div class="offcanvas-toggle d-lg-none d-block">
                     <a href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
-                        aria-controls="offcanvasRight">
+                        aria-controls="offcanvasRight" style="margin-{{ App::isLocale('AR') ? 'right' : 'left' }}:-200px">
                         <span class="navbar-toggler-icon"></span>
                     </a>
-                    <div class="offcanvas offcanvas-end text-start" tabindex="-1" id="offcanvasRight"
+                    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight"
                         aria-labelledby="offcanvasRightLabel">
                         <button type="button" class="btn-close text-reset mb-3" data-bs-dismiss="offcanvas"
                             aria-label="Close"></button>
-                       <div class="offcanvas-body p-4">
-                            <nav class="navbar-nav">
+                       <div class="offcanvas-body p-0">
                                 <!-- Main Menu Items -->
-                                <div class="nav-item mb-2">
-                                    <a class="nav-link d-flex align-items-center py-2 px-3 rounded-3 fw-semibold fs-14 {{ Request::is('/') ? 'active bg-primary-soft text-primary' : 'text-dark' }}"
+                                <div class="nav-item">
+                                    <a class="nav-link d-flex align-items-center py-2 px-3 rounded-3 fw-semibold fs-14 {{ Request::is('/') ? 'active mobile_active' : '' }}"
                                     href="{{ route('landing.home') }}">
-                                        <i class="fas fa-home me-3"></i>
+                                        <i class="fas fa-home me-3 mx-3"></i>
                                         {{ __('messages.front_landing.home') }}
                                     </a>
                                 </div>
 
                                 <div class="nav-item mb-2">
-                                    <a class="nav-link d-flex align-items-center py-2 px-3 rounded-3 fw-semibold fs-14 {{ Request::is('about-us') ? 'active bg-primary-soft text-primary' : 'text-dark' }}"
+                                    <a class="nav-link d-flex align-items-center py-2 px-3 rounded-3 fw-semibold fs-14 {{ Request::is('about-us') ? 'active mobile_active' : '' }}"
                                     href="{{ route('landing.about') }}">
-                                        <i class="fas fa-info-circle me-3"></i>
+                                        <i class="fas fa-info-circle me-3 mx-3"></i>
                                         {{ __('messages.front_landing.about') }}
                                     </a>
                                 </div>
 
-                                <div class="nav-item mb-2">
-                                    <a class="nav-link d-flex align-items-center py-2 px-3 rounded-3 fw-semibold fs-14 {{ Request::is('causes', 'c/*') ? 'active bg-primary-soft text-primary' : 'text-dark' }}"
-                                    href="{{ route('landing.causes') }}">
-                                        <i class="fas fa-hand-holding-heart me-3"></i>
-                                        {{ __('messages.front_landing.causes') }}
-                                    </a>
-                                </div>
-
-                                <!-- Pages Dropdown -->
-                                <div class="accordion mb-2" id="pagesAccordion">
+                                
+                                <!-- causes Dropdown -->
+                                <div class="nav-item mb-2" id="causesAccordion">
                                     <div class="accordion-item border-0">
                                         <h2 class="accordion-header">
-                                            <button class="accordion-button nav-link d-flex align-items-center py-2 px-3 rounded-3 fw-semibold fs-14 {{ Request::is('faqs', 'events', 'page*', 'event-details/*') ? 'active bg-primary-soft text-primary' : 'text-dark' }} collapsed"
+                                            <button class="accordion-button nav-link d-flex align-items-center py-2 px-3 rounded-3 fw-semibold fs-14 {{ Request::is('causes','c/*') ? 'active mobile_active' : '' }} collapsed"
+                                                    type="button"
+                                                    data-bs-toggle="collapse"
+                                                    data-bs-target="#causesCollapse">
+                                                <i class="fas fa-hand-holding-heart me-3 mx-3"></i>
+                                                {{ __('messages.front_landing.causes') }}
+                                            </button>
+                                        </h2>
+                                        <div id="causesCollapse" class="accordion-collapse collapse" data-bs-parent="#causesAccordion">
+                                            <div class="accordion-body ps-0 py-2">
+                                                <ul class="list-unstyled">
+                                                    @foreach ($data['campaigns'] as $campaign)
+                                                            <li class="mb-3 ms-5">
+                                                                <a href="{{ route('landing.campaign.details', $campaign->slug) }}"
+                                                                class="d-flex align-items-center rounded-3 fs-14 fw-semibold {{ Request::is('campaign/' . $campaign->id) ? 'bg-primary-soft text-primary' : '' }}">
+                                                                    <i class="fas fa-circle-dot me-1 mx-1"></i>
+                                                                    {{ App::getLocale() == 'AR' && $campaign->title_lang
+                                                                        ? Str::limit($campaign->title_lang['ar'] ?? '', 70)
+                                                                        : (App::getLocale() == 'TR' && $campaign->title_lang
+                                                                            ? Str::limit($campaign->title_lang['tr'] ?? '', 70)
+                                                                            : Str::limit($campaign->title, 70)
+                                                                        )
+                                                                    }}
+                                                                </a>
+                                                            </li>
+                                                    @endforeach
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- news Dropdown -->
+                                <div class="nav-item mb-2" id="newsAccordion">
+                                    <div class="accordion-item border-0">
+                                        <h2 class="accordion-header">
+                                            <button class="accordion-button nav-link d-flex align-items-center py-2 px-3 rounded-3 fw-semibold fs-14 {{ Request::is('news', 'news-details/*') ? 'active mobile_active' : '' }} collapsed"
+                                                    type="button"
+                                                    data-bs-toggle="collapse"
+                                                    data-bs-target="#newsCollapse">
+                                                <i class="fas fa-newspaper me-3 mx-3"></i>
+                                                {{ __('messages.news.news') }}
+                                            </button>
+                                        </h2>
+                                        <div id="newsCollapse" class="accordion-collapse collapse" data-bs-parent="#newsAccordion">
+                                            <div class="accordion-body ps-0 py-2">
+                                                <ul class="list-unstyled">
+                                                    @foreach ($latestFiveNews as $news)
+                                                            <li class="mb-3 ms-5">
+                                                                <a href="{{ route('landing.news-details', $news->slug) }}"
+                                                                class="d-flex align-items-center rounded-3 fs-14 fw-semibold {{ Request::is('news/' . $news->id) ? 'bg-primary-soft text-primary' : '' }}">
+                                                                    <i class="fas fa-circle-dot me-1 mx-1"></i>
+                                                                     <small class="fs-12 d-flex align-items-center">
+                                                                        <span class="font-weight-500">
+                                                                            {!! nl2br(\Illuminate\Support\Str::limit($news->title)) !!} <br>
+                                                                            - {{ $news->created_at->translatedFormat('d M Y') }}
+                                                                        </span>
+                                                                    </small>
+                                                                </a>
+                                                            </li>
+                                                    @endforeach
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- pages Dropdown -->
+                            {{--تقارير الجمعية--}}
+                                <div class="nav-item mb-2" id="pagesAccordion">
+                                    <div class="accordion-item border-0">
+                                        <h2 class="accordion-header">
+                                            <button class="accordion-button nav-link d-flex align-items-center py-2 px-3 rounded-3 fw-semibold fs-14 {{ Request::is('page*') ? 'active mobile_active' : '' }} collapsed"
                                                     type="button"
                                                     data-bs-toggle="collapse"
                                                     data-bs-target="#pagesCollapse">
-                                                <i class="fas fa-file-alt me-3"></i>
-                                                {{ __('messages.pages') }}
-                                                <i class="fas fa-chevron-down ms-auto fs-12"></i>
+                                                <i class="fas fa-newspaper me-3 mx-3"></i>
+                                                {{ __('messages.front_landing.association_reports') }}
                                             </button>
                                         </h2>
                                         <div id="pagesCollapse" class="accordion-collapse collapse" data-bs-parent="#pagesAccordion">
                                             <div class="accordion-body ps-0 py-2">
                                                 <ul class="list-unstyled">
-                                                    <li class="mb-2">
-                                                        <a href="{{ route('landing.faqs') }}"
-                                                        class="d-flex align-items-center py-2 px-3 rounded-3 fs-14 fw-semibold {{ Request::is('faqs') ? 'active bg-primary-soft text-primary' : 'text-dark' }}">
-                                                            <i class="fas fa-question-circle me-3"></i>
-                                                            {{ __('messages.faqs.faqs') }}
-                                                        </a>
-                                                    </li>
-                                                    <li class="mb-2">
-                                                        <a href="{{ route('landing.event') }}"
-                                                        class="d-flex align-items-center py-2 px-3 rounded-3 fs-14 fw-semibold {{ Request::is('events', 'event-details/*') ? 'active bg-primary-soft text-primary' : 'text-dark' }}">
-                                                            <i class="fas fa-calendar-alt me-3"></i>
-                                                            {{ __('messages.events.events') }}
-                                                        </a>
-                                                    </li>
                                                     @foreach ($pages as $page)
                                                         @if ($page->is_active)
-                                                            <li class="mb-2">
+                                                            <li class="mb-3 ms-5">
                                                                 <a href="{{ route('landing.page.detail', $page->id) }}"
-                                                                class="d-flex align-items-center py-2 px-3 rounded-3 fs-14 fw-semibold {{ Request::is('page/' . $page->id) ? 'bg-primary-soft text-primary' : 'text-dark' }}">
-                                                                    <i class="fas fa-file me-3"></i>
-                                                                    {{ $page->name }}
+                                                                    class="d-flex align-items-center rounded-3 fs-14 fw-semibold">
+                                                                    <i class="fas fa-file me-1 mx-1"></i>
+                                                                    {!! nl2br(\Illuminate\Support\Str::limit($page->name)) !!}
                                                                 </a>
                                                             </li>
                                                         @endif
@@ -380,29 +433,11 @@ header .navbar .navbar-nav .nav-item .dropdown-nav li .active, header .navbar .n
                                     </div>
                                 </div>
 
-                                <!-- News -->
-                                <div class="nav-item mb-2">
-                                    <a class="nav-link d-flex align-items-center py-2 px-3 rounded-3 fw-semibold fs-14 {{ Request::is('news', 'news-details*') ? 'active bg-primary-soft text-primary' : 'text-dark' }}"
-                                    href="{{ route('landing.news') }}">
-                                        <i class="fas fa-newspaper me-3"></i>
-                                        {{ __('messages.news.news') }}
-                                    </a>
-                                </div>
-
-                                <!-- Team -->
-                                <div class="nav-item mb-2">
-                                    <a class="nav-link d-flex align-items-center py-2 px-3 rounded-3 fw-semibold fs-14 {{ Request::is('teams') ? 'active bg-primary-soft text-primary' : 'text-dark' }}"
-                                    href="{{ route('landing.team') }}">
-                                        <i class="fas fa-users me-3"></i>
-                                        {{ __('messages.front_landing.team') }}
-                                    </a>
-                                </div>
-
                                 <!-- Contact -->
                                 <div class="nav-item mb-4">
-                                    <a class="nav-link d-flex align-items-center py-2 px-3 rounded-3 fw-semibold fs-14 {{ Request::is('contact-us') ? 'active bg-primary-soft text-primary' : 'text-dark' }}"
+                                    <a class="nav-link d-flex align-items-center py-2 px-3 rounded-3 fw-semibold fs-14 {{ Request::is('contact-us') ? 'active mobile_active' : '' }}"
                                     href="{{ route('landing.contact') }}">
-                                        <i class="fas fa-envelope me-3"></i>
+                                        <i class="fas fa-envelope me-3 mx-3"></i>
                                         {{ __('messages.front_landing.contact') }}
                                     </a>
                                 </div>
@@ -415,19 +450,18 @@ header .navbar .navbar-nav .nav-item .dropdown-nav li .active, header .navbar .n
                                                     type="button"
                                                     data-bs-toggle="collapse"
                                                     data-bs-target="#languageCollapse">
-                                                <i class="fas fa-globe me-3"></i>
+                                                <i class="fas fa-globe me-3 mx-3"></i>
                                                 {{ getHeaderLanguageName() }}
-                                                <i class="fas fa-chevron-down ms-auto fs-12"></i>
                                             </button>
                                         </h2>
                                         <div id="languageCollapse" class="accordion-collapse collapse" data-bs-parent="#languageAccordion">
                                             <div class="accordion-body ps-0 py-2">
                                                 <ul class="list-unstyled">
                                                     @foreach (getAllLanguage() as $language)
-                                                        <li class="mb-2">
-                                                            <a class="d-flex align-items-center py-2 px-3 rounded-3 fs-14 fw-semibold {{ $language->iso_code == App::getLocale() ? 'active bg-primary-soft text-primary' : 'text-dark' }}"
+                                                        <li class="mb-3 ms-5">
+                                                            <a class="d-flex align-items-center rounded-3 fs-14 fw-semibold"
                                                             href="{{ route('landing.change-language', $language->iso_code) }}">
-                                                                <span class="fi fi-{{ strtolower(explode('-', $language->iso_code)[0]) }} me-3"></span>
+                                                                <span class="fas fa-language me-3 mx-3"></span>
                                                                 {{ $language->name }}
                                                             </a>
                                                         </li>
@@ -451,7 +485,6 @@ header .navbar .navbar-nav .nav-item .dropdown-nav li .active, header .navbar .n
                                                                 class="btn btn-primary mb-3 mb-lg-0">{{ __('messages.common.sign_in') }}</a> --}}
                                                         @endif
                                 </div>
-                            </nav>
                         </div>
                     </div>
                 </div>

@@ -432,7 +432,7 @@ $brands = brands();
                     </div>
                     <div class="text-center">
                         <a href="{{ route('landing.causes') }}"
-                        class="btn btn-primary px-5">{{__('messages.front_landing.view_all')}}</a>
+                        class="btn btn-gray px-5">{{__('messages.front_landing.view_all')}}</a>
                     </div>
                 </div>
             </section>
