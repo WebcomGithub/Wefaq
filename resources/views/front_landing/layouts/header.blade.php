@@ -135,38 +135,146 @@
     header .navbar .navbar-nav .nav-item .dropdown-nav li .active, header .navbar .navbar-nav .nav-item .dropdown-nav li:hover {
         background-color: #FFFFFF !important;
     }
+
+    .text-gold-custom{
+        color: #8b824f !important;
+    }
+
+    .btn-gold-custom {
+    background-color: #8b824f !important;
+    border-color: #8b824f !important;
+    color: white !important;
+    }
+
+    /* Hover state - slightly darker */
+    .btn-gold-custom:hover {
+        background-color: #756d43 !important;
+        border-color: #6a6340 !important;
+    }
+
+    /* Focus state - same as hover */
+    .btn-gold-custom:focus,
+    .btn-gold-custom.focus {
+        background-color: #756d43 !important;
+        border-color: #6a6340 !important;
+        box-shadow: 0 0 0 0.25rem rgba(139, 130, 79, 0.5) !important;
+    }
+
+    /* Active state - even darker */
+    .btn-gold-custom:active,
+    .btn-gold-custom.active {
+        background-color: #5f5938 !important;
+        border-color: #565232 !important;
+    }
+
+    
+        .image-container {
+            position: relative;
+            display: inline-block;
+            margin: 5px;
+        }
+
+        .image-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 5px 10px;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .image-container:hover .image-caption {
+            opacity: 1;
+        }
+
+        .counter-item {
+            transition: transform 0.3s ease;
+        }
+
+        .counter-item:hover {
+            transform: scale(1.5);
+            cursor: pointer;
+        }
+
+        .card-img img {
+            transition: transform 0.3s ease;
+        }
+        .card-img:hover img {
+            transform: scale(1.2);
+        }
+        
+        .card-image img {
+            transition: transform 0.3s ease;
+        }
+        .card-image:hover img {
+            transform: scale(1.5);
+        }
+
+        .category-card {
+            transition: filter 0.3s ease;      
+        }
+        .category-card:hover {
+            filter: brightness(0.7);
+        }
+
+        .about-1 img {
+            transition: transform 0.3s ease;
+        }
+
+        .about-1:hover img {
+            transform: scale(1.1);
+        }
+
+        .about-2 img {
+            transition: transform 0.3s ease;
+        }
+        .about-2:hover img {
+            transform: scale(1.1);            
+        }
+
+        .company-logo img{
+            transition: transform 0.3s ease;            
+        }
+
+        .company-logo:hover img{
+            transform: scale(1.4);
+        }
 </style>
 <header class="sticky-top bg-white shadow-sm">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-3 col-4 d-flex align-items-center">
-                {{-- الشعار --}}
-                <div class="header-logo me-2" style="width: 160px; height: 50px;">
-                    <a href="{{ route('landing.home') }}">
-                        <img src="{{ getLogoUrl() ?: asset('front_landing/images/wefaq-logo.jpg') }}" alt="Jobs"
-                            class="img-fluid" style="width: 160px; max-width: 250px !important; height:50px !important; object-fit: contain;" />
-                    </a>
-                </div>
+    <!-- Logo - Always visible -->
+    <div class="header-logo me-2" style="width: 160px; height: 50px;">
+        <a href="{{ route('landing.home') }}">
+            <img src="{{ getLogoUrl() ?: asset('front_landing/images/wefaq-logo.jpg') }}" alt="Logo"
+                class="img-fluid" style="width: 90px; height:70px !important; object-fit: contain;" />
+        </a>
+    </div>
 
-                {{-- أيقونات التواصل بشكل أفقي --}}
-                <div class="social-icons d-flex flex-row gap-2 {{ App::isLocale('AR') ? 'me-auto' : 'ms-auto' }}">
-                    <a href="{{ $settings['facebook_url'] }}" target="_blank" class="social-icon facebook">
-                        <i class="fab fa-facebook-f"></i>
-                    </a>
-                    <a href="{{ $settings['twitter_url'] }}" target="_blank" class="social-icon twitter">
-                        <i class="fab fa-x"></i>
-                    </a>
-                    <a href="{{ $settings['linkedin_url'] }}" target="_blank" class="social-icon linkedin">
-                        <i class="fab fa-linkedin"></i>
-                    </a>
-                    <a href="{{ $settings['instagram_url'] }}" target="_blank" class="social-icon instagram">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                    <a href="{{ $settings['youtube_url'] }}" target="_blank" class="social-icon youtube">
-                        <i class="fab fa-youtube"></i>
-                    </a>
-                </div>
-            </div>
+    <!-- Social Icons - Hidden on mobile, visible on larger screens -->
+    <div class="social-icons d-none d-md-flex flex-row gap-2 {{ App::isLocale('AR') ? 'me-auto' : 'ms-auto' }}">
+        <a href="{{ $settings['facebook_url'] }}" target="_blank" class="social-icon facebook">
+            <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="{{ $settings['twitter_url'] }}" target="_blank" class="social-icon twitter">
+            <i class="fab fa-x"></i>
+        </a>
+        <a href="{{ $settings['linkedin_url'] }}" target="_blank" class="social-icon linkedin">
+            <i class="fab fa-linkedin"></i>
+        </a>
+        <a href="{{ $settings['instagram_url'] }}" target="_blank" class="social-icon instagram">
+            <i class="fab fa-instagram"></i>
+        </a>
+        <a href="{{ $settings['youtube_url'] }}" target="_blank" class="social-icon youtube">
+            <i class="fab fa-youtube"></i>
+        </a>
+    </div>
+</div>
 
             <div class="col-lg-9 col-8 ">
                 <nav class="navbar navbar-expand-lg navbar-dark justify-content-end py-0">
@@ -303,11 +411,11 @@
                 <!--start mobile-menu -->
                 <div class="offcanvas-toggle d-lg-none d-block">
                     <a href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
-                        aria-controls="offcanvasRight" style="margin-{{ App::isLocale('AR') ? 'right' : 'left' }}:-200px">
+                        aria-controls="offcanvasRight">
                         <span class="navbar-toggler-icon"></span>
                     </a>
-                    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight"
-                        aria-labelledby="offcanvasRightLabel">
+                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight"
+                    aria-labelledby="offcanvasRightLabel">
                         <button type="button" class="btn-close text-reset mb-3" data-bs-dismiss="offcanvas"
                             aria-label="Close"></button>
                        <div class="offcanvas-body p-0">

@@ -40,10 +40,10 @@
                     <div class="col-lg-4 col-md-6 mb-lg-0 mb-sm-5 mb-4">
                         <div class="d-flex align-items-center bg-light rounded-10 p-30 h-100">
                             <div class="icon me-4 ps-xl-3">
-                                <i class="fa-solid fa-envelope text-primary"></i>
+                                <i class="fa-solid fa-envelope text-gold-custom"></i>
                             </div>
                             <div class="desc ms-xl-3 pe-xl-3">
-                                <h4 class="fs-20 fw-6 text-primary">{{__('messages.front_landing.email_address')}}</h4>
+                                <h4 class="fs-20 fw-6 text-gold-custom">{{__('messages.front_landing.email_address')}}</h4>
                                 <a href="mailto:{{ $settings['email'] }}" class="text-gray fs-16 fw-5">
                                     <span class="text-dark">{{ $settings['email'] }}</span>
                                 </a>
@@ -53,10 +53,10 @@
                     <div class="col-lg-4 col-md-6 mb-lg-0 mb-sm-5 mb-4">
                         <div class="d-flex  align-items-center bg-light rounded-10 p-30 h-100">
                             <div class="icon me-4 ps-xl-3">
-                                <i class="fa-solid fa-phone text-primary"></i>
+                                <i class="fa-solid fa-phone text-gold-custom"></i>
                             </div>
                             <div class="desc ms-xl-3 pe-xl-3">
-                                <h4 class="fs-20 fw-6 text-primary">{{__('messages.profile.phone_number')}}</h4>
+                                <h4 class="fs-20 fw-6 text-gold-custom">{{__('messages.profile.phone_number')}}</h4>
                                 <a href="tel:+{{ $settings['phone'] }}"
                                    class="text-dark fs-16 fw-5">{{ $settings['phone'] }}</a>
                             </div>
@@ -65,17 +65,17 @@
                     <div class="col-lg-4 col-md-6 ">
                         <div class="d-flex  align-items-center bg-light rounded-10 p-30 h-100">
                             <div class="icon me-4 ps-xl-3">
-                                <i class="fa-solid fa-location-dot text-primary"></i>
+                                <i class="fa-solid fa-location-dot text-gold-custom"></i>
                             </div>
                             <div class="desc ms-xl-3 pe-xl-3">
-                                <h4 class="fs-20 fw-6 text-primary">{{__('messages.front_landing.office_address')}}</h4>
+                                <h4 class="fs-20 fw-6 text-gold-custom">{{__('messages.front_landing.office_address')}}</h4>
                                 <a href="#!" class="text-dark fs-16 fw-5">{{ $settings['address'] }}</a>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="contact-form pt-60 pb-60">
-                    <div class="text-center text-dark pb-20">
+                    <div class="text-center text-gold-custom pb-20">
                             <h1>{{__('messages.front_landing.get_in_touch')}}</h1>
                     </div>
                     <div class="row">
@@ -118,7 +118,7 @@
                                                   required></textarea>
                                     </div>
                                     <div class="col-12">
-                                        <button type="submit" class="btn btn-primary me-3"
+                                        <button type="submit" class="btn btn-gold-custom me-3"
                                                 id="getInTouchSaveBtn">{{__('messages.front_landing.get_a_quote')}}
                                         </button>
                                     </div>

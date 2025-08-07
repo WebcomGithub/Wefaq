@@ -68,7 +68,7 @@ $settings = settings();
                     </div>
                     <div class="col-xxl-6 col-xl-5 col-lg-4 mt-lg-0 mt-sm-5 mt-4">
                         <div class="about-right">
-                            <p class="text-primary fs-16 fw-6 mb-3 pb-1">{{__('messages.about_us.about_us')}}</p>
+                            <p class="text-gold-custom fs-2 fw-6 mb-3 pb-1">{{__('messages.about_us.about_us')}}</p>
                             <h2 class="text-dark fw-6 mb-3 pb-1">
                                 @if (App::getLocale() == 'AR' && $aboutUs['title_lang'] != null)
                                     {{ json_decode($aboutUs['title_lang'], true)['ar'] }}
@@ -109,7 +109,7 @@ $settings = settings();
                     <div class="row justify-content-center">
                         <div class="col-lg-8 col-sm-11 col-11">
                             <div class="section-title section-title-four b-top text-center head-title">
-                                <h1 class="text-dark fw-6 mb-5"> {{__('messages.success_story.success_story')}}</h1>
+                                <h1 class="text-gold-custom fs-2 fw-6 mb-5"> {{__('messages.success_story.success_story')}}</h1>
                             </div>
                         </div>
                     </div>

@@ -123,7 +123,7 @@
 <section class="companies-logo-section pb-50 bg-gray" style="direction: ltr; padding-top: 30px">
     <div class="container">
         <div class="text-center mb-10">
-            <h2 class="fs-6 fw-6 text-primary">{{__('messages.front_landing.our_partners')}}</h2>
+            <h2 class="fs-3 fw-6 mb-30 text-gold-custom">{{__('messages.front_landing.our_partners')}}</h2>
             <br>
             <br>
         </div>

@@ -10,83 +10,6 @@ $brands = brands();
 
 
 @section('content')
-    <style>
-        .image-container {
-            position: relative;
-            display: inline-block;
-            margin: 5px;
-        }
-
-        .image-caption {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: rgba(0, 0, 0, 0.7);
-            color: white;
-            padding: 5px 10px;
-            text-align: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .image-container:hover .image-caption {
-            opacity: 1;
-        }
-
-        .counter-item {
-            transition: transform 0.3s ease;
-        }
-
-        .counter-item:hover {
-            transform: scale(1.5);
-            cursor: pointer;
-        }
-
-        .card-img img {
-            transition: transform 0.3s ease;
-        }
-        .card-img:hover img {
-            transform: scale(1.2);
-        }
-        
-        .card-image img {
-            transition: transform 0.3s ease;
-        }
-        .card-image:hover img {
-            transform: scale(1.5);
-        }
-
-        .category-card {
-            transition: filter 0.3s ease;      
-        }
-        .category-card:hover {
-            filter: brightness(0.7);
-        }
-
-        .about-1 img {
-            transition: transform 0.3s ease;
-        }
-
-        .about-1:hover img {
-            transform: scale(1.1);
-        }
-
-        .about-2 img {
-            transition: transform 0.3s ease;
-        }
-        .about-2:hover img {
-            transform: scale(1.1);            
-        }
-
-        .company-logo img{
-            transition: transform 0.3s ease;            
-        }
-
-        .company-logo:hover img{
-            transform: scale(1.4);
-        }
-    </style>
 
     <div class="home-page">
         <!-- start hero-section -->
@@ -299,8 +222,8 @@ $brands = brands();
             <section class="trending-causes-section bg-gray py-60">
                 <div class="container">
                     <div class="text-center">
-                        <h2 class="fs-6 fw-6 text-primary">{{__('messages.front_landing.trending_causes')}}</h2>
-                        <h3 class="fs-2 fw-6 mb-60">{{__("messages.front_landing.it's_about_impact_good_history")}}</h3>
+                        <!--<h2 class="fs-6 fw-6 text-gold-custom">{{__('messages.front_landing.trending_causes')}}</h2>-->
+                        <h3 class="fs-2 fw-6 mb-60 text-gold-custom">{{__("messages.front_landing.it's_about_impact_good_history")}}</h3>
                     </div>
                     <div class="row">
                         @foreach($data['campaigns'] as $campaign)
@@ -432,7 +355,7 @@ $brands = brands();
                     </div>
                     <div class="text-center">
                         <a href="{{ route('landing.causes') }}"
-                        class="btn btn-gray px-5">{{__('messages.front_landing.view_all')}}</a>
+                        class="btn btn-gold-custom px-5">{{__('messages.front_landing.view_all')}}</a>
                     </div>
                 </div>
             </section>
@@ -441,7 +364,7 @@ $brands = brands();
             <!-- start about-section -->
             <section class="about-section pb-60 pt-60">
                 <div class="container">
-                    <h2 class="text-primary d-flex  align-items-center justify-content-center mb-5">{{__('messages.about_us.about_us')}}</h2>
+                    <h2 class="text-gold-custom d-flex  align-items-center justify-content-center mb-5">{{__('messages.about_us.about_us')}}</h2>
                     <div class="row">
                         <div class="col-xxl-6 col-xl-7 col-lg-8">
                             <div class="about-left">
@@ -505,7 +428,7 @@ $brands = brands();
             <!-- end about-section -->
 
             <section id="media-gallery" dir="rtl" style="padding: 20px; background-color: #f9f9f9;">
-                <h2 class="text-center" style="text-align:right; padding:10px; color: #333;">📷 {{__('messages.media')}} </h2>
+                <h2 class="text-center text-gold-custom" style="text-align:right; padding:10px; color: #333;">📷 {{__('messages.media')}} </h2>
 
                 <div class="gallery-container">
                     @foreach($data['media'] as $media)
@@ -593,7 +516,7 @@ $brands = brands();
                     <div class="video-bg-img">
                         <div class="row position-relative">
                             <div class="col-md-8">
-                                <h2 class="fs-6 fw-6 text-primary">
+                                <h2 class="fs-6 fw-6 text-gold-custom">
                                     {{--@if (App::getLocale() == 'AR' && $data['homepageThreeVideo']['short_title_lang'] != null)
                                         {{ json_decode($data['homepageThreeVideo']['short_title_lang'], true)['ar'] }}
                                     @elseif (App::getLocale() == 'TR' && $data['aboutUs']['short_description_lang'] != null)
@@ -718,8 +641,8 @@ $brands = brands();
             <section class="news-feed-section pb-60 mt-5">
                 <div class="container">
                     <div class="text-center">
-                        <h2 class="fs-6 fw-6 text-primary">{{__('messages.front_landing.insights')}}</h2>
-                        <h3 class="fs-2 fw-6 mb-60">{{__('messages.front_landing.news_feeds')}}</h3>
+                        <!--<h2 class="fs-6 fw-6 ">{{__('messages.front_landing.insights')}}</h2>-->
+                        <h3 class="fs-2 fw-6 mb-60 text-gold-custom">{{__('messages.front_landing.news_feeds')}}</h3>
                     </div>
                     <div class="row">
                         @foreach($latestNews as $news)
@@ -761,8 +684,8 @@ $brands = brands();
             <section class="our-team-section pb-60">
                 <div class="container">
                     <div class="text-center">
-                        <h2 class="fs-6 fw-6 text-primary">{{__('messages.front_landing.volunteers')}}</h2>
-                        <h3 class="fs-2 fw-6 mb-60">{{__('messages.front_landing.our_team_mates_with_good_history')}}</h3>
+                        <!--<h2 class="fs-6 fw-6 text-primary">{{__('messages.front_landing.volunteers')}}</h2>-->
+                        <h3 class="fs-2 fw-6 mb-60 text-gold-custom">{{__('messages.front_landing.our_team_mates_with_good_history')}}</h3>
                     </div>
                     <div class="row">
                         @foreach($data['teams'] as $team)

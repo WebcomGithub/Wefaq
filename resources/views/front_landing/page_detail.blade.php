@@ -23,7 +23,7 @@
         </section>
         <!-- end hero-section -->
         <section class="blog-section pt-100 pb-100">
-            <h3 style="color: red; text-align: center;">
+            <h3 class="text-gold-custom" style="text-align: center;">
                 {{$page->title}}
             </h3>
 
