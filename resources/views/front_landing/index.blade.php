@@ -13,7 +13,7 @@ $brands = brands();
 
     <div class="home-page">
         <!-- start hero-section -->
-            <section class="hero-section">
+            <section class="hero-section" data-aos="fade-left">
                 <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-indicators d-flex d-xl-none">
                         @for($i = 0; $i< count($data['homepageThreeSliders']);$i++)
@@ -182,7 +182,7 @@ $brands = brands();
             <!-- end hero-section -->
 
             <!-- start category-section -->
-            <section class="category-section pt-60 pb-50">
+            <section class="category-section pt-60 pb-50" data-aos="fade-right">>
                 <div class="container">
                     <div class="row justify-content-center">
                         @foreach($data['campaignsCategories'] as $category)
@@ -219,7 +219,7 @@ $brands = brands();
             <!-- end category-section -->
 
             <!-- start trending-causes-section -->
-            <section class="trending-causes-section bg-gray py-60">
+            <section class="trending-causes-section bg-gray py-60" data-aos="fade-up">
                 <div class="container">
                     <div class="text-center">
                         <!--<h2 class="fs-6 fw-6 text-gold-custom">{{__('messages.front_landing.trending_causes')}}</h2>-->
@@ -362,7 +362,7 @@ $brands = brands();
             <!-- end trending-causes-section -->
 
             <!-- start about-section -->
-            <section class="about-section pb-60 pt-60">
+            <section class="about-section pb-60 pt-60" data-aos="fade-left">
                 <div class="container">
                     <h2 class="text-gold-custom d-flex  align-items-center justify-content-center mb-5">{{__('messages.about_us.about_us')}}</h2>
                     <div class="row">
@@ -427,7 +427,7 @@ $brands = brands();
             </section>
             <!-- end about-section -->
 
-            <section id="media-gallery" dir="rtl" style="padding: 20px; background-color: #f9f9f9;">
+            <section id="media-gallery" dir="rtl" style="padding: 20px; background-color: #f9f9f9;" data-aos="fade-right">
                 <h2 class="text-center text-gold-custom" style="text-align:right; padding:10px; color: #333;">📷 {{__('messages.media')}} </h2>
 
                 <div class="gallery-container">
@@ -478,7 +478,7 @@ $brands = brands();
 
 
             <!-- start count-section -->
-           <section class="count-section bg-primary py-4">
+            <section class="count-section bg-primary py-4" data-aos="zoom-in">
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-3 col-6 text-white text-center py-4 counter-item">
@@ -511,7 +511,7 @@ $brands = brands();
             <!-- end count-section -->
 
             <!-- start video-section -->
-            <section class="video-section pt-60">
+            <section class="video-section pt-60" data-aos="fade-left">
                 <div class="container">
                     <div class="video-bg-img">
                         <div class="row position-relative">
@@ -542,10 +542,10 @@ $brands = brands();
                                         {{ $data['homepageThreeVideo']['title'] }}
                                     @endif--}}
                                     @if (
-    App::getLocale() == 'AR' &&
-    !empty($data['homepageThreeVideo']['title_lang']) &&
-    json_decode($data['homepageThreeVideo']['title_lang'], true)['ar'] ?? false
-)
+                App::getLocale() == 'AR' &&
+                !empty($data['homepageThreeVideo']['title_lang']) &&
+                json_decode($data['homepageThreeVideo']['title_lang'], true)['ar'] ?? false
+            )
                                         {{ json_decode($data['homepageThreeVideo']['title_lang'], true)['ar'] }}
                                     @elseif (
                                         App::getLocale() == 'TR' &&
@@ -638,7 +638,7 @@ $brands = brands();
             <!-- end why-chooses-section -->
 
             <!-- start news-feeds-section -->
-            <section class="news-feed-section pb-60 mt-5">
+            <section class="news-feed-section pb-60 mt-5" data-aos="fade-right">
                 <div class="container">
                     <div class="text-center">
                         <!--<h2 class="fs-6 fw-6 ">{{__('messages.front_landing.insights')}}</h2>-->
@@ -681,7 +681,7 @@ $brands = brands();
             <!-- end news-feeds-section -->
 
             <!-- start our-team-section -->
-            <section class="our-team-section pb-60">
+            <section class="our-team-section pb-60" data-aos="zoom-out">
                 <div class="container">
                     <div class="text-center">
                         <!--<h2 class="fs-6 fw-6 text-primary">{{__('messages.front_landing.volunteers')}}</h2>-->

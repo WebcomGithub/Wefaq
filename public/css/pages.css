@@ -225,108 +225,45 @@ input[type=number] {
   border-radius: 10px !important;
 }
 
-@-webkit-keyframes turn_in {
-  5% {
-    background: conic-gradient(#6571ff calc(var(--progress) * .95), #adb5bd 0deg);
-  }
-  10% {
-    background: conic-gradient(#6571ff calc(var(--progress) * .9), #adb5bd 0deg);
-  }
-  15% {
-    background: conic-gradient(#6571ff calc(var(--progress) * .85), #adb5bd 0deg);
-  }
-  20% {
-    background: conic-gradient(#6571ff calc(var(--progress) * .8), #adb5bd 0deg);
-  }
-  25% {
-    background: conic-gradient(#6571ff calc(var(--progress) * .75), #adb5bd 0deg);
-  }
-  30% {
-    background: conic-gradient(#6571ff calc(var(--progress) * .7), #adb5bd 0deg);
-  }
-  35% {
-    background: conic-gradient(#6571ff calc(var(--progress) * .65), #adb5bd 0deg);
-  }
-  40% {
-    background: conic-gradient(#6571ff calc(var(--progress) * .6), #adb5bd 0deg);
-  }
-  45% {
-    background: conic-gradient(#6571ff calc(var(--progress) * .55), #adb5bd 0deg);
-  }
-  50% {
-    background: conic-gradient(#6571ff calc(var(--progress) * .5), #adb5bd 0deg);
-  }
-  55% {
-    background: conic-gradient(#6571ff calc(var(--progress) * .45), #adb5bd 0deg);
-  }
-  60% {
-    background: conic-gradient(#6571ff calc(var(--progress) * .4), #adb5bd 0deg);
-  }
-  65% {
-    background: conic-gradient(#6571ff calc(var(--progress) * .35), #adb5bd 0deg);
-  }
-  70% {
-    background: conic-gradient(#6571ff calc(var(--progress) * 0.3), #adb5bd 0deg);
-  }
-  75% {
-    background: conic-gradient(#6571ff calc(var(--progress) * 0.25), #adb5bd 0deg);
-  }
-  80% {
-    background: conic-gradient(#6571ff calc(var(--progress) * .2), #adb5bd 0deg);
-  }
-  85% {
-    background: conic-gradient(#6571ff calc(var(--progress) * .15), #adb5bd 0deg);
-  }
-  90% {
-    background: conic-gradient(#6571ff calc(var(--progress) * .1), #adb5bd 0deg);
-  }
-  95% {
-    background: conic-gradient(#6571ff calc(var(--progress) * .05), #adb5bd 0deg);
-  }
-  100% {
-    background: conic-gradient(#6571ff calc(var(--progress) * .05), #adb5bd 0deg);
-  }
-}
-
 @keyframes turn_in {
   5% {
-    background: conic-gradient(#6571ff calc(var(--progress) * .95), #adb5bd 0deg);
+    background: conic-gradient(#6571ff calc(var(--progress) * 0.95), #adb5bd 0deg);
   }
   10% {
-    background: conic-gradient(#6571ff calc(var(--progress) * .9), #adb5bd 0deg);
+    background: conic-gradient(#6571ff calc(var(--progress) * 0.9), #adb5bd 0deg);
   }
   15% {
-    background: conic-gradient(#6571ff calc(var(--progress) * .85), #adb5bd 0deg);
+    background: conic-gradient(#6571ff calc(var(--progress) * 0.85), #adb5bd 0deg);
   }
   20% {
-    background: conic-gradient(#6571ff calc(var(--progress) * .8), #adb5bd 0deg);
+    background: conic-gradient(#6571ff calc(var(--progress) * 0.8), #adb5bd 0deg);
   }
   25% {
-    background: conic-gradient(#6571ff calc(var(--progress) * .75), #adb5bd 0deg);
+    background: conic-gradient(#6571ff calc(var(--progress) * 0.75), #adb5bd 0deg);
   }
   30% {
-    background: conic-gradient(#6571ff calc(var(--progress) * .7), #adb5bd 0deg);
+    background: conic-gradient(#6571ff calc(var(--progress) * 0.7), #adb5bd 0deg);
   }
   35% {
-    background: conic-gradient(#6571ff calc(var(--progress) * .65), #adb5bd 0deg);
+    background: conic-gradient(#6571ff calc(var(--progress) * 0.65), #adb5bd 0deg);
   }
   40% {
-    background: conic-gradient(#6571ff calc(var(--progress) * .6), #adb5bd 0deg);
+    background: conic-gradient(#6571ff calc(var(--progress) * 0.6), #adb5bd 0deg);
   }
   45% {
-    background: conic-gradient(#6571ff calc(var(--progress) * .55), #adb5bd 0deg);
+    background: conic-gradient(#6571ff calc(var(--progress) * 0.55), #adb5bd 0deg);
   }
   50% {
-    background: conic-gradient(#6571ff calc(var(--progress) * .5), #adb5bd 0deg);
+    background: conic-gradient(#6571ff calc(var(--progress) * 0.5), #adb5bd 0deg);
   }
   55% {
-    background: conic-gradient(#6571ff calc(var(--progress) * .45), #adb5bd 0deg);
+    background: conic-gradient(#6571ff calc(var(--progress) * 0.45), #adb5bd 0deg);
   }
   60% {
-    background: conic-gradient(#6571ff calc(var(--progress) * .4), #adb5bd 0deg);
+    background: conic-gradient(#6571ff calc(var(--progress) * 0.4), #adb5bd 0deg);
   }
   65% {
-    background: conic-gradient(#6571ff calc(var(--progress) * .35), #adb5bd 0deg);
+    background: conic-gradient(#6571ff calc(var(--progress) * 0.35), #adb5bd 0deg);
   }
   70% {
     background: conic-gradient(#6571ff calc(var(--progress) * 0.3), #adb5bd 0deg);
@@ -335,19 +272,19 @@ input[type=number] {
     background: conic-gradient(#6571ff calc(var(--progress) * 0.25), #adb5bd 0deg);
   }
   80% {
-    background: conic-gradient(#6571ff calc(var(--progress) * .2), #adb5bd 0deg);
+    background: conic-gradient(#6571ff calc(var(--progress) * 0.2), #adb5bd 0deg);
   }
   85% {
-    background: conic-gradient(#6571ff calc(var(--progress) * .15), #adb5bd 0deg);
+    background: conic-gradient(#6571ff calc(var(--progress) * 0.15), #adb5bd 0deg);
   }
   90% {
-    background: conic-gradient(#6571ff calc(var(--progress) * .1), #adb5bd 0deg);
+    background: conic-gradient(#6571ff calc(var(--progress) * 0.1), #adb5bd 0deg);
   }
   95% {
-    background: conic-gradient(#6571ff calc(var(--progress) * .05), #adb5bd 0deg);
+    background: conic-gradient(#6571ff calc(var(--progress) * 0.05), #adb5bd 0deg);
   }
   100% {
-    background: conic-gradient(#6571ff calc(var(--progress) * .05), #adb5bd 0deg);
+    background: conic-gradient(#6571ff calc(var(--progress) * 0.05), #adb5bd 0deg);
   }
 }
 @media (min-width: 501px) {

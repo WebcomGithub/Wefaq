@@ -244,7 +244,7 @@
             transform: scale(1.4);
         }
 </style>
-<header class="sticky-top bg-white shadow-sm">
+<header class="sticky-top bg-white shadow-sm" data-aos="fade-down">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-3 col-4 d-flex align-items-center">
