@@ -26,6 +26,13 @@
     <link href="{{ mix('css/front-pages.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ mix('css/front-custom.css') }}" rel="stylesheet" type="text/css">
 
+    <!-- CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+
     <style>
         .floating-contact-button {
             position: fixed;
@@ -341,5 +348,13 @@
         }
     });
 </script>
+
+<script>
+  AOS.init({
+    duration: 2000,
+    once: true
+  });
+</script>
+
 </body>
 </html>

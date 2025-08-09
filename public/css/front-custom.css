@@ -105,7 +105,6 @@
   .event-book-modal {
     height: 158% !important;
   }
-
   .event-dialog-box {
     padding: 10px !important;
   }
@@ -176,10 +175,6 @@
 }
 
 footer .footer-right .email-box input::-moz-placeholder {
-  color: white !important;
-}
-
-footer .footer-right .email-box input:-ms-input-placeholder {
   color: white !important;
 }
 
@@ -566,11 +561,6 @@ header.header-box-style .logo, header.header-1 .logo {
 }
 
 .custom-input ::-moz-placeholder {
-  color: #dddada !important;
-  opacity: 1;
-}
-
-.custom-input :-ms-input-placeholder {
   color: #dddada !important;
   opacity: 1;
 }
@@ -1489,8 +1479,8 @@ header.header-box-style .logo, header.header-1 .logo {
 }
 
 .time-number {
-  width: calc(100% / 4);
-  background-color: #fcb11a;
+  width: 25%;
+  background-color: rgb(252, 177, 26);
   margin: 5px;
   text-align: center;
   padding: 15px 10px 10px 10px;

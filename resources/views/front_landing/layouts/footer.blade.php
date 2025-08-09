@@ -120,7 +120,7 @@
 <!-- end footer-section -->
 
 --}}
-<section class="companies-logo-section pb-50 bg-gray" style="direction: ltr; padding-top: 30px">
+<section class="companies-logo-section pb-50 bg-gray" style="direction: ltr; padding-top: 30px" data-aos="zoom-in">
     <div class="container">
         <div class="text-center mb-10">
             <h2 class="fs-3 fw-6 mb-30 text-gold-custom">{{__('messages.front_landing.our_partners')}}</h2>
@@ -140,7 +140,7 @@
         </div>
     </div>
 </section>
-<footer class="bg-secondary text-white pt-5 pb-4">
+<footer class="bg-secondary text-white pt-5 pb-4" data-aos="fade-down">
     <div class="container">
         <div class="row gy-4 justify-content-between">
 

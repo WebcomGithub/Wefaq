@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- CSS -->
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+<!-- JS -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+</head>
+<body>
+    <div class="container my-5">
+    <div class="row">
+        <div class="col-md-6" data-aos="fade-right">
+            <h2>سكشن من اليمين</h2>
+            <p>هذا النص يظهر من اليمين عند النزول.</p>
+        </div>
+        <div class="col-md-6" data-aos="fade-up">
+            <h2>سكشن من الأسفل</h2>
+            <p>هذا النص يظهر من الأسفل عند النزول.</p>
+        </div>
+    </div>
+</div>
+
+
+    <script>
+  AOS.init({
+    duration: 1000, // مدة الأنيميشن بالملي ثانية
+    once: true      // الأنيميشن يشتغل مرة واحدة
+  });
+</script>
+
+</body>
+</html>

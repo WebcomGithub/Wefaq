@@ -56,19 +56,19 @@ Copyright © 2023 37signals LLC
 
 /**
  * The MIT License (MIT)
- *
+ * 
  * Copyright (c) 2019 Javan Makhmali
- *
+ * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * 
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -7264,31 +7264,6 @@ listen('submit', '#addBrandForm', function (e) {
     }
   });
 });
-listen('submit', '#addMediaDataForm', function (e) {
-  e.preventDefault();
-  processingBtn('#addMediaDataForm', '#brandBtn', 'loading');
-  $('#brandBtn').prop('disabled', true);
-  $.ajax({
-    url: route('media.store'),
-    type: 'POST',
-    data: new FormData(this),
-    processData: false,
-    contentType: false,
-    success: function success(result) {
-      displaySuccessMessage(result.message);
-      $('#addBrandModal').modal('hide');
-      $('#brandBtn').prop('disabled', false);
-      Livewire.emit('refresh');
-    },
-    error: function error(result) {
-      displayErrorMessage(result.responseJSON.message);
-      $('#brandBtn').prop('disabled', false);
-    },
-    complete: function complete() {
-      processingBtn('#addBrandForm', '#btnSave');
-    }
-  });
-});
 listen('submit', '#editBrandForm', function (event) {
   event.preventDefault();
   processingBtn('#editBrandForm', '#btnEditSave', 'loading');
@@ -7317,34 +7292,6 @@ listen('submit', '#editBrandForm', function (event) {
     }
   });
 });
-listen('submit', '#editMediaForm', function (event) {
-  event.preventDefault();
-  processingBtn('#editBrandForm', '#btnEditSave', 'loading');
-  $('#btnEditSave').prop('disabled', true);
-  var editBrandFormID = $('#editMediaId').val();
-  $.ajax({
-    url: route('media.update', editBrandFormID),
-    type: 'POST',
-    data: new FormData($(this)[0]),
-    processData: false,
-    contentType: false,
-    success: function success(result) {
-      if (result.success) {
-        displaySuccessMessage(result.message);
-        $('#editBrandModal').modal('hide');
-        $('#btnEditSave').prop('disabled', false);
-        Livewire.emit('refresh');
-      }
-    },
-    error: function error(result) {
-      displayErrorMessage(result.responseJSON.message);
-      $('#btnEditSave').prop('disabled', false);
-    },
-    complete: function complete() {
-      processingBtn('#editBrandForm', '#btnEditSave');
-    }
-  });
-});
 listen('click', '.brand-delete-btn', function (event) {
   var deleteBrandID = $(event.currentTarget).data('id');
   var url = route('brands.destroy', {
@@ -7352,61 +7299,15 @@ listen('click', '.brand-delete-btn', function (event) {
   });
   deleteItem(url, 'Brand');
 });
-listen('click', '.media-delete-btn', function (event) {
-  var deleteBrandID = $(event.currentTarget).data('id');
-  var url = route('media.destroy', {
-      medium: deleteBrandID
-  });
-  deleteItem(url, 'Media');
-});
 listen('click', '#addBrandBtn', function () {
   $('#addBrandModal').appendTo('body').modal('show');
   resetModalForm('#addBrandForm');
-  $('#previewImage').css('background-image', 'url("' + brandDefaultImage + '")');
-});
-listen('click', '#addMediaBtn', function () {
-  $('#addMediaModal').appendTo('body').modal('show');
-  resetModalForm('#addMediaDataForm');
   $('#previewImage').css('background-image', 'url("' + brandDefaultImage + '")');
 });
 listen('click', '.brand-edit-btn', function (event) {
   var editBrandID = $(event.currentTarget).data('id');
   renderBrandsData(editBrandID);
 });
-listen('click', '.media-edit-btn', function (event) {
-  var editBrandID = $(event.currentTarget).data('id');
-    renderMediaData(editBrandID);
-});
-function renderMediaData(id) {
-  $.ajax({
-    url: route('media.edit', id),
-    type: 'GET',
-    success: function success(result) {
-      if (result.success) {
-        Livewire.emit('refresh', 'refresh');
-        $('#editMediaId').val(result.data.id);
-        $('#editMediaName').val(result.data.name);
-          // تعيين نوع المحتوى (صورة أو فيديو)
-          $('#editmediaType').val(result.data.type).trigger('change');
-          // إذا كان النوع فيديو، عين رابط الفيديو
-          if (result.data.type === 'video') {
-              $('input[name="video_url"]').val(result.data.video_url);
-          } else {
-              $('input[name="video_url"]').val(''); // تفريغ الحقل إن لم يكن فيديو
-          }
-        if (isEmpty(result.data.image_url)) {
-          $('#editPreviewImage').css('background-image', 'url("' + brandDefaultImage + '")');
-        } else {
-          $('#editPreviewImage').css('background-image', 'url("' + result.data.image_url + '")');
-        }
-        $('#editMediaModal').modal('show').appendTo('body');
-      }
-    },
-    error: function error(result) {
-      displayErrorMessage(result.responseJSON.message);
-    }
-  });
-}
 function renderBrandsData(id) {
   $.ajax({
     url: route('brands.edit', id),
@@ -11614,7 +11515,7 @@ __webpack_require__.r(__webpack_exports__);
 /************************************************************************/
 /******/ 	// The module cache
 /******/ 	var __webpack_module_cache__ = {};
-/******/
+/******/ 	
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
 /******/ 		// Check if module is in cache
@@ -11628,17 +11529,17 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 			// no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
-/******/
+/******/ 	
 /******/ 		// Execute the module function
 /******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
-/******/
+/******/ 	
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
-/******/
+/******/ 	
 /******/ 	// expose the modules object (__webpack_modules__)
 /******/ 	__webpack_require__.m = __webpack_modules__;
-/******/
+/******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/chunk loaded */
 /******/ 	(() => {
@@ -11671,7 +11572,7 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 			return result;
 /******/ 		};
 /******/ 	})();
-/******/
+/******/ 	
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
 /******/ 		// define getter functions for harmony exports
@@ -11683,12 +11584,12 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 			}
 /******/ 		};
 /******/ 	})();
-/******/
+/******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
 /******/ 	(() => {
 /******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
 /******/ 	})();
-/******/
+/******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
 /******/ 		// define __esModule on exports
@@ -11699,11 +11600,11 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 			Object.defineProperty(exports, '__esModule', { value: true });
 /******/ 		};
 /******/ 	})();
-/******/
+/******/ 	
 /******/ 	/* webpack/runtime/jsonp chunk loading */
 /******/ 	(() => {
 /******/ 		// no baseURI
-/******/
+/******/ 		
 /******/ 		// object to store loaded and loading chunks
 /******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
 /******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
@@ -11713,19 +11614,19 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 			"css/front-custom": 0,
 /******/ 			"css/pages": 0
 /******/ 		};
-/******/
+/******/ 		
 /******/ 		// no chunk on demand loading
-/******/
+/******/ 		
 /******/ 		// no prefetching
-/******/
+/******/ 		
 /******/ 		// no preloaded
-/******/
+/******/ 		
 /******/ 		// no HMR
-/******/
+/******/ 		
 /******/ 		// no HMR manifest
-/******/
+/******/ 		
 /******/ 		__webpack_require__.O.j = (chunkId) => (installedChunks[chunkId] === 0);
-/******/
+/******/ 		
 /******/ 		// install a JSONP callback for chunk loading
 /******/ 		var webpackJsonpCallback = (parentChunkLoadingFunction, data) => {
 /******/ 			var [chunkIds, moreModules, runtime] = data;
@@ -11750,14 +11651,14 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 			}
 /******/ 			return __webpack_require__.O(result);
 /******/ 		}
-/******/
+/******/ 		
 /******/ 		var chunkLoadingGlobal = self["webpackChunk"] = self["webpackChunk"] || [];
 /******/ 		chunkLoadingGlobal.forEach(webpackJsonpCallback.bind(null, 0));
 /******/ 		chunkLoadingGlobal.push = webpackJsonpCallback.bind(null, chunkLoadingGlobal.push.bind(chunkLoadingGlobal));
 /******/ 	})();
-/******/
+/******/ 	
 /************************************************************************/
-/******/
+/******/ 	
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
@@ -11812,6 +11713,6 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 	__webpack_require__.O(undefined, ["css/app","css/front-custom","css/pages"], () => (__webpack_require__("./resources/assets/css/landing/front-custom.scss")))
 /******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/app","css/front-custom","css/pages"], () => (__webpack_require__("./resources/css/app.css")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
-/******/
+/******/ 	
 /******/ })()
 ;
