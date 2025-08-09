@@ -20,7 +20,7 @@ class SetLanguage
         $language = \Session::get('languageName');
 
         if (empty($language)) {
-            $language = Auth::user() ? (Auth::user()->language ? Auth::user()->language : 'en') : 'en';
+            $language = Auth::user() ? (Auth::user()->language ? Auth::user()->language : 'AR') : 'AR';
         }
 
         \App::setLocale($language);

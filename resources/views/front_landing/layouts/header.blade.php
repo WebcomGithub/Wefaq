@@ -285,16 +285,16 @@
                     <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                         <ul class="navbar-nav align-items-center py-2 py-lg-0">
                             <li class="nav-item">
-                                <a class="nav-link text-dark {{ Request::is('/') ? 'active' : ''}}  fw-5 fs-14"
+                                <a class="nav-link text-dark {{ Request::is('/') ? 'active' : ''}}  fw-5 fs-{{ App::getLocale() == 'en' ? '14' : '5' }}"
                                    aria-current="page"
                                    href="{{ route('landing.home') }}">{{__('messages.front_landing.home')}}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark {{ Request::is('about-us') ? 'active' : ''}} fw-5 fs-14"
+                                <a class="nav-link text-dark {{ Request::is('about-us') ? 'active' : ''}} fw-5 fs-{{ App::getLocale() == 'en' ? '14' : '5' }}"
                                    href="{{ route('landing.about') }}">{{__('messages.front_landing.about')}}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark {{ Request::is('causes','c/*') ? 'active' : '' }} fw-5 fs-14"
+                                <a class="nav-link text-dark {{ Request::is('causes','c/*') ? 'active' : '' }} fw-5 fs-{{ App::getLocale() == 'en' ? '14' : '5' }}"
                                    href="{{ route('landing.causes') }}">{{__('messages.front_landing.causes')}}</a>
                                 <ul class="dropdown-nav ps-0">
                                     @foreach ($data['campaigns'] as $campaign)
@@ -339,7 +339,7 @@
                                 </ul>
                             </li>--}}
                             <li class="nav-item">
-                                <a class="nav-link text-dark  fw-5 fs-14 {{ Request::is('news', 'news-details*') ? 'active' : '' }}"
+                                <a class="nav-link text-dark  fw-5 fs-{{ App::getLocale() == 'en' ? '14' : '5' }} {{ Request::is('news', 'news-details*') ? 'active' : '' }}"
                                     href="{{ route('landing.news') }}">{{ __('messages.news.news') }}</a>
                                 <ul class="dropdown-nav ps-0">
                                     @foreach ($latestFiveNews as $news)
@@ -358,12 +358,12 @@
                                 </ul>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark  fw-5  fs-14 {{ Request::is('contact-us') ? 'active' : '' }}"
+                                <a class="nav-link text-dark  fw-5  fs-{{ App::getLocale() == 'en' ? '14' : '5' }} {{ Request::is('contact-us') ? 'active' : '' }}"
                                     href="{{ route('landing.contact') }}">{{ __('messages.contact_us.contact_us') }}</a>
                             </li>
                             {{--تقارير الجمعية--}}
                             <li class="nav-item">
-                                <a class="nav-link text-dark  fw-5  fs-14 {{ Request::is('page*') ? 'active' : '' }}"
+                                <a class="nav-link text-dark  fw-5  fs-{{ App::getLocale() == 'en' ? '14' : '5' }} {{ Request::is('page*') ? 'active' : '' }}"
                                    href="#">{{ __('messages.front_landing.association_reports') }}</a>
                                 <ul class="dropdown-nav ps-0">
                                     @foreach ($pages as $page)
@@ -409,7 +409,7 @@
                     </div>
                 </nav>
                 <!--start mobile-menu -->
-                <div class="offcanvas-toggle d-lg-none d-block">
+                <div class="offcanvas-toggle d-lg-none d-block text-{{ App::getLocale() == 'en' ? 'end' : 'start' }}">
                     <a href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
                         aria-controls="offcanvasRight">
                         <span class="navbar-toggler-icon"></span>
