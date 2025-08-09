@@ -182,7 +182,7 @@ $brands = brands();
             <!-- end hero-section -->
 
             <!-- start category-section -->
-            <section class="category-section pt-60 pb-50" data-aos="fade-right">>
+            <section class="category-section pt-60 pb-50" data-aos="fade-down">>
                 <div class="container">
                     <div class="row justify-content-center">
                         @foreach($data['campaignsCategories'] as $category)
