@@ -297,21 +297,24 @@
                                 <a class="nav-link text-dark {{ Request::is('causes','c/*') ? 'active' : '' }} fw-5 fs-{{ App::getLocale() == 'en' ? '14' : '5' }}"
                                    href="{{ route('landing.causes') }}">{{__('messages.front_landing.causes')}}</a>
                                 <ul class="dropdown-nav ps-0">
-                                    @foreach ($data['campaigns'] as $campaign)
-                                        <li>
-                                            <a href="{{ route('landing.campaign.details',$campaign->slug) }}"
-                                               class="fs-14 fw-5 text-dark">
-                                                {{ App::getLocale() == 'AR' && $campaign->title_lang
-                                                    ? Str::limit($campaign->title_lang['ar'] ?? '', 70)
-                                                    : (App::getLocale() == 'TR' && $campaign->title_lang
-                                                        ? Str::limit($campaign->title_lang['tr'] ?? '', 70)
-                                                        : Str::limit($campaign->title, 70)
-                                                    )
-                                                }}
-                                            </a>
-                                        </li>
+                                    @foreach($campaignsCategories as $category)
+                                        @php
+                                            $campaignCount = getCampaignCount($category->id)
+                                        @endphp
+                                        @if($campaignCount > 0)
+                                            <li>
+                                                <a href="{{ route('landing.causes',$category->id) }}" class="fs-14 fw-5 text-dark">
+                                                            @if (App::getLocale() == 'AR' && $category->name_lang != null)
+                                                                {{ $category->name_lang['ar'] ??  ''}}
+                                                            @elseif (App::getLocale() == 'TR' && $category->name_lang != null)
+                                                                {{ $category->name_lang['tr'] ??  ''}}
+                                                            @else
+                                                                <p class="fs-18 fw-5">{{ $category->name }}</p>
+                                                            @endif
+                                                </a>
+                                            </li>
+                                        @endif
                                     @endforeach
-
                                 </ul>
                             </li>
                             {{--<li class="nav-item">
