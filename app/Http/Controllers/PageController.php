@@ -188,9 +188,15 @@ class PageController extends AppBaseController
             Campaign::STATUS_ACTIVE)->latest()->take(6)->orderBy('is_emergency', 'desc')->get();
         $latestFiveNews = News::latest()->take(5)->get();
 
+        $campaignsCategories = CampaignCategory::withCount([
+            'campaigns' => function ($q) {
+                $q->where('status', '=', Campaign::STATUS_ACTIVE);
+            },
+        ])->get();
+
         // فك تشفير JSON إلى مصفوفة
         $files = json_decode($page->files, true);
-        return view('front_landing.page_detail', compact('page','data','latestFiveNews','files'));
+        return view('front_landing.page_detail', compact('page','data','latestFiveNews','files','campaignsCategories'));
     }
 
     /**
