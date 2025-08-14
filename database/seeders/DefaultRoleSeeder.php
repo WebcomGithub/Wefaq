@@ -41,7 +41,7 @@ class DefaultRoleSeeder extends Seeder
             $adminRole = Role::whereName('admin')->first();
 
             /** @var User $user */
-            $user = User::whereEmail('admin@infyfund.com')->first();
+            $user = User::whereEmail('admin@mynet.net')->first();
 
             $allPermission = Permission::pluck('name', 'id');
             $adminRole->givePermissionTo($allPermission);
@@ -53,7 +53,7 @@ class DefaultRoleSeeder extends Seeder
             $userRole = Role::whereName('user')->first();
 
             /** @var User $user */
-            $user = User::whereEmail('user@infyfund.com')->first();
+            $user = User::whereEmail('user@mynet.net')->first();
 
             $campaignPermission = ['manage_dashboard', 'manage_campaign'];
             $allPermission = Permission::whereName($campaignPermission)->get();

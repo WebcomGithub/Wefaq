@@ -15,26 +15,26 @@ class AddSettingSeeder extends Seeder
     public function run()
     {
         if (! Setting::where('key', 'youtube_url')->exists()) {
-            Setting::create(['key' => 'youtube_url', 'value' => 'https://www.youtube.com/infyom/']);
+            Setting::create(['key' => 'youtube_url', 'value' => 'https://www.youtube.com/webcom/']);
         }
 
         if (! Setting::where('key', 'pinterest_url')->exists()) {
-            Setting::create(['key' => 'pinterest_url', 'value' => 'https://www.pinterest.com/infyom/']);
+            Setting::create(['key' => 'pinterest_url', 'value' => 'https://www.pinterest.com/webcom/']);
         }
         if (! Setting::where('key', 'twitter_url')->exists()) {
-            Setting::create(['key' => 'twitter_url', 'value' => 'https://www.twitter.com/infyom/']);
+            Setting::create(['key' => 'twitter_url', 'value' => 'https://www.twitter.com/webcom/']);
         }
 
         if (! Setting::where('key', 'instagram_url')->exists()) {
-            Setting::create(['key' => 'instagram_url', 'value' => 'https://www.instagram.com/infyom/']);
+            Setting::create(['key' => 'instagram_url', 'value' => 'https://www.instagram.com/webcom/']);
         }
 
         if (! Setting::where('key', 'facebook_url')->exists()) {
-            Setting::create(['key' => 'facebook_url', 'value' => 'https://www.facebook.com/infyom/']);
+            Setting::create(['key' => 'facebook_url', 'value' => 'https://www.facebook.com/webcom/']);
         }
 
         if (! Setting::where('key', 'linkedin_url')->exists()) {
-            Setting::create(['key' => 'linkedin_url', 'value' => 'https://www.linkedin.com/infyom/']);
+            Setting::create(['key' => 'linkedin_url', 'value' => 'https://www.linkedin.com/webcom/']);
         }
     }
 }

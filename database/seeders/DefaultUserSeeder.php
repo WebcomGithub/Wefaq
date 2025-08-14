@@ -27,7 +27,7 @@ class DefaultUserSeeder extends Seeder
                 'contact' => '1234567890',
                 'gender' => '1',
                 'type' => '1',
-                'email' => 'admin@infyfund.com',
+                'email' => 'admin@mynet.net',
                 'email_verified_at' => Carbon::now(),
                     'password' => Hash::make('123456'),
                 'is_default' => true,
@@ -38,7 +38,7 @@ class DefaultUserSeeder extends Seeder
                 'contact' => '1234567890',
                 'gender' => '1',
                 'type' => '1',
-                'email' => 'user@infyfund.com',
+                'email' => 'user@mynet.net',
                 'email_verified_at' => Carbon::now(),
                 'password' => Hash::make('123456'),
             ]);

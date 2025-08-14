@@ -15,7 +15,7 @@ class SettingTableSeeder extends Seeder
     public function run()
     {
         if (! Setting::where('key', 'application_name')->exists()) {
-            Setting::create(['key' => 'application_name', 'value' => 'InfyFunding']);
+            Setting::create(['key' => 'application_name', 'value' => 'WebComFunding']);
         }
         if (! Setting::where('key', 'app_logo')->exists()) {
             $imageUrlLogo = 'front_landing/images/funding-logo.png';

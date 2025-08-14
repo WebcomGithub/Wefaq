@@ -23,7 +23,7 @@ class DefaultNewsSeeder extends Seeder
         try {
             DB::beginTransaction();
 
-            $userId = User::where('email', 'admin@infyfund.com')->first();
+            $userId = User::where('email', 'admin@mynet.net')->first();
             $news1 = News::create([
                 'title' => 'Save the Children Role in Fight Against Malnutrition Hailed',
                 'slug' => 'save-the-children’s-role-in-fight-against-malnutrition-hailed',
