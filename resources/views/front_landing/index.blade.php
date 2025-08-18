@@ -184,6 +184,9 @@ $brands = brands();
             <!-- start category-section -->
             <section class="category-section pt-60 pb-50" data-aos="fade-down">>
                 <div class="container">
+                    <div class="text-center">
+                        <h3 class="fs-2 fw-6 mb-50 text-gold-custom">{{__("messages.front_landing.our_causes")}}</h3>
+                    </div>
                     <div class="row justify-content-center">
                         @foreach($data['campaignsCategories'] as $category)
                             @php
