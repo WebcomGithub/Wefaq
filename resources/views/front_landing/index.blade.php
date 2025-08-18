@@ -479,6 +479,11 @@ $brands = brands();
 
             </section>
 
+            <br><br>
+            <div class="text-center">
+                <h3 class="fs-2 fw-6 text-gold-custom">{{__("messages.front_landing.our_stats")}}</h3>
+            </div>
+            <br><br>
 
             <!-- start count-section -->
             <section class="count-section bg-primary py-4" data-aos="zoom-in">

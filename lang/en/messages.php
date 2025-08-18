@@ -562,6 +562,7 @@
     'get_updates' => 'Get Updates',
     'subscribe' => 'Subscribe',
     'our_causes' => 'Our Projects',
+    'our_stats' => 'Our Statistics',
     'updates' => 'Updates',
     'related_causes' => 'Related Projects',
     'by' => 'By',
