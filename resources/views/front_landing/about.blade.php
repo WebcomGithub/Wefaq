@@ -102,7 +102,7 @@ $settings = settings();
         </section>
         <!-- end about-section -->
 
-           <!-- start our-team-section -->
+            <!-- start our-team-section -->
             <section class="our-team-section pb-60 mt-4" data-aos="zoom-out">
                 <div class="container">
                     <div class="text-center">
@@ -128,8 +128,7 @@ $settings = settings();
                     </div>
                 </div>
             </section>
-
-        <!-- start success-stories-section -->
+        <!-- end our-team-section -->
         @if(count($successStories) > 0)
             <section class="success-stories-section pb-100">
                 <div class="container">

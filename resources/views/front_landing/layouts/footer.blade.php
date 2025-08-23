@@ -120,7 +120,6 @@
 <!-- end footer-section -->
 
 --}}
-@if (!Route::is('landing.home'))
 <section class="companies-logo-section pb-50 bg-gray" style="direction: ltr; padding-top: 30px" data-aos="zoom-in">
     <div class="container">
         <div class="text-center mb-10">
@@ -141,7 +140,6 @@
         </div>
     </div>
 </section>
-@endif
 
 
 <footer class="bg-secondary text-white pt-5 pb-4" data-aos="fade-down">
