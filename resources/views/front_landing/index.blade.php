@@ -12,6 +12,7 @@ $brands = brands();
 @section('content')
 
     <div class="home-page">
+        
         <!-- start hero-section -->
             <section class="hero-section" data-aos="fade-left">
                 <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
@@ -181,6 +182,86 @@ $brands = brands();
             </section>
             <!-- end hero-section -->
 
+
+            
+            <!-- start news-feeds-section -->
+            <section class="news-feed-section pb-60 mt-5" data-aos="fade-right">
+                <div class="container">
+                    <div class="text-center">
+                        <!--<h2 class="fs-6 fw-6 ">{{__('messages.front_landing.insights')}}</h2>-->
+                        <h3 class="fs-2 fw-6 mb-60 text-gold-custom">{{__('messages.front_landing.news_feeds')}}</h3>
+                    </div>
+                    <div class="row">
+                        @foreach($latestNews as $news)
+                            <div class="col-xl-4 col-lg-6 col-12 mb-2">
+                                <div class="card">
+                                    <div class="positon-relative">
+                                        <div class="card-img">
+                                            <a href="{{route('landing.news-details', $news['slug'])}}">
+                                                <img src="{{ $news['news_image'] ? : asset('front_landing/images/news-1.png') }}"
+                                                    class="card-img-top object-fit-cover" alt="card"></a>
+                                        </div>
+                                        <a href="{{ route('landing.news') }}"
+                                        class="badge small-btn">{{ $news->newsCategory->name }}</a>
+                                    </div>
+                                    <div class="card-body">
+                                    <span class="mb-2 d-block">
+                                        <i class="fa-solid fa-calendar-days text-primary fs-6 me-2"></i>
+                                        <span class="text-dark">{{ Carbon\Carbon::parse($news->created_at)->isoFormat('Do MMMM YYYY') }}</span>
+                                    </span>
+                                        <h4 class="card-title fs-18">
+                                            <a class="link-dark"
+                                            href="{{route('landing.news-details', $news['slug'])}}">{{ Str::limit($news->title , 35) }}</a>
+                                        </h4>
+                                        <p class="mb-0 text-secondary">
+                                            {!! !empty(strip_tags($news->description)) ? Str::limit(strip_tags($news->description),40,'...') :__('messages.common.n/a') !!}
+                                        </p>
+                                        <a href="{{route('landing.news-details', $news['slug'])}}"
+                                        class="read-more-btn">{{__('messages.front_landing.read_more')}}</a>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </section>
+            <!-- end news-feeds-section -->
+
+
+            <!-- start count-section -->
+            <section class="count-section bg-primary py-4" data-aos="zoom-in">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-3 col-6 text-white text-center py-4 counter-item">
+                            <h2 class="fs-1 fw-6">
+                                <span class="counter" data-countto="100" data-duration="3000">0</span>+
+                            </h2>
+                            <h3 class="fs-6 mb-0">{{__('messages.front_landing.projects_done')}}</h3>
+                        </div>
+                        <div class="col-lg-3 col-6 text-white text-center py-4 counter-item">
+                            <h2 class="fs-1 fw-6">
+                                <span class="counter" data-countto="30" data-duration="3000">0</span>+
+                            </h2>
+                            <h3 class="fs-6 mb-0">{{__('messages.front_landing.hopeless_child')}}</h3>
+                        </div>
+                        <div class="col-lg-3 col-6 text-white text-center py-4 counter-item">
+                            <h2 class="fs-1 fw-6">
+                                <span class="counter" data-countto="99" data-duration="3000">0</span>+
+                            </h2>
+                            <h3 class="fs-6 mb-0">{{__('messages.front_landing.team_member')}}</h3>
+                        </div>
+                        <div class="col-lg-3 col-6 text-white text-center py-4 counter-item">
+                            <h2 class="fs-1 fw-6">
+                                <span class="counter" data-countto="25" data-duration="3000">0</span>+
+                            </h2>
+                            <h3 class="fs-6 mb-0">{{__('messages.front_landing.get_regards')}}</h3>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- end count-section -->
+
+
             <!-- start category-section -->
             <section class="category-section pt-60 pb-50" data-aos="fade-down">>
                 <div class="container">
@@ -220,6 +301,57 @@ $brands = brands();
                 </div>
             </section>
             <!-- end category-section -->
+
+
+            <section id="media-gallery" dir="rtl" style="padding: 20px; background-color: #f9f9f9;" data-aos="fade-right">
+                <h2 class="text-center text-gold-custom" style="text-align:right; padding:10px; color: #333;">📷 {{__('messages.media')}} </h2>
+
+                <div class="gallery-container">
+                    @foreach($data['media'] as $media)
+                        @if($media->type == 'image')
+                            <div class="image-container" style="position: relative; display: inline-block;">
+                                <img src="{{ $media->image_url ? : asset('front_landing/images/duragas.png')}}"
+                                    alt="{{ $media->name }}"
+                                    class="gallery-item"
+                                    data-type="image"
+                                    style="width:250px; height:190px;">
+                                <div class="image-caption">{{ $media->name }}</div>
+                            </div>
+                        @else
+                            @php
+                                $videoId = null;
+                                if (Str::contains($media->video_url, 'v=')) {
+                                    parse_str(parse_url($media->video_url, PHP_URL_QUERY), $query);
+                                    $videoId = $query['v'] ?? null;
+                                } elseif (Str::contains($media->video_url, 'youtu.be')) {
+                                    $videoId = Str::after($media->video_url, 'youtu.be/');
+                                }
+                            @endphp
+                            @if($videoId)
+                                <div class="image-container" style="position: relative; display: inline-block;">
+                                    <div class="gallery-item" data-type="youtube" data-src="https://www.youtube.com/embed/{{ $videoId }}" style="display:inline-block; background:#000; cursor:pointer;">
+                                        <img src="https://img.youtube.com/vi/{{ $videoId }}/0.jpg" style="width:250px; height:190px;">
+                                    </div>
+                                    <div class="image-caption">{{ $media->name }}</div>
+                                </div>
+                            @endif
+                        @endif
+                    @endforeach
+                </div>
+
+                <!-- Popup Modal -->
+                <div class="popup" id="imagePopup">
+                    <span class="close">&times;</span>
+                    <button class="nav-button next-btn">&#10094;</button>
+                    <div id="mediaContent" style="width: 800px; height: 450px;">
+                        <!-- هنا نعرض صورة أو فيديو -->
+                    </div>
+
+                    <button class="nav-button prev-btn">&#10095;</button>
+                </div>
+
+            </section>
+
 
             <!-- start trending-causes-section -->
             <section class="trending-causes-section bg-gray py-60" data-aos="fade-up">
@@ -485,38 +617,7 @@ $brands = brands();
             </div>
             <br><br>
 
-            <!-- start count-section -->
-            <section class="count-section bg-primary py-4" data-aos="zoom-in">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-3 col-6 text-white text-center py-4 counter-item">
-                            <h2 class="fs-1 fw-6">
-                                <span class="counter" data-countto="100" data-duration="3000">0</span>+
-                            </h2>
-                            <h3 class="fs-6 mb-0">{{__('messages.front_landing.projects_done')}}</h3>
-                        </div>
-                        <div class="col-lg-3 col-6 text-white text-center py-4 counter-item">
-                            <h2 class="fs-1 fw-6">
-                                <span class="counter" data-countto="30" data-duration="3000">0</span>+
-                            </h2>
-                            <h3 class="fs-6 mb-0">{{__('messages.front_landing.hopeless_child')}}</h3>
-                        </div>
-                        <div class="col-lg-3 col-6 text-white text-center py-4 counter-item">
-                            <h2 class="fs-1 fw-6">
-                                <span class="counter" data-countto="99" data-duration="3000">0</span>+
-                            </h2>
-                            <h3 class="fs-6 mb-0">{{__('messages.front_landing.team_member')}}</h3>
-                        </div>
-                        <div class="col-lg-3 col-6 text-white text-center py-4 counter-item">
-                            <h2 class="fs-1 fw-6">
-                                <span class="counter" data-countto="25" data-duration="3000">0</span>+
-                            </h2>
-                            <h3 class="fs-6 mb-0">{{__('messages.front_landing.get_regards')}}</h3>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!-- end count-section -->
+
 
             <!-- start video-section -->
             <section class="video-section pt-60" data-aos="fade-left">
@@ -645,48 +746,6 @@ $brands = brands();
             </section> --}}
             <!-- end why-chooses-section -->
 
-            <!-- start news-feeds-section -->
-            <section class="news-feed-section pb-60 mt-5" data-aos="fade-right">
-                <div class="container">
-                    <div class="text-center">
-                        <!--<h2 class="fs-6 fw-6 ">{{__('messages.front_landing.insights')}}</h2>-->
-                        <h3 class="fs-2 fw-6 mb-60 text-gold-custom">{{__('messages.front_landing.news_feeds')}}</h3>
-                    </div>
-                    <div class="row">
-                        @foreach($latestNews as $news)
-                            <div class="col-xl-4 col-lg-6 col-12 mb-2">
-                                <div class="card">
-                                    <div class="positon-relative">
-                                        <div class="card-img">
-                                            <a href="{{route('landing.news-details', $news['slug'])}}">
-                                                <img src="{{ $news['news_image'] ? : asset('front_landing/images/news-1.png') }}"
-                                                    class="card-img-top object-fit-cover" alt="card"></a>
-                                        </div>
-                                        <a href="{{ route('landing.news') }}"
-                                        class="badge small-btn">{{ $news->newsCategory->name }}</a>
-                                    </div>
-                                    <div class="card-body">
-                                    <span class="mb-2 d-block">
-                                        <i class="fa-solid fa-calendar-days text-primary fs-6 me-2"></i>
-                                        <span class="text-dark">{{ Carbon\Carbon::parse($news->created_at)->isoFormat('Do MMMM YYYY') }}</span>
-                                    </span>
-                                        <h4 class="card-title fs-18">
-                                            <a class="link-dark"
-                                            href="{{route('landing.news-details', $news['slug'])}}">{{ Str::limit($news->title , 35) }}</a>
-                                        </h4>
-                                        <p class="mb-0 text-secondary">
-                                            {!! !empty(strip_tags($news->description)) ? Str::limit(strip_tags($news->description),40,'...') :__('messages.common.n/a') !!}
-                                        </p>
-                                        <a href="{{route('landing.news-details', $news['slug'])}}"
-                                        class="read-more-btn">{{__('messages.front_landing.read_more')}}</a>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
-                </div>
-            </section>
-            <!-- end news-feeds-section -->
 
             <!-- start our-team-section -->
             <section class="our-team-section pb-60" data-aos="zoom-out">

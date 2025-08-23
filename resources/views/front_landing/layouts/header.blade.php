@@ -301,7 +301,7 @@
       <div class="text-center">
             <a href="{{ route('landing.home') }}">
                 <img src="{{ getLogoUrl() ?: asset('front_landing/images/wefaq-logo.jpg') }}" alt="Logo"
-                class="img-fluid" style="width: 100px;"/>
+                class="img-fluid" style="width: 150px;"/>
             </a>
       </div>
 
@@ -317,7 +317,7 @@
       <div class="container-fluid px-5 d-flex justify-content-between align-items-center">
         <!-- Logo for Mobile -->
         <a href="{{ route('landing.home') }}" class="navbar-brand d-lg-none">
-            <img src="http://127.0.0.1:8000/front_landing/images/funding-logo.png" alt="Logo" class="img-fluid" style="width: 100px;"/>
+            <img src="{{ getLogoUrl() ?: asset('front_landing/images/wefaq-logo.jpg') }}" alt="Logo" class="img-fluid" style="width: 100px;"/>
         </a>
 
         <!-- Toggler -->
@@ -431,9 +431,21 @@
           <!-- Contact + Social for Mobile Only -->
           <div class="d-lg-none mt-3">
             <div class="d-flex justify-content-center gap-3 mb-2">
-              <a href="#" class="text-dark fs-5"><i class="bi bi-facebook"></i></a>
-              <a href="#" class="text-dark fs-5"><i class="bi bi-twitter"></i></a>
-              <a href="#" class="text-dark fs-5"><i class="bi bi-instagram"></i></a>
+              <a href="{{ $settings['facebook_url'] }}" target="_blank" class="icon-circle">
+                <i class="bi bi-facebook"></i>
+                </a>
+                <a href="{{ $settings['twitter_url'] }}" target="_blank" class="icon-circle">
+                    <i class="bi bi-x"></i>
+                </a>
+                <a href="{{ $settings['instagram_url'] }}" target="_blank" class="icon-circle">
+                    <i class="bi bi-instagram"></i>
+                </a>
+                <a href="{{ $settings['linkedin_url'] }}" target="_blank" class="icon-circle">
+                    <i class="bi bi-linkedin"></i>
+                </a>
+                <a href="{{ $settings['youtube_url'] }}" target="_blank" class="icon-circle">
+                    <i class="bi bi-youtube"></i>
+                </a>
             </div>
             <div class="text-center">
               <div><i class="bi bi-telephone"></i> +972 599 000 000</div>
