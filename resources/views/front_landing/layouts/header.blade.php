@@ -3,6 +3,7 @@
     $pages  = pages();
 @endphp
 {{-- new update--}}
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
 <style>
     .social-icons .social-icon {
         display: inline-flex;
@@ -244,363 +245,203 @@
             transform: scale(1.4);
         }
 </style>
-<header class="sticky-top bg-white shadow-sm" data-aos="fade-down">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-3 col-4 d-flex align-items-center">
-    <!-- Logo - Always visible -->
-    <div class="header-logo me-2" style="width: 160px; height: 50px;">
-        <a href="{{ route('landing.home') }}">
-            <img src="{{ getLogoUrl() ?: asset('front_landing/images/wefaq-logo.jpg') }}" alt="Logo"
-                class="img-fluid" style="width: 90px; height:70px !important; object-fit: contain;" />
-        </a>
+ <style>
+    /* إخفاء السوشيال + الكونتاكت في الموبايل (سيظهروا داخل المنيو) */
+    @media (max-width: 991.98px) {
+      .top-contact,
+      .top-social {
+        display: none !important;
+      }
+    }
+
+    .icon-circle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;        
+      height: 40px;
+      background-color: #e0e0e0; 
+      border-radius: 50%;  
+      color: #000;         
+      text-decoration: none;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .icon-circle:hover {
+      background-color: #b0b0b0; 
+      color: #fff;               
+    }
+
+    .icon-circle i {
+      font-size: 1.2rem;  
+    }
+  </style>
+  <header class="bg-light py-2 border-bottom">
+    <div class="container-fluid px-5 d-none d-lg-flex align-items-center justify-content-between">
+      <!-- Right (Social Media) -->
+      <div class="d-flex gap-3 top-social">
+            <a href="{{ $settings['facebook_url'] }}" target="_blank" class="icon-circle">
+                <i class="bi bi-facebook"></i>
+            </a>
+            <a href="{{ $settings['twitter_url'] }}" target="_blank" class="icon-circle">
+                <i class="bi bi-x"></i>
+            </a>
+            <a href="{{ $settings['instagram_url'] }}" target="_blank" class="icon-circle">
+                <i class="bi bi-instagram"></i>
+            </a>
+            <a href="{{ $settings['linkedin_url'] }}" target="_blank" class="icon-circle">
+                <i class="bi bi-linkedin"></i>
+            </a>
+            <a href="{{ $settings['youtube_url'] }}" target="_blank" class="icon-circle">
+                <i class="bi bi-youtube"></i>
+            </a>
+      </div>
+
+      <!-- Center (Logo) -->
+      <div class="text-center">
+            <a href="{{ route('landing.home') }}">
+                <img src="{{ getLogoUrl() ?: asset('front_landing/images/wefaq-logo.jpg') }}" alt="Logo"
+                class="img-fluid" style="width: 100px;"/>
+            </a>
+      </div>
+
+      <!-- Left (Contact Info) -->
+      <div class="d-flex gap-3 top-contact">
+        <span><i class="bi bi-telephone"></i> {{$settings['phone'] }}</span>
+        <span><i class="bi bi-envelope"></i> {{ $settings['email'] }}</span>
+      </div>
     </div>
 
-    <!-- Social Icons - Hidden on mobile, visible on larger screens -->
-    <div class="social-icons d-none d-md-flex flex-row gap-2 {{ App::isLocale('AR') ? 'me-auto' : 'ms-auto' }}">
-        <a href="{{ $settings['facebook_url'] }}" target="_blank" class="social-icon facebook">
-            <i class="fab fa-facebook-f"></i>
+    <!-- Navbar (Desktop + Mobile) -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white">
+      <div class="container-fluid px-5 d-flex justify-content-between align-items-center">
+        <!-- Logo for Mobile -->
+        <a href="{{ route('landing.home') }}" class="navbar-brand d-lg-none">
+            <img src="http://127.0.0.1:8000/front_landing/images/funding-logo.png" alt="Logo" class="img-fluid" style="width: 100px;"/>
         </a>
-        <a href="{{ $settings['twitter_url'] }}" target="_blank" class="social-icon twitter">
-            <i class="fab fa-x"></i>
-        </a>
-        <a href="{{ $settings['linkedin_url'] }}" target="_blank" class="social-icon linkedin">
-            <i class="fab fa-linkedin"></i>
-        </a>
-        <a href="{{ $settings['instagram_url'] }}" target="_blank" class="social-icon instagram">
-            <i class="fab fa-instagram"></i>
-        </a>
-        <a href="{{ $settings['youtube_url'] }}" target="_blank" class="social-icon youtube">
-            <i class="fab fa-youtube"></i>
-        </a>
-    </div>
-</div>
 
-            <div class="col-lg-9 col-8 ">
-                <nav class="navbar navbar-expand-lg navbar-dark justify-content-end py-0">
-                    <button class="navbar-toggler border-0 p-0" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
-                            aria-label="Toggle navigation">
-                    </button>
-                    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                        <ul class="navbar-nav align-items-center py-2 py-lg-0">
-                            <li class="nav-item">
-                                <a class="nav-link text-dark {{ Request::is('/') ? 'active' : ''}}  fw-5 fs-{{ App::getLocale() == 'en' ? '14' : '5' }}"
-                                   aria-current="page"
-                                   href="{{ route('landing.home') }}">{{__('messages.front_landing.home')}}</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark {{ Request::is('about-us') ? 'active' : ''}} fw-5 fs-{{ App::getLocale() == 'en' ? '14' : '5' }}"
-                                   href="{{ route('landing.about') }}">{{__('messages.front_landing.about')}}</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark {{ Request::is('causes','c/*') ? 'active' : '' }} fw-5 fs-{{ App::getLocale() == 'en' ? '14' : '5' }}"
-                                   href="{{ route('landing.causes') }}">{{__('messages.front_landing.causes')}}</a>
-                                <ul class="dropdown-nav ps-0">
-                                    @foreach($campaignsCategories as $category)
-                                        @php
-                                            $campaignCount = getCampaignCount($category->id)
-                                        @endphp
-                                        @if($campaignCount > 0)
-                                            <li>
-                                                <a href="{{ route('landing.causes',$category->id) }}" class="fs-14 fw-5 text-dark">
-                                                            @if (App::getLocale() == 'AR' && $category->name_lang != null)
-                                                                {{ $category->name_lang['ar'] ??  ''}}
-                                                            @elseif (App::getLocale() == 'TR' && $category->name_lang != null)
-                                                                {{ $category->name_lang['tr'] ??  ''}}
-                                                            @else
-                                                                <p class="fs-18 fw-5">{{ $category->name }}</p>
-                                                            @endif
-                                                </a>
-                                            </li>
-                                        @endif
-                                    @endforeach
-                                </ul>
-                            </li>
-                            {{--<li class="nav-item">
-                                <a href="#"
-                                   class="nav-link text-dark fw-5  fs-14 {{ Request::is('faqs','events','teams','event-details/*','page*') ? 'active' : '' }}">{{__('messages.pages')}}
-                                   </a>
-                                <ul class="dropdown-nav ps-0">
-                                    <li><a href="{{ route('landing.faqs') }}"
-                                           class="fs-14 fw-5 {{ Request::is('faqs') ? 'active' : '' }}">{{__('messages.faqs.faqs')}}</a>
-                                    </li>
-                                    <li><a href="{{ route('landing.event') }}"
-                                            class="fs-14 fw-5 {{ Request::is('events', 'event-details/*') ? 'active' : '' }}">{{ __('messages.events.events') }}</a>
-                                    </li>
-                                    @foreach ($pages as $page)
-                                        @if ($page->is_active)
-                                            <li>
-                                                <a href="{{ route('landing.page.detail', $page->id) }}"
-                                                    class="fs-14 fw-5 text-dark {{ Request::is('page/' . $page->id) ? 'active' : '' }}">{!! nl2br(\Illuminate\Support\Str::limit($page->name)) !!}</a>
-                                            </li>
-                                        @endif
-                                    @endforeach
-                                    <li><a href="{{ route('landing.team') }}"
-                                            class="fs-14 fw-5 text-dark {{ Request::is('teams') ? 'active' : '' }}">{{ __('messages.front_landing.team') }}</a>
-                                    </li>
-                                </ul>
-                            </li>--}}
-                            <li class="nav-item">
-                                <a class="nav-link text-dark  fw-5 fs-{{ App::getLocale() == 'en' ? '14' : '5' }} {{ Request::is('news', 'news-details*') ? 'active' : '' }}"
-                                    href="{{ route('landing.news') }}">{{ __('messages.news.news') }}</a>
-                                <ul class="dropdown-nav ps-0">
-                                    @foreach ($latestFiveNews as $news)
-                                            <li>
-                                                <a href="{{route('landing.news-details',$news->slug)}}"
-                                                   class="fs-14 fw-5 text-dark">{!! nl2br(\Illuminate\Support\Str::limit($news->title)) !!}
+        <!-- Toggler -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainMenu">
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-                                                    <small class="mt-1 mt-md-0 fs-12 d-flex align-items-center">
-                                                        <span class="font-weight-500">
-                                                            - {{ $news->created_at->translatedFormat('d M Y') }}
-                                                        </span>
-                                                    </small>
-                                                </a>
-                                            </li>
-                                    @endforeach
-                                </ul>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark  fw-5  fs-{{ App::getLocale() == 'en' ? '14' : '5' }} {{ Request::is('contact-us') ? 'active' : '' }}"
-                                    href="{{ route('landing.contact') }}">{{ __('messages.contact_us.contact_us') }}</a>
-                            </li>
-                            {{--تقارير الجمعية--}}
-                            <li class="nav-item">
-                                <a class="nav-link text-dark  fw-5  fs-{{ App::getLocale() == 'en' ? '14' : '5' }} {{ Request::is('page*') ? 'active' : '' }}"
-                                   href="#">{{ __('messages.front_landing.association_reports') }}</a>
-                                <ul class="dropdown-nav ps-0">
-                                    @foreach ($pages as $page)
-                                        @if ($page->is_active)
-                                            <li>
-                                                <a href="{{ route('landing.page.detail', $page->id) }}"
-                                                   class="fs-14 fw-5 text-dark">{!! nl2br(\Illuminate\Support\Str::limit($page->name)) !!}</a>
-                                            </li>
-                                        @endif
-                                    @endforeach
-                                </ul>
-                            </li>
-
-                            {{--تقدييم شكوى--}}
-                            <li class="nav-item">
-                                <a class="btn fw-bold px-3 py-2 ms-lg-2"
-                                   href="{{ route('landing.complaints') }}" style="background-color: #4664aa; color:white">
-                                    {{ __('messages.front_landing.complaints_tab') }}
+        <!-- Menu -->
+        <div class="collapse navbar-collapse justify-content-between" id="mainMenu">
+          <!-- Menu Links -->
+          <ul class="navbar-nav mb-3 mb-lg-0" style="padding-left: 0; padding-right: 0;">
+            <li class="nav-item">
+                <a class="nav-link text-dark {{ Request::is('/') ? 'active' : ''}}  fw-5 fs-{{ App::getLocale() == 'en' ? '14' : '5' }}"
+                    aria-current="page"
+                    href="{{ route('landing.home') }}">{{__('messages.front_landing.home')}}</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark {{ Request::is('about-us') ? 'active' : ''}} fw-5 fs-{{ App::getLocale() == 'en' ? '14' : '5' }}"
+                    href="{{ route('landing.about') }}">{{__('messages.front_landing.about')}}</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark {{ Request::is('causes','c/*') ? 'active' : '' }} fw-5 fs-{{ App::getLocale() == 'en' ? '14' : '5' }}"
+                    href="{{ route('landing.causes') }}">{{__('messages.front_landing.causes')}}</a>
+                <ul class="dropdown-nav ps-0">
+                    @foreach($campaignsCategories as $category)
+                        @php
+                            $campaignCount = getCampaignCount($category->id)
+                        @endphp
+                        @if($campaignCount > 0)
+                            <li>
+                                <a href="{{ route('landing.causes',$category->id) }}" class="fs-14 fw-5 text-dark">
+                                            @if (App::getLocale() == 'AR' && $category->name_lang != null)
+                                                {{ $category->name_lang['ar'] ??  ''}}
+                                            @elseif (App::getLocale() == 'TR' && $category->name_lang != null)
+                                                {{ $category->name_lang['tr'] ??  ''}}
+                                            @else
+                                                <p class="fs-18 fw-5">{{ $category->name }}</p>
+                                            @endif
                                 </a>
                             </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link text-dark fw-5  fs-14">
-                                    <i class="fas fa-language me-1"></i>
-                                    {{ getHeaderLanguageName() }}</a>
-                                <ul class="dropdown-nav ps-0">
-                                    @foreach (getAllLanguage() as $language)
-                                        <li>
-                                            <a class="fs-14 fw-5 text-dark {{ $language->iso_code == App::getLocale() ? 'active' : '' }}"
-                                                href="{{ route('landing.change-language', $language->iso_code) }}"
-                                                data-prefix-value="{{ $language->iso_code }}">
-                                                {{ $language->name }}
-                                            </a>
-                                        </li>
-                                    @endforeach
-                                </ul>
+                        @endif
+                    @endforeach
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark  fw-5 fs-{{ App::getLocale() == 'en' ? '14' : '5' }} {{ Request::is('news', 'news-details*') ? 'active' : '' }}"
+                    href="{{ route('landing.news') }}">{{ __('messages.news.news') }}</a>
+                <ul class="dropdown-nav ps-0">
+                    @foreach ($latestFiveNews as $news)
+                            <li>
+                                <a href="{{route('landing.news-details',$news->slug)}}"
+                                    class="fs-14 fw-5 text-dark">{!! nl2br(\Illuminate\Support\Str::limit($news->title)) !!}
+
+                                    <small class="mt-1 mt-md-0 fs-12 d-flex align-items-center">
+                                        <span class="font-weight-500">
+                                            - {{ $news->created_at->translatedFormat('d M Y') }}
+                                        </span>
+                                    </small>
+                                </a>
                             </li>
-                        </ul>
-                       <div class="text-lg-end header-btn-grp ms-lg-2">
+                    @endforeach
+                </ul>
+            </li>
+             <li class="nav-item">
+                <a class="nav-link text-dark  fw-5  fs-{{ App::getLocale() == 'en' ? '14' : '5' }} {{ Request::is('contact-us') ? 'active' : '' }}"
+                    href="{{ route('landing.contact') }}">{{ __('messages.contact_us.contact_us') }}</a>
+            </li>
+            {{--تقارير الجمعية--}}
+            <li class="nav-item">
+                <a class="nav-link text-dark  fw-5  fs-{{ App::getLocale() == 'en' ? '14' : '5' }} {{ Request::is('page*') ? 'active' : '' }}"
+                    href="#">{{ __('messages.front_landing.association_reports') }}</a>
+                <ul class="dropdown-nav ps-0">
+                    @foreach ($pages as $page)
+                        @if ($page->is_active)
+                            <li>
+                                <a href="{{ route('landing.page.detail', $page->id) }}"
+                                    class="fs-14 fw-5 text-dark">{!! nl2br(\Illuminate\Support\Str::limit($page->name)) !!}</a>
+                            </li>
+                        @endif
+                    @endforeach
+                </ul>
+            </li>
+          </ul>
 
-                        {{-- <a href="https://online.fliphtml5.com/jhzny/ulww/" target="_blank" class="btn btn-primary mb-3 mb-lg-0">Profile</a> --}}
+          <!-- Language + Complaints -->
+          <div class="d-flex align-items-center gap-2 mb-3 mb-lg-0">
+            <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle text-dark fw-5 fs-14" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="fas fa-language me-1"></i>
+        {{ getHeaderLanguageName() }}
+    </a>
+    <ul class="dropdown-menu">
+        @foreach (getAllLanguage() as $language)
+            <li>
+                <a class="dropdown-item {{ $language->iso_code == App::getLocale() ? 'active' : '' }}"
+                   href="{{ route('landing.change-language', $language->iso_code) }}"
+                   data-prefix-value="{{ $language->iso_code }}">
+                   {{ $language->name }}
+                </a>
+            </li>
+        @endforeach
+    </ul>
+</li>
 
-                        </div>
-                    </div>
-                </nav>
-                <!--start mobile-menu -->
-                <div class="offcanvas-toggle d-lg-none d-block text-{{ App::getLocale() == 'en' ? 'end' : 'start' }}">
-                    <a href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
-                        aria-controls="offcanvasRight">
-                        <span class="navbar-toggler-icon"></span>
-                    </a>
-                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight"
-                    aria-labelledby="offcanvasRightLabel">
-                        <button type="button" class="btn-close text-reset mb-3" data-bs-dismiss="offcanvas"
-                            aria-label="Close"></button>
-                       <div class="offcanvas-body p-0">
-                                <!-- Main Menu Items -->
-                                <div class="nav-item">
-                                    <a class="nav-link d-flex align-items-center py-2 px-3 rounded-3 fw-semibold fs-14 {{ Request::is('/') ? 'active mobile_active' : '' }}"
-                                    href="{{ route('landing.home') }}">
-                                        <i class="fas fa-home me-3 mx-3"></i>
-                                        {{ __('messages.front_landing.home') }}
-                                    </a>
-                                </div>
+            <a class="btn fw-bold px-3 py-2 ms-lg-2"
+                href="{{ route('landing.complaints') }}" style="background-color: #4664aa; color:white">
+                {{ __('messages.front_landing.complaints_tab') }}
+            </a>
+          </div>
 
-                                <div class="nav-item mb-2">
-                                    <a class="nav-link d-flex align-items-center py-2 px-3 rounded-3 fw-semibold fs-14 {{ Request::is('about-us') ? 'active mobile_active' : '' }}"
-                                    href="{{ route('landing.about') }}">
-                                        <i class="fas fa-info-circle me-3 mx-3"></i>
-                                        {{ __('messages.front_landing.about') }}
-                                    </a>
-                                </div>
-
-                                
-                                <!-- causes Dropdown -->
-                                <div class="nav-item mb-2" id="causesAccordion">
-                                    <div class="accordion-item border-0">
-                                        <h2 class="accordion-header">
-                                            <button class="accordion-button nav-link d-flex align-items-center py-2 px-3 rounded-3 fw-semibold fs-14 {{ Request::is('causes','c/*') ? 'active mobile_active' : '' }} collapsed"
-                                                    type="button"
-                                                    data-bs-toggle="collapse"
-                                                    data-bs-target="#causesCollapse">
-                                                <i class="fas fa-hand-holding-heart me-3 mx-3"></i>
-                                                {{ __('messages.front_landing.causes') }}
-                                            </button>
-                                        </h2>
-                                        <div id="causesCollapse" class="accordion-collapse collapse" data-bs-parent="#causesAccordion">
-                                            <div class="accordion-body ps-0 py-2">
-                                                <ul class="list-unstyled">
-                                                    @foreach ($data['campaigns'] as $campaign)
-                                                            <li class="mb-3 ms-5">
-                                                                <a href="{{ route('landing.campaign.details', $campaign->slug) }}"
-                                                                class="d-flex align-items-center rounded-3 fs-14 fw-semibold {{ Request::is('campaign/' . $campaign->id) ? 'bg-primary-soft text-primary' : '' }}">
-                                                                    <i class="fas fa-circle-dot me-1 mx-1"></i>
-                                                                    {{ App::getLocale() == 'AR' && $campaign->title_lang
-                                                                        ? Str::limit($campaign->title_lang['ar'] ?? '', 70)
-                                                                        : (App::getLocale() == 'TR' && $campaign->title_lang
-                                                                            ? Str::limit($campaign->title_lang['tr'] ?? '', 70)
-                                                                            : Str::limit($campaign->title, 70)
-                                                                        )
-                                                                    }}
-                                                                </a>
-                                                            </li>
-                                                    @endforeach
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- news Dropdown -->
-                                <div class="nav-item mb-2" id="newsAccordion">
-                                    <div class="accordion-item border-0">
-                                        <h2 class="accordion-header">
-                                            <button class="accordion-button nav-link d-flex align-items-center py-2 px-3 rounded-3 fw-semibold fs-14 {{ Request::is('news', 'news-details/*') ? 'active mobile_active' : '' }} collapsed"
-                                                    type="button"
-                                                    data-bs-toggle="collapse"
-                                                    data-bs-target="#newsCollapse">
-                                                <i class="fas fa-newspaper me-3 mx-3"></i>
-                                                {{ __('messages.news.news') }}
-                                            </button>
-                                        </h2>
-                                        <div id="newsCollapse" class="accordion-collapse collapse" data-bs-parent="#newsAccordion">
-                                            <div class="accordion-body ps-0 py-2">
-                                                <ul class="list-unstyled">
-                                                    @foreach ($latestFiveNews as $news)
-                                                            <li class="mb-3 ms-5">
-                                                                <a href="{{ route('landing.news-details', $news->slug) }}"
-                                                                class="d-flex align-items-center rounded-3 fs-14 fw-semibold {{ Request::is('news/' . $news->id) ? 'bg-primary-soft text-primary' : '' }}">
-                                                                    <i class="fas fa-circle-dot me-1 mx-1"></i>
-                                                                     <small class="fs-12 d-flex align-items-center">
-                                                                        <span class="font-weight-500">
-                                                                            {!! nl2br(\Illuminate\Support\Str::limit($news->title)) !!} <br>
-                                                                            - {{ $news->created_at->translatedFormat('d M Y') }}
-                                                                        </span>
-                                                                    </small>
-                                                                </a>
-                                                            </li>
-                                                    @endforeach
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- pages Dropdown -->
-                            {{--تقارير الجمعية--}}
-                                <div class="nav-item mb-2" id="pagesAccordion">
-                                    <div class="accordion-item border-0">
-                                        <h2 class="accordion-header">
-                                            <button class="accordion-button nav-link d-flex align-items-center py-2 px-3 rounded-3 fw-semibold fs-14 {{ Request::is('page*') ? 'active mobile_active' : '' }} collapsed"
-                                                    type="button"
-                                                    data-bs-toggle="collapse"
-                                                    data-bs-target="#pagesCollapse">
-                                                <i class="fas fa-newspaper me-3 mx-3"></i>
-                                                {{ __('messages.front_landing.association_reports') }}
-                                            </button>
-                                        </h2>
-                                        <div id="pagesCollapse" class="accordion-collapse collapse" data-bs-parent="#pagesAccordion">
-                                            <div class="accordion-body ps-0 py-2">
-                                                <ul class="list-unstyled">
-                                                    @foreach ($pages as $page)
-                                                        @if ($page->is_active)
-                                                            <li class="mb-3 ms-5">
-                                                                <a href="{{ route('landing.page.detail', $page->id) }}"
-                                                                    class="d-flex align-items-center rounded-3 fs-14 fw-semibold">
-                                                                    <i class="fas fa-file me-1 mx-1"></i>
-                                                                    {!! nl2br(\Illuminate\Support\Str::limit($page->name)) !!}
-                                                                </a>
-                                                            </li>
-                                                        @endif
-                                                    @endforeach
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Contact -->
-                                <div class="nav-item mb-4">
-                                    <a class="nav-link d-flex align-items-center py-2 px-3 rounded-3 fw-semibold fs-14 {{ Request::is('contact-us') ? 'active mobile_active' : '' }}"
-                                    href="{{ route('landing.contact') }}">
-                                        <i class="fas fa-envelope me-3 mx-3"></i>
-                                        {{ __('messages.front_landing.contact') }}
-                                    </a>
-                                </div>
-
-                                <!-- Language Dropdown -->
-                                <div class="accordion mb-4" id="languageAccordion">
-                                    <div class="accordion-item border-0">
-                                        <h2 class="accordion-header">
-                                            <button class="accordion-button nav-link d-flex align-items-center py-2 px-3 rounded-3 fw-semibold fs-14 text-dark collapsed"
-                                                    type="button"
-                                                    data-bs-toggle="collapse"
-                                                    data-bs-target="#languageCollapse">
-                                                <i class="fas fa-globe me-3 mx-3"></i>
-                                                {{ getHeaderLanguageName() }}
-                                            </button>
-                                        </h2>
-                                        <div id="languageCollapse" class="accordion-collapse collapse" data-bs-parent="#languageAccordion">
-                                            <div class="accordion-body ps-0 py-2">
-                                                <ul class="list-unstyled">
-                                                    @foreach (getAllLanguage() as $language)
-                                                        <li class="mb-3 ms-5">
-                                                            <a class="d-flex align-items-center rounded-3 fs-14 fw-semibold"
-                                                            href="{{ route('landing.change-language', $language->iso_code) }}">
-                                                                <span class="fas fa-language me-3 mx-3"></span>
-                                                                {{ $language->name }}
-                                                            </a>
-                                                        </li>
-                                                    @endforeach
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Auth Buttons -->
-                                <div class="d-flex flex-column mt-4">
-                                @if (getLogInUser())
-                                                            <a href="{{ getDashboardURL() }}"
-                                                                class="d-btn btn btn-primary">{{ __('messages.dashboard') }}</a>
-                                                        @else
-                                                            {{-- <a href="{{ route('register') }}" type="button"
-                                                                class="btn btn-secondary me-xxl-3 me-3 mb-3 mb-lg-0">
-                                                                {{ __('messages.front_landing.sign_up') }}</a> --}}
-                                                            {{-- <a href="{{ route('login') }}"
-                                                                class="btn btn-primary mb-3 mb-lg-0">{{ __('messages.common.sign_in') }}</a> --}}
-                                                        @endif
-                                </div>
-                        </div>
-                    </div>
-                </div>
-                <!--end mobile-menu -->
+          <!-- Contact + Social for Mobile Only -->
+          <div class="d-lg-none mt-3">
+            <div class="d-flex justify-content-center gap-3 mb-2">
+              <a href="#" class="text-dark fs-5"><i class="bi bi-facebook"></i></a>
+              <a href="#" class="text-dark fs-5"><i class="bi bi-twitter"></i></a>
+              <a href="#" class="text-dark fs-5"><i class="bi bi-instagram"></i></a>
             </div>
+            <div class="text-center">
+              <div><i class="bi bi-telephone"></i> +972 599 000 000</div>
+              <div><i class="bi bi-envelope"></i> info@example.com</div>
+            </div>
+          </div>
+
         </div>
-    </div>
-</header>
+      </div>
+    </nav>
+  </header>
