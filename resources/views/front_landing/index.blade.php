@@ -54,7 +54,7 @@ $brands = brands();
                                                      </h2>
                                                  </div>
                                              </div>
-                                              <div class="col-lg-7 col-md-5 mt-3 mt-md-4">
+                                              {{-- <div class="col-lg-7 col-md-5 mt-3 mt-md-4">
                                                  <div class="video-play-btn m-lg-auto ms-md-auto">
                                                      <button type="button"
                                                              class="play-video popup-video fs-4 border-0 slider-popup-video"
@@ -62,7 +62,7 @@ $brands = brands();
                                                          <i class="fas fa-play text-primary"></i>
                                                      </button>
                                                  </div>
-                                             </div>
+                                             </div> --}}
                                          </div>
                                      </div>
                                  </div>
@@ -228,6 +228,12 @@ $brands = brands();
             <!-- end news-feeds-section -->
 
 
+            
+            <br><br>
+            <div class="text-center">
+                <h3 class="fs-2 fw-6 text-gold-custom">{{__("messages.front_landing.our_stats")}}</h3>
+            </div>
+            <br><br>
             <!-- start count-section -->
             <section class="count-section bg-primary py-4" data-aos="zoom-in">
                 <div class="container">
@@ -303,63 +309,13 @@ $brands = brands();
             <!-- end category-section -->
 
 
-            <section id="media-gallery" dir="rtl" style="padding: 20px; background-color: #f9f9f9;" data-aos="fade-right">
-                <h2 class="text-center text-gold-custom" style="text-align:right; padding:10px; color: #333;">📷 {{__('messages.media')}} </h2>
-
-                <div class="gallery-container">
-                    @foreach($data['media'] as $media)
-                        @if($media->type == 'image')
-                            <div class="image-container" style="position: relative; display: inline-block;">
-                                <img src="{{ $media->image_url ? : asset('front_landing/images/duragas.png')}}"
-                                    alt="{{ $media->name }}"
-                                    class="gallery-item"
-                                    data-type="image"
-                                    style="width:250px; height:190px;">
-                                <div class="image-caption">{{ $media->name }}</div>
-                            </div>
-                        @else
-                            @php
-                                $videoId = null;
-                                if (Str::contains($media->video_url, 'v=')) {
-                                    parse_str(parse_url($media->video_url, PHP_URL_QUERY), $query);
-                                    $videoId = $query['v'] ?? null;
-                                } elseif (Str::contains($media->video_url, 'youtu.be')) {
-                                    $videoId = Str::after($media->video_url, 'youtu.be/');
-                                }
-                            @endphp
-                            @if($videoId)
-                                <div class="image-container" style="position: relative; display: inline-block;">
-                                    <div class="gallery-item" data-type="youtube" data-src="https://www.youtube.com/embed/{{ $videoId }}" style="display:inline-block; background:#000; cursor:pointer;">
-                                        <img src="https://img.youtube.com/vi/{{ $videoId }}/0.jpg" style="width:250px; height:190px;">
-                                    </div>
-                                    <div class="image-caption">{{ $media->name }}</div>
-                                </div>
-                            @endif
-                        @endif
-                    @endforeach
-                </div>
-
-                <!-- Popup Modal -->
-                <div class="popup" id="imagePopup">
-                    <span class="close">&times;</span>
-                    <button class="nav-button next-btn">&#10094;</button>
-                    <div id="mediaContent" style="width: 800px; height: 450px;">
-                        <!-- هنا نعرض صورة أو فيديو -->
-                    </div>
-
-                    <button class="nav-button prev-btn">&#10095;</button>
-                </div>
-
-            </section>
-
-
-            <!-- start trending-causes-section -->
+                    <!-- start trending-causes-section -->
             <section class="trending-causes-section bg-gray py-60" data-aos="fade-up">
                 <div class="container">
-                    <div class="text-center">
+                    {{-- <div class="text-center">
                         <!--<h2 class="fs-6 fw-6 text-gold-custom">{{__('messages.front_landing.trending_causes')}}</h2>-->
                         <h3 class="fs-2 fw-6 mb-60 text-gold-custom">{{__("messages.front_landing.it's_about_impact_good_history")}}</h3>
-                    </div>
+                    </div> --}}
                     <div class="row">
                         @foreach($data['campaigns'] as $campaign)
                             @if(!campaignEnd($campaign->id))
@@ -496,8 +452,61 @@ $brands = brands();
             </section>
             <!-- end trending-causes-section -->
 
+
+            <section id="media-gallery" dir="rtl" style="padding: 20px; background-color: #f9f9f9;" data-aos="fade-right">
+                <h2 class="text-center text-gold-custom" style="text-align:right; padding:10px; color: #333;">📷 {{__('messages.media')}} </h2>
+
+                <div class="gallery-container">
+                    @foreach($data['media'] as $media)
+                        @if($media->type == 'image')
+                            <div class="image-container" style="position: relative; display: inline-block;">
+                                <img src="{{ $media->image_url ? : asset('front_landing/images/duragas.png')}}"
+                                    alt="{{ $media->name }}"
+                                    class="gallery-item"
+                                    data-type="image"
+                                    style="width:250px; height:190px;">
+                                <div class="image-caption">{{ $media->name }}</div>
+                            </div>
+                        @else
+                            @php
+                                $videoId = null;
+                                if (Str::contains($media->video_url, 'v=')) {
+                                    parse_str(parse_url($media->video_url, PHP_URL_QUERY), $query);
+                                    $videoId = $query['v'] ?? null;
+                                } elseif (Str::contains($media->video_url, 'youtu.be')) {
+                                    $videoId = Str::after($media->video_url, 'youtu.be/');
+                                }
+                            @endphp
+                            @if($videoId)
+                                <div class="image-container" style="position: relative; display: inline-block;">
+                                    <div class="gallery-item" data-type="youtube" data-src="https://www.youtube.com/embed/{{ $videoId }}" style="display:inline-block; background:#000; cursor:pointer;">
+                                        <img src="https://img.youtube.com/vi/{{ $videoId }}/0.jpg" style="width:250px; height:190px;">
+                                    </div>
+                                    <div class="image-caption">{{ $media->name }}</div>
+                                </div>
+                            @endif
+                        @endif
+                    @endforeach
+                </div>
+
+                <!-- Popup Modal -->
+                <div class="popup" id="imagePopup">
+                    <span class="close">&times;</span>
+                    <button class="nav-button next-btn">&#10094;</button>
+                    <div id="mediaContent" style="width: 800px; height: 450px;">
+                        <!-- هنا نعرض صورة أو فيديو -->
+                    </div>
+
+                    <button class="nav-button prev-btn">&#10095;</button>
+                </div>
+
+            </section>
+
+
+    
+
             <!-- start about-section -->
-            <section class="about-section pb-60 pt-60" data-aos="fade-left">
+            {{-- <section class="about-section pb-60 pt-60" data-aos="fade-left">
                 <div class="container">
                     <h2 class="text-gold-custom d-flex  align-items-center justify-content-center mb-5">{{__('messages.about_us.about_us')}}</h2>
                     <div class="row">
@@ -549,73 +558,15 @@ $brands = brands();
                                     @else
                                         {{ Str::words(strip_tags($data['aboutUs']['short_description']), 100, '...') }}
                                     @endif
-                                </p>                            {{-- <ul>
-                                    <li class="text-dark fs-16 fw-5 mb-2">{{ $data['aboutUs']['point_1'] }}</li>
-                                    <li class="text-dark fs-16 fw-5 mb-2">{{ $data['aboutUs']['point_2'] }}</li>
-                                    <li class="text-dark fs-16 fw-5 mb-2">{{ $data['aboutUs']['point_3'] }}</li>
-                                    <li class="text-dark fs-16 fw-5 mb-2">{{$data['aboutUs']['point_4']}}</li>
-                                </ul> --}}
+                                </p>     
                             </div>
                         </div>
                     </div>
                 </div>
-            </section>
+            </section> --}}
             <!-- end about-section -->
 
-            <section id="media-gallery" dir="rtl" style="padding: 20px; background-color: #f9f9f9;" data-aos="fade-right">
-                <h2 class="text-center text-gold-custom" style="text-align:right; padding:10px; color: #333;">📷 {{__('messages.media')}} </h2>
 
-                <div class="gallery-container">
-                    @foreach($data['media'] as $media)
-                        @if($media->type == 'image')
-                            <div class="image-container" style="position: relative; display: inline-block;">
-                                <img src="{{ $media->image_url ? : asset('front_landing/images/duragas.png')}}"
-                                    alt="{{ $media->name }}"
-                                    class="gallery-item"
-                                    data-type="image"
-                                    style="width:250px; height:190px;">
-                                <div class="image-caption">{{ $media->name }}</div>
-                            </div>
-                        @else
-                            @php
-                                $videoId = null;
-                                if (Str::contains($media->video_url, 'v=')) {
-                                    parse_str(parse_url($media->video_url, PHP_URL_QUERY), $query);
-                                    $videoId = $query['v'] ?? null;
-                                } elseif (Str::contains($media->video_url, 'youtu.be')) {
-                                    $videoId = Str::after($media->video_url, 'youtu.be/');
-                                }
-                            @endphp
-                            @if($videoId)
-                                <div class="image-container" style="position: relative; display: inline-block;">
-                                    <div class="gallery-item" data-type="youtube" data-src="https://www.youtube.com/embed/{{ $videoId }}" style="display:inline-block; background:#000; cursor:pointer;">
-                                        <img src="https://img.youtube.com/vi/{{ $videoId }}/0.jpg" style="width:250px; height:190px;">
-                                    </div>
-                                    <div class="image-caption">{{ $media->name }}</div>
-                                </div>
-                            @endif
-                        @endif
-                    @endforeach
-                </div>
-
-                <!-- Popup Modal -->
-                <div class="popup" id="imagePopup">
-                    <span class="close">&times;</span>
-                    <button class="nav-button next-btn">&#10094;</button>
-                    <div id="mediaContent" style="width: 800px; height: 450px;">
-                        <!-- هنا نعرض صورة أو فيديو -->
-                    </div>
-
-                    <button class="nav-button prev-btn">&#10095;</button>
-                </div>
-
-            </section>
-
-            <br><br>
-            <div class="text-center">
-                <h3 class="fs-2 fw-6 text-gold-custom">{{__("messages.front_landing.our_stats")}}</h3>
-            </div>
-            <br><br>
 
 
 
@@ -748,7 +699,7 @@ $brands = brands();
 
 
             <!-- start our-team-section -->
-            <section class="our-team-section pb-60" data-aos="zoom-out">
+            <section class="our-team-section pb-60 mt-4" data-aos="zoom-out">
                 <div class="container">
                     <div class="text-center">
                         <!--<h2 class="fs-6 fw-6 text-primary">{{__('messages.front_landing.volunteers')}}</h2>-->

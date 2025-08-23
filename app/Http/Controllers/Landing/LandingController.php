@@ -124,7 +124,7 @@ class LandingController extends AppBaseController
         $latestFiveNews = News::latest()->take(5)->get();
         $data['campaigns'] = Campaign::with('campaignCategory', 'user')->where('status',
             Campaign::STATUS_ACTIVE)->latest()->take(6)->orderBy('is_emergency', 'desc')->get();
-
+        $data['teams'] = Team::latest()->take(4)->get();
 
         return view('front_landing.about', compact('aboutUs', 'brands', 'successStories','latestFiveNews','data'));
     }

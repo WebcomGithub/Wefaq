@@ -102,6 +102,33 @@ $settings = settings();
         </section>
         <!-- end about-section -->
 
+           <!-- start our-team-section -->
+            <section class="our-team-section pb-60 mt-4" data-aos="zoom-out">
+                <div class="container">
+                    <div class="text-center">
+                        <!--<h2 class="fs-6 fw-6 text-primary">{{__('messages.front_landing.volunteers')}}</h2>-->
+                        <h3 class="fs-2 fw-6 mb-60 text-gold-custom">{{__('messages.front_landing.our_team_mates_with_good_history')}}</h3>
+                    </div>
+                    <div class="row">
+                        @foreach($data['teams'] as $team)
+                            <div class="col-lg-3 col-sm-6 col-12 our-team-block d-flex align-items-stretch mb-lg-0 mb-4">
+                                <div class="card flex-fill border-0">
+                                    <div class="card-image  mx-auto ">
+                                        <img src="{{ $team->image_url ? : asset('front_landing/images/team-1.png')}}"
+                                            alt="ummeti"
+                                            class="img-fluid object-fit-cover">
+                                    </div>
+                                    <div class="card-body text-center d-flex flex-column">
+                                        <h4 class="fs-18 fw-5">{{ $team->name }}</h4>
+                                        <h5 class="text-primary fs-14 fw-5 mb-0">{{ $team->designation }}</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </section>
+
         <!-- start success-stories-section -->
         @if(count($successStories) > 0)
             <section class="success-stories-section pb-100">

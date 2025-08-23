@@ -58,7 +58,6 @@
             object-fit: cover;
         }
 
-        /* نبض خفيف */
         @keyframes pulse {
             0% {
                 box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
@@ -236,7 +235,36 @@
         .gallery-container video:hover {
             transform: scale(1.05);
         }
+
+        html, body {
+        overflow-x: hidden;
+        }
+
+
+
+
+       .hero-section .inner-bgimg {
+            height: 650px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        @media (max-width: 992px) { /* للأجهزة المتوسطة مثل التابلت */
+            .hero-section .inner-bgimg {
+                height: 450px;
+            }
+        }
+
+        @media (max-width: 576px) { /* للموبايل */
+            .hero-section .inner-bgimg {
+                height: 300px;
+            }
+        }
+
+
     </style>
+
+    
 </head>
 
 <body class="body-wrapper">
