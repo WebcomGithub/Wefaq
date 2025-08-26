@@ -243,6 +243,8 @@
         <hr class="bg-light mt-4">
         <div class="text-center fs-14">
             {{__('messages.front_landing.All rights reserved to Wifaq Association © 2025')}}
+            <br>
+            <span>{{__('messages.front_landing.Developed by Webcom Technology')}}</span>
         </div>
     </div>
 </footer>

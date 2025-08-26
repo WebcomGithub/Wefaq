@@ -636,6 +636,7 @@
     'complaints' => 'الشكاوي',
     'get_in_complaints' => 'تقديم شكوى ',
     'All rights reserved to Wifaq Association © 2025' => 'جميع الحقوق محفوظة لدى جمعية وفاق © 2025',
+    'Developed by Webcom Technology' => 'تطوير شركة وب كم تكنولوجي',
     'More frequently asked questions' => 'المزيد من الأسئلة الشائعة',
     'enter_compalint_subject' => 'أدخل موضوع الشكوى',
     'enter_compalint_message' => 'تفاصيل الشكوى',

@@ -635,6 +635,7 @@
     'complaints' => 'Complaints',
     'get_in_complaints' => 'Get In Complaints',
     'All rights reserved to Wifaq Association © 2025' => 'All rights reserved to Wifaq Association © 2025',
+    'Developed by Webcom Technology' => 'Developed by Webcom Technology',
     'More frequently asked questions' => 'More frequently asked questions',
 
     'enter_compalint_subject' => 'Enter compalint subject',
