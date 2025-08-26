@@ -599,7 +599,7 @@
     'donate' => 'تبرع الآن',
     'view_all' => 'عرض المزيد',
     'insights' => '',
-    'news_feeds' => 'الأخبار',
+    'news_feeds' => 'أخر الأخبار',
     'read_more' => 'قراءة المزيد',
     'related_tags' => 'Related Tags',
     'social_share' => 'Social Share',

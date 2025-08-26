@@ -368,7 +368,7 @@ a {
     color: #fff
 }
 
-@media (min-width: 768px) {
+/* @media (min-width: 768px) {
     .inner-bgimg .parallelogram-shape::before {
         content: "";
         position: absolute;
@@ -391,7 +391,7 @@ a {
     .inner-bgimg .parallelogram-shape::before {
         width: 80%
     }
-}
+} */
 
 .card {
     height: 100%;
