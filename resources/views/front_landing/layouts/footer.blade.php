@@ -120,26 +120,31 @@
 <!-- end footer-section -->
 
 --}}
-<section class="companies-logo-section pb-50 bg-gray" style="direction: ltr; padding-top: 30px" data-aos="zoom-in">
-    <div class="container">
-        <div class="text-center mb-10">
-            <h2 class="fs-3 fw-6 mb-30 text-gold-custom">{{__('messages.front_landing.our_partners')}}</h2>
-            <br>
-            <br>
-        </div>
-        <div class="slick-slider">
-            @foreach($brands as $brand)
-                <div class="slide d-flex justify-content-center">
-                    <div class="company-logo" style="height: 140px !important">
-                        <img src="{{ $brand->image_url ? : asset('front_landing/images/duragas.png')}}"
-                             alt="duragas-logo"
-                             class="w-100 h-100 object-fit-cover" title="{{ $brand->name }}"/>
+
+
+@if (!request()->routeIs('landing.home'))
+    <section class="companies-logo-section pb-50 bg-gray" style="direction: ltr; padding-top: 30px" data-aos="zoom-in">
+        <div class="container">
+            <div class="text-center mb-10">
+                <h2 class="fs-3 fw-6 mb-30 text-gold-custom">{{__('messages.front_landing.our_partners')}}</h2>
+                <br>
+                <br>
+            </div>
+            <div class="slick-slider">
+                @foreach($brands as $brand)
+                    <div class="slide d-flex justify-content-center">
+                        <div class="company-logo" style="height: 140px !important">
+                            <img src="{{ $brand->image_url ? : asset('front_landing/images/duragas.png')}}"
+                                alt="duragas-logo"
+                                class="w-100 h-100 object-fit-cover" title="{{ $brand->name }}"/>
+                        </div>
                     </div>
-                </div>
-            @endforeach
+                @endforeach
+            </div>
         </div>
-    </div>
-</section>
+    </section>
+@endif
+
 
 
 <footer class="bg-secondary text-white pt-5 pb-4" data-aos="fade-down">

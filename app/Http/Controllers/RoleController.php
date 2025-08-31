@@ -60,7 +60,9 @@ class RoleController extends AppBaseController
     public function store(CreateRoleRequest $request)
     {
         $input = $request->all();
-        $this->roleRepository->store($input);
+        $role  = $this->roleRepository->store($input);
+
+
 
         Flash::success('Role Created successfully');
 

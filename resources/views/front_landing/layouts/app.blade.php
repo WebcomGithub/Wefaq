@@ -261,6 +261,15 @@
             }
         }
 
+        .category-section .category-icon {
+            width: 100px;
+            height: 100px;
+        }
+
+        .category-section .category-card {
+            border: 2px solid #ddd;
+        }
+
 
     </style>
 

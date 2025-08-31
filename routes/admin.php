@@ -41,7 +41,8 @@ use App\Http\Controllers\VideoSectionController;
 use App\Http\Controllers\WithdrawalController;
 use Illuminate\Support\Facades\Route;
 
-Route::prefix('admin')->middleware('auth', 'xss', 'valid.user','role:admin')->group(function () {
+// Route::prefix('admin')->middleware('auth', 'xss', 'valid.user','role:admin')->group(function () {
+Route::prefix('admin')->middleware('auth', 'xss', 'valid.user')->group(function () {
     //admin dashboard route
     Route::middleware('permission:manage_dashboard')->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');

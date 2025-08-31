@@ -309,13 +309,9 @@ $brands = brands();
             <!-- end category-section -->
 
 
-                    <!-- start trending-causes-section -->
-            <section class="trending-causes-section bg-gray py-60" data-aos="fade-up">
+            <!-- start trending-causes-section -->
+            {{-- <section class="trending-causes-section bg-gray py-60" data-aos="fade-up">
                 <div class="container">
-                    {{-- <div class="text-center">
-                        <!--<h2 class="fs-6 fw-6 text-gold-custom">{{__('messages.front_landing.trending_causes')}}</h2>-->
-                        <h3 class="fs-2 fw-6 mb-60 text-gold-custom">{{__("messages.front_landing.it's_about_impact_good_history")}}</h3>
-                    </div> --}}
                     <div class="row">
                         @foreach($data['campaigns'] as $campaign)
                             @if(!campaignEnd($campaign->id))
@@ -401,7 +397,6 @@ $brands = brands();
                                             </div>
                                         </div>
                                         <div class="card-body">
-                                            {{-- <h4 class="card-title text-primary fs-14">{{ __('messages.front_landing.by') }} {{ $campaign->user->full_name }}</h4> --}}
                                             <h5 class="text-dark fs-18 mb-3">
                                                 <a class="text-dark"
                                                 href="{{ route('landing.campaign.details',$campaign->slug) }}">
@@ -449,7 +444,7 @@ $brands = brands();
                         class="btn btn-gold-custom px-5">{{__('messages.front_landing.view_all')}}</a>
                     </div>
                 </div>
-            </section>
+            </section> --}}
             <!-- end trending-causes-section -->
 
 
