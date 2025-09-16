@@ -16,10 +16,20 @@
                 <div class="card-body pt-0">
                     <h4 class="card-title text-dark fw-6 fs-20 pb-1">
                         <a class="text-dark"
-                           href="{{ route('landing.news-details',$news->slug) }}">{{ \Illuminate\Support\Str::limit($news->title, 90) }}</a>
+                           href="{{ route('landing.news-details',$news->slug) }}">
+                           @if (App::getLocale() == 'AR')
+                               {{ \Illuminate\Support\Str::limit($news->title_ar, 90) }}
+                           @else
+                                {{ \Illuminate\Support\Str::limit($news->title, 90) }}
+                           @endif
+                        </a>
                     </h4>
                     <p class="fs-14 mb-2">
-                        {!! !empty(strip_tags($news->description)) ? Str::limit(strip_tags($news->description),400,'...') :__('messages.common.n/a') !!}
+                        @if (App::getLocale() == 'AR')
+                            {!! !empty(strip_tags($news->description_ar)) ? Str::limit(strip_tags($news->description),400,'...') :__('messages.common.n/a') !!}
+                        @else
+                            {!! !empty(strip_tags($news->description)) ? Str::limit(strip_tags($news->description),400,'...') :__('messages.common.n/a') !!}
+                        @endif
                     </p>
                     <div class="d-flex flex-wrap justify-content-between align-items-center">
                         <div class="d-flex">

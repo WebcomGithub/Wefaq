@@ -47,7 +47,12 @@
                     <div class="col-xl-8">
                         <!-- start news-details-left-section-->
                         <div class="news-details-left-section pt-100 ">
-                            <h5 class="title text-dark fw-6 fs-20 pb-1">{{$news->title}}
+                            <h5 class="title text-dark fw-6 fs-20 pb-1">
+                                @if (App::getLocale() == 'AR')
+                                    {{$news->title_ar}}
+                                @else
+                                    {{$news->title}}
+                                @endif
                             </h5>
                             <div class="news-details-img rounded-10 mb-20">
                                 <img src="{{ !empty($news->news_image) ? $news->news_image : url(asset('front_landing/images/news-details-img.png')) }}"
@@ -65,7 +70,11 @@
                                 </div>
                             </div>
                             <p class="fs-16 fw-5 text-dark">
-                                {!! nl2br($news->description) !!}
+                                @if (App::getLocale() == 'AR')
+                                    {!! nl2br($news->description_ar) !!}
+                                @else
+                                    {!! nl2br($news->description) !!}
+                                @endif
 
                             </p>
                             <div class="row justify-content-between pb-4 pt-4">

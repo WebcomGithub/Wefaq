@@ -119,11 +119,12 @@
   ),
   'campaign' =>
   array (
-    'campaign_categories' => 'اقسام البرامج',
+    'campaign_categories' => 'البرامج',
     'edit_category' => 'تعديل القسم',
-    'campaigns' => 'البرامج',
+    'campaigns' => 'المشاريع',
     'languages' => 'اللغات',
-    'add_campaign' => 'أضف برنامج',
+    'add_campaign' => 'أضف مشروع',
+    'add_campaign_english' => 'أضف مشروع (بالانجليزية)',
     'edit_campaign' => 'عدل برنامج',
     'campaign_category' => 'قسم  البرنامج',
     'campaign_details' => 'تفاصيل البرنامج',

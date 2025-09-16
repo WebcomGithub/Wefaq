@@ -20,6 +20,7 @@
                     <div class="card-body">
                         {{ Form::hidden('is_edit', true,['id' => 'newsIsEdit']) }}
                         {{ Form::hidden('news_description', $news->description,['id' => 'editNewsDescriptionData']) }}
+                        {{ Form::hidden('news_description_ar', $news->description_ar,['id' => 'editNewsDescriptionData_ar']) }}
                         {{ Form::model($news, ['route' => ['news.update', $news->id], 'method' => 'patch', 'files'=>true, 'id'=>'editNewsForm']) }}
                             @include('admin.news.fields')
                             {{ Form::close() }}

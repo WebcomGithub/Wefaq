@@ -6,6 +6,13 @@
                 class="text-danger">*</span>
         {{ Form::text('title', isset($news) ? $news->title : null, ['class' => 'form-control', 'placeholder' =>  __('messages.common.title'), 'required', 'id'=>'newsCreateTitle', 'maxLength'=>250]) }}
     </div>
+    <!-- Title Field -->
+    <div class="col-lg-6 mb-5">
+        <input type="hidden" name="added_by" value="{{ \Illuminate\Support\Facades\Auth::id() }}">
+        {{ Form::label('title_ar',__('messages.common.title arabic').':', ['class' => 'form-label']) }}<span
+                class="text-danger">*</span>
+        {{ Form::text('title_ar', isset($news) ? $news->title : null, ['class' => 'form-control', 'placeholder' =>  __('messages.common.title'), 'required', 'id'=>'newsCreateTitle', 'maxLength'=>250]) }}
+    </div>
 
     <!-- Slug Field -->
     <div class="col-lg-6 mb-5">
@@ -21,7 +28,7 @@
         {{ Form::select('news_category_id',$newsCategory,null, ['class' => 'form-select','data-control'=>'select2', 'required']) }}
     </div>
     <!-- Tag Field -->
-    <div class="col-lg-6 mb-5">
+    <div class="col-lg-12 mb-5">
         {{ Form::label('tags', __('messages.news.tags').':', ['class' => 'form-label required']) }}
         {{Form::select('tags[]',$newsTags,!empty($tags) ? $tags : null, ['class' => 'form-select io-select2','data-control'=>'select2','id'=>'newsTagId','multiple'=>true,'required'])}}
     </div>
@@ -31,6 +38,18 @@
         <div id="newsEditDetails"
              class="vh-ql-container"></div> {{ Form::hidden('description', isset($news) ? $news->description : null, ['class' => 'form-control', 'name'=>'description']) }}
     </div>
+
+    {{-- <div class="col-lg-6 mb-5">
+        {{ Form::label('description_ar', __('messages.common.description_ar').':', ['class' => 'required']) }}
+        <textarea name="description_ar" id="" cols="30" rows="10" class="form-control">{{ isset($news) ? $news->description_ar : null }}</textarea>
+    </div> --}}
+
+    <div class="col-lg-6 mb-5">
+        {{ Form::label('description_ar', __('messages.common.description_ar').':', ['class' => 'required']) }}
+        <div id="newsEditDetails_ar"
+             class="vh-ql-container"></div> {{ Form::hidden('description_ar', isset($news) ? $news->description_ar : null, ['class' => 'form-control', 'name'=>'description_ar']) }}
+    </div>
+
     <!-- Image Field -->
     <div class="col-lg-6 mb-5">
         <div class="mb-3" io-image-input="true">

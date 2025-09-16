@@ -124,6 +124,7 @@
     'campaigns' => 'Programs',
     'languages' => 'Languages',
     'add_campaign' => 'Add Program',
+    'add_campaign_english' => 'Add Program (English)',
     'edit_campaign' => 'Edit Program',
     'campaign_category' => 'Program Category',
     'campaign_details' => 'Program Details',

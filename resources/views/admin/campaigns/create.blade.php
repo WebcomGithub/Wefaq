@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 @section('title')
-    {{__('messages.campaign.add_campaign')}}
+    {{__('messages.campaign.add_campaign_english')}}
 @endsection
 @section('css')
 <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">

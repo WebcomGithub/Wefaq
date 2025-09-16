@@ -44,7 +44,13 @@
                     <div class="feeds-text">
                         <p class="fs-16 fw-5 text-dark mb-1">
                             <a class="text-dark"
-                               href="{{route('landing.news-details',$news->slug)}}">{{ \Illuminate\Support\Str::limit($news->title, 40) }}</a>
+                               href="{{route('landing.news-details',$news->slug)}}">
+                                @if (App::getLocale() == 'AR')
+                                    {{ \Illuminate\Support\Str::limit($news->title_ar, 90) }}
+                                @else
+                                        {{ \Illuminate\Support\Str::limit($news->title, 90) }}
+                                @endif
+                            </a>
                         </p>
                         <p class="text-primary fs-14 fw-5 mb-0">{{ \Carbon\Carbon::parse($news->created_at)->isoFormat('Do MMMM YYYY')}}</p>
                     </div>

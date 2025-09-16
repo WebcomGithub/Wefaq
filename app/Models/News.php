@@ -35,6 +35,8 @@ class News extends Model implements HasMedia
         'description',
         'news_category_id',
         'added_by',
+        'title_ar',
+        'description_ar',
     ];
 
     protected $with = ['media'];
@@ -62,6 +64,8 @@ class News extends Model implements HasMedia
         'news_category_id' => 'required',
         'description' => 'nullable',
         'image' => 'required|mimes:jpeg,png,jpg',
+        'title_ar' => 'required',
+        'description_ar' => 'required',
     ];
 
     /**
