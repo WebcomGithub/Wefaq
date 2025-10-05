@@ -112,6 +112,68 @@ function loadCampaignCreateEdit () {
         },
     }
 
+
+
+if ($('#editCampaignDescriptionARId').length) {
+    let editCampaignDescriptionQuill = new Quill('#editCampaignDescriptionARId', {
+        modules: {
+            toolbar: [
+                [{ header: [1, 2, false] }],
+                ['bold', 'italic', 'underline'],
+                [{ list: 'ordered' }, { list: 'bullet' }],
+                ['image', 'code-block'],
+            ],
+            keyboard: {
+                bindings: bindings
+            }
+        },
+        placeholder: 'Description',
+        theme: 'snow',
+    });
+
+    // 1. عند الكتابة داخل المحرر، خزن المحتوى بالـ hidden input
+    editCampaignDescriptionQuill.on('text-change', function () {
+        $('#editCampaignDescriptionAR').val(editCampaignDescriptionQuill.root.innerHTML);
+    });
+
+    // 2. عند التحميل أول مرة، عبّي المحرر بالقيمة القديمة من hidden input نفسه
+    let oldValue = $('#editCampaignDescriptionAR').val();
+    if (oldValue) {
+        editCampaignDescriptionQuill.root.innerHTML = oldValue;
+    }
+}
+
+
+    if ($('#editCampaignDescriptionTRId').length) {
+    let editCampaignDescriptionQuillTR = new Quill('#editCampaignDescriptionTRId', {
+        modules: {
+            toolbar: [
+                [{ header: [1, 2, false] }],
+                ['bold', 'italic', 'underline'],
+                [{ list: 'ordered' }, { list: 'bullet' }],
+                ['image', 'code-block'],
+            ],
+            keyboard: {
+                bindings: bindings
+            }
+        },
+        placeholder: 'Description',
+        theme: 'snow',
+    });
+
+    // عند أي تعديل بالمحرر → خزّن المحتوى بالـ hidden input
+    editCampaignDescriptionQuillTR.on('text-change', function () {
+        $('#editCampaignDescriptionTR').val(editCampaignDescriptionQuillTR.root.innerHTML);
+    });
+
+    // عند التحميل أول مرة → اعرض القيمة القديمة من الـ hidden input
+    let oldValueTR = $('#editCampaignDescriptionTR').val();
+    if (oldValueTR) {
+        editCampaignDescriptionQuillTR.root.innerHTML = oldValueTR;
+    }
+}
+
+
     if ($('#campaignDescriptionCreateId').length) {
         campaignDescriptionCreateQuill = new Quill('#campaignDescriptionCreateId', {
             modules: {

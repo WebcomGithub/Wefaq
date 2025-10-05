@@ -369,7 +369,12 @@
                     @foreach ($latestFiveNews as $news)
                             <li>
                                 <a href="{{route('landing.news-details',$news->slug)}}"
-                                    class="fs-14 fw-5 text-dark">{!! nl2br(\Illuminate\Support\Str::limit($news->title)) !!}
+                                    class="fs-14 fw-5 text-dark">
+                                    @if (App::getLocale() == 'AR')
+                                        {!! nl2br(\Illuminate\Support\Str::limit($news->title_ar)) !!}
+                                    @else
+                                        {!! nl2br(\Illuminate\Support\Str::limit($news->title)) !!}
+                                    @endif
 
                                     <small class="mt-1 mt-md-0 fs-12 d-flex align-items-center">
                                         <span class="font-weight-500">

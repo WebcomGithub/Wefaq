@@ -8151,6 +8151,64 @@ function loadCampaignCreateEdit() {
       }
     }
   };
+  if ($('#editCampaignDescriptionARId').length) {
+    var _editCampaignDescriptionQuill = new Quill('#editCampaignDescriptionARId', {
+      modules: {
+        toolbar: [[{
+          header: [1, 2, false]
+        }], ['bold', 'italic', 'underline'], [{
+          list: 'ordered'
+        }, {
+          list: 'bullet'
+        }], ['image', 'code-block']],
+        keyboard: {
+          bindings: bindings
+        }
+      },
+      placeholder: 'Description',
+      theme: 'snow'
+    });
+
+    // 1. عند الكتابة داخل المحرر، خزن المحتوى بالـ hidden input
+    _editCampaignDescriptionQuill.on('text-change', function () {
+      $('#editCampaignDescriptionAR').val(_editCampaignDescriptionQuill.root.innerHTML);
+    });
+
+    // 2. عند التحميل أول مرة، عبّي المحرر بالقيمة القديمة من hidden input نفسه
+    var oldValue = $('#editCampaignDescriptionAR').val();
+    if (oldValue) {
+      _editCampaignDescriptionQuill.root.innerHTML = oldValue;
+    }
+  }
+  if ($('#editCampaignDescriptionTRId').length) {
+    var editCampaignDescriptionQuillTR = new Quill('#editCampaignDescriptionTRId', {
+      modules: {
+        toolbar: [[{
+          header: [1, 2, false]
+        }], ['bold', 'italic', 'underline'], [{
+          list: 'ordered'
+        }, {
+          list: 'bullet'
+        }], ['image', 'code-block']],
+        keyboard: {
+          bindings: bindings
+        }
+      },
+      placeholder: 'Description',
+      theme: 'snow'
+    });
+
+    // عند أي تعديل بالمحرر → خزّن المحتوى بالـ hidden input
+    editCampaignDescriptionQuillTR.on('text-change', function () {
+      $('#editCampaignDescriptionTR').val(editCampaignDescriptionQuillTR.root.innerHTML);
+    });
+
+    // عند التحميل أول مرة → اعرض القيمة القديمة من الـ hidden input
+    var oldValueTR = $('#editCampaignDescriptionTR').val();
+    if (oldValueTR) {
+      editCampaignDescriptionQuillTR.root.innerHTML = oldValueTR;
+    }
+  }
   if ($('#campaignDescriptionCreateId').length) {
     campaignDescriptionCreateQuill = new Quill('#campaignDescriptionCreateId', {
       modules: {

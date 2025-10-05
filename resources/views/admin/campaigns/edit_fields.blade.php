@@ -288,8 +288,12 @@
                                     ) }} --}}
                                     {{-- <textarea name="description_ar" class="form-control" id="" cols="30" rows="10">{{ isset($campaign) && !empty($campaign->description_lang) ? $campaign->description_lang['ar'] : '' }}</textarea> --}}
                                     <div class="form-group">
-                                        {{ Form::label('description', __('messages.common.description_ar') . ':', ['class' => 'form-label']) }}
-                                        <textarea name="description_ar" id="description_ar" rows="6"  class="form-control" >{!! isset($campaign) && !empty($campaign->description_lang) ? $campaign->description_lang['ar'] : '' !!}</textarea>
+                                        {{ Form::label('description_ar', __('messages.common.description_ar').':', ['class' => 'form-label ']) }}
+                                        <div id="editCampaignDescriptionARId" class="vh-ql-container"></div>
+                                        {{ Form::hidden('description_ar', isset($campaign) && !empty($campaign->description_lang) ? $campaign->description_lang['ar'] : '', ['id' => 'editCampaignDescriptionAR']) }}
+
+                                        {{-- {{ Form::label('description', __('messages.common.description_ar') . ':', ['class' => 'form-label']) }}
+                                        <textarea name="description_ar" id="description_ar" rows="6"  class="form-control" >{!! isset($campaign) && !empty($campaign->description_lang) ? $campaign->description_lang['ar'] : '' !!}</textarea> --}}
                                     </div>  
                                 </div>
                                 
@@ -297,13 +301,19 @@
                             <div class="col-lg-12">
                                 <div class="mb-5">
                                     {{ Form::label('description', __('messages.common.description_tr').':', ['class' => 'form-label ']) }}
+                                    <div id="editCampaignDescriptionTRId" class="vh-ql-container"></div>
+                                    {{ Form::hidden('description_tr', isset($campaign) && !empty($campaign->description_lang) ? $campaign->description_lang['tr'] : '', ['id' => 'editCampaignDescriptionTR']) }}
+
+
                                     {{-- {{ Form::textarea(
                                         'description_tr',
                                         isset($campaign) && !empty($campaign->description_lang) ? $campaign->description_lang['tr'] : '',
                                         ['class' => 'form-control']
                                     ) }}   --}}
                                     {{-- <textarea name="description_tr" class="form-control" id="" cols="30" rows="10">{{ isset($campaign) && !empty($campaign->description_lang) ? $campaign->description_lang['tr'] : '' }}</textarea> --}}
-                                    <textarea name="description_tr" id="description_tr" rows="6"  class="form-control" >{!! isset($campaign) && !empty($campaign->description_lang) ? $campaign->description_lang['tr'] : '' !!}</textarea>
+                                
+                                    {{-- {{ Form::label('description', __('messages.common.description_tr').':', ['class' => 'form-label ']) }}
+                                    <textarea name="description_tr" id="description_tr" rows="6"  class="form-control" >{!! isset($campaign) && !empty($campaign->description_lang) ? $campaign->description_lang['tr'] : '' !!}</textarea> --}}
 
                                                                   </div>
                             </div>
