@@ -19,6 +19,16 @@
         transition: all 0.3s ease-in-out;
     }
 
+    header {
+        position: fixed;   
+        top: 0;          
+        left: 0;
+        width: 100%;     
+        z-index: 1030;    
+        background-color: #fff;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
     .social-icon.facebook:hover {
         background-color: #1877F2;
         color: white;
@@ -410,22 +420,22 @@
           <!-- Language + Complaints -->
           <div class="d-flex align-items-center gap-2 mb-3 mb-lg-0">
             <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle text-dark fw-5 fs-14" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-        <i class="fas fa-language me-1"></i>
-        {{ getHeaderLanguageName() }}
-    </a>
-    <ul class="dropdown-menu">
-        @foreach (getAllLanguage() as $language)
-            <li>
-                <a class="dropdown-item {{ $language->iso_code == App::getLocale() ? 'active' : '' }}"
-                   href="{{ route('landing.change-language', $language->iso_code) }}"
-                   data-prefix-value="{{ $language->iso_code }}">
-                   {{ $language->name }}
-                </a>
-            </li>
-        @endforeach
-    </ul>
-</li>
+        <a class="nav-link dropdown-toggle text-dark fw-5 fs-14" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fas fa-language me-1"></i>
+            {{ getHeaderLanguageName() }}
+        </a>
+            <ul class="dropdown-menu">
+                @foreach (getAllLanguage() as $language)
+                    <li>
+                        <a class="dropdown-item {{ $language->iso_code == App::getLocale() ? 'active' : '' }}"
+                        href="{{ route('landing.change-language', $language->iso_code) }}"
+                        data-prefix-value="{{ $language->iso_code }}">
+                        {{ $language->name }}
+                        </a>
+                    </li>
+                @endforeach
+            </ul>
+        </li>
 
             <a class="btn fw-bold px-3 py-2 ms-lg-2"
                 href="{{ route('landing.complaints') }}" style="background-color: #4664aa; color:white">

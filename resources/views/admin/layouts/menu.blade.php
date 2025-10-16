@@ -57,14 +57,14 @@
         </a>
     </li>
 
-@can('manage_brands')
+{{-- @can('manage_brands')
     <li class="nav-item {{ Request::is('admin/brands*') ? 'active' : '' }}" href="{{ route('brands.index') }}">
         <a class="nav-link d-flex align-items-center py-3" aria-current="page" href="{{ route('brands.index') }}">
             <span class="aside-menu-icon pe-3"><i class="fa fa-adjust fs-3"></i></span>
             <span class="aside-menu-title">{{__('messages.brand.brands')}}</span>
         </a>
     </li>
-@endcan
+@endcan --}}
 
     <li class="nav-item {{ Request::is('admin/media*') ? 'active' : '' }}" href="{{ route('media.index') }}">
         <a class="nav-link d-flex align-items-center py-3" aria-current="page" href="{{ route('media.index') }}">

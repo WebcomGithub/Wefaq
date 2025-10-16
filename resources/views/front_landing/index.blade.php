@@ -181,8 +181,6 @@ $brands = brands();
 
             </section>
             <!-- end hero-section -->
-
-
             
             <!-- start news-feeds-section -->
             <section class="news-feed-section pb-60 mt-5" data-aos="fade-right">
@@ -211,10 +209,20 @@ $brands = brands();
                                     </span>
                                         <h4 class="card-title fs-18">
                                             <a class="link-dark"
-                                            href="{{route('landing.news-details', $news['slug'])}}">{{ Str::limit($news->title , 35) }}</a>
+                                            href="{{route('landing.news-details', $news['slug'])}}">
+                                            @if (App::getLocale() == 'AR')
+                                                {{ Str::limit($news->title_ar , 35) }}
+                                            @else
+                                                {{ Str::limit($news->title , 35) }}
+                                            @endif
+                                        </a>
                                         </h4>
                                         <p class="mb-0 text-secondary">
-                                            {!! !empty(strip_tags($news->description)) ? Str::limit(strip_tags($news->description),40,'...') :__('messages.common.n/a') !!}
+                                            @if (App::getLocale() == 'AR')
+                                                {!! !empty(strip_tags($news->description_ar)) ? Str::limit(strip_tags($news->description_ar),40,'...') :__('messages.common.n/a') !!}
+                                            @else
+                                                {!! !empty(strip_tags($news->description)) ? Str::limit(strip_tags($news->description),40,'...') :__('messages.common.n/a') !!}
+                                            @endif
                                         </p>
                                         <a href="{{route('landing.news-details', $news['slug'])}}"
                                         class="read-more-btn">{{__('messages.front_landing.read_more')}}</a>

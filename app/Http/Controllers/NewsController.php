@@ -98,6 +98,11 @@ class NewsController extends AppBaseController
      */
     public function update($id, UpdateNewsRequest $request)
     {
+        if ($request->has('created_at')) {
+            $item = News::find($id);
+            $item->created_at = $request->created_at;
+            $item->save();
+        }
         $news = $this->newsRepository->find($id);
 
         if (empty($news)) {

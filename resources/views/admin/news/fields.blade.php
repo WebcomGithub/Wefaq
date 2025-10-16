@@ -27,6 +27,12 @@
         <span class="text-danger">*</span>
         {{ Form::select('news_category_id',$newsCategory,null, ['class' => 'form-select','data-control'=>'select2', 'required']) }}
     </div>
+
+    <div class="col-lg-6 mb-5">
+        {{ Form::label('Publication date',__('messages.news.Publication Date').':', ['class' => 'form-label']) }}
+        {{ Form::date('created_at', isset($news) ? $news->created_at : null, ['class' => 'form-control',]) }}
+    </div>
+
     <!-- Tag Field -->
     <div class="col-lg-12 mb-5">
         {{ Form::label('tags', __('messages.news.tags').':', ['class' => 'form-label required']) }}

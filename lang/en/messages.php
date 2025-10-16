@@ -274,6 +274,7 @@
     'edit_new_tag' => 'Edit New Tag',
     'news_details' => 'News Details',
     'category' => 'Category',
+    'Publication Date' => 'Publication Date',
   ),
   'setting' =>
   array (

@@ -274,6 +274,7 @@
     'edit_new_tag' => 'تعديل علامة جديدة',
     'news_details' => 'تفاصيل الأخبار',
     'category' => 'قسم',
+    'Publication Date' => 'تاريخ النشر',
   ),
   'setting' =>
   array (

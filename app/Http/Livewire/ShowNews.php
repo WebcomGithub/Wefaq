@@ -73,6 +73,6 @@ class ShowNews extends Component
                 ->orWhere('description', 'like', '%'.trim($this->searchByNewsNameDesc).'%');
         }
 
-        return $query->paginate(7);
+        return $query->orderBy('created_at', 'desc')->paginate(7);
     }
 }

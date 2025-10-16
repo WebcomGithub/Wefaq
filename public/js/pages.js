@@ -56,19 +56,19 @@ Copyright © 2023 37signals LLC
 
 /**
  * The MIT License (MIT)
- * 
+ *
  * Copyright (c) 2019 Javan Makhmali
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -7264,6 +7264,31 @@ listen('submit', '#addBrandForm', function (e) {
     }
   });
 });
+listen('submit', '#addMediaDataForm', function (e) {
+  e.preventDefault();
+  processingBtn('#addMediaDataForm', '#brandBtn', 'loading');
+  $('#brandBtn').prop('disabled', true);
+  $.ajax({
+    url: route('media.store'),
+    type: 'POST',
+    data: new FormData(this),
+    processData: false,
+    contentType: false,
+    success: function success(result) {
+      displaySuccessMessage(result.message);
+      $('#addBrandModal').modal('hide');
+      $('#brandBtn').prop('disabled', false);
+      Livewire.emit('refresh');
+    },
+    error: function error(result) {
+      displayErrorMessage(result.responseJSON.message);
+      $('#brandBtn').prop('disabled', false);
+    },
+    complete: function complete() {
+      processingBtn('#addBrandForm', '#btnSave');
+    }
+  });
+});
 listen('submit', '#editBrandForm', function (event) {
   event.preventDefault();
   processingBtn('#editBrandForm', '#btnEditSave', 'loading');
@@ -7292,6 +7317,34 @@ listen('submit', '#editBrandForm', function (event) {
     }
   });
 });
+listen('submit', '#editMediaForm', function (event) {
+  event.preventDefault();
+  processingBtn('#editBrandForm', '#btnEditSave', 'loading');
+  $('#btnEditSave').prop('disabled', true);
+  var editBrandFormID = $('#editMediaId').val();
+  $.ajax({
+    url: route('media.update', editBrandFormID),
+    type: 'POST',
+    data: new FormData($(this)[0]),
+    processData: false,
+    contentType: false,
+    success: function success(result) {
+      if (result.success) {
+        displaySuccessMessage(result.message);
+        $('#editBrandModal').modal('hide');
+        $('#btnEditSave').prop('disabled', false);
+        Livewire.emit('refresh');
+      }
+    },
+    error: function error(result) {
+      displayErrorMessage(result.responseJSON.message);
+      $('#btnEditSave').prop('disabled', false);
+    },
+    complete: function complete() {
+      processingBtn('#editBrandForm', '#btnEditSave');
+    }
+  });
+});
 listen('click', '.brand-delete-btn', function (event) {
   var deleteBrandID = $(event.currentTarget).data('id');
   var url = route('brands.destroy', {
@@ -7299,15 +7352,61 @@ listen('click', '.brand-delete-btn', function (event) {
   });
   deleteItem(url, 'Brand');
 });
+listen('click', '.media-delete-btn', function (event) {
+  var deleteBrandID = $(event.currentTarget).data('id');
+  var url = route('media.destroy', {
+      medium: deleteBrandID
+  });
+  deleteItem(url, 'Media');
+});
 listen('click', '#addBrandBtn', function () {
   $('#addBrandModal').appendTo('body').modal('show');
   resetModalForm('#addBrandForm');
+  $('#previewImage').css('background-image', 'url("' + brandDefaultImage + '")');
+});
+listen('click', '#addMediaBtn', function () {
+  $('#addMediaModal').appendTo('body').modal('show');
+  resetModalForm('#addMediaDataForm');
   $('#previewImage').css('background-image', 'url("' + brandDefaultImage + '")');
 });
 listen('click', '.brand-edit-btn', function (event) {
   var editBrandID = $(event.currentTarget).data('id');
   renderBrandsData(editBrandID);
 });
+listen('click', '.media-edit-btn', function (event) {
+  var editBrandID = $(event.currentTarget).data('id');
+    renderMediaData(editBrandID);
+});
+function renderMediaData(id) {
+  $.ajax({
+    url: route('media.edit', id),
+    type: 'GET',
+    success: function success(result) {
+      if (result.success) {
+        Livewire.emit('refresh', 'refresh');
+        $('#editMediaId').val(result.data.id);
+        $('#editMediaName').val(result.data.name);
+          // تعيين نوع المحتوى (صورة أو فيديو)
+          $('#editmediaType').val(result.data.type).trigger('change');
+          // إذا كان النوع فيديو، عين رابط الفيديو
+          if (result.data.type === 'video') {
+              $('input[name="video_url"]').val(result.data.video_url);
+          } else {
+              $('input[name="video_url"]').val(''); // تفريغ الحقل إن لم يكن فيديو
+          }
+        if (isEmpty(result.data.image_url)) {
+          $('#editPreviewImage').css('background-image', 'url("' + brandDefaultImage + '")');
+        } else {
+          $('#editPreviewImage').css('background-image', 'url("' + result.data.image_url + '")');
+        }
+        $('#editMediaModal').modal('show').appendTo('body');
+      }
+    },
+    error: function error(result) {
+      displayErrorMessage(result.responseJSON.message);
+    }
+  });
+}
 function renderBrandsData(id) {
   $.ajax({
     url: route('brands.edit', id),
@@ -8151,64 +8250,6 @@ function loadCampaignCreateEdit() {
       }
     }
   };
-  if ($('#editCampaignDescriptionARId').length) {
-    var _editCampaignDescriptionQuill = new Quill('#editCampaignDescriptionARId', {
-      modules: {
-        toolbar: [[{
-          header: [1, 2, false]
-        }], ['bold', 'italic', 'underline'], [{
-          list: 'ordered'
-        }, {
-          list: 'bullet'
-        }], ['image', 'code-block']],
-        keyboard: {
-          bindings: bindings
-        }
-      },
-      placeholder: 'Description',
-      theme: 'snow'
-    });
-
-    // 1. عند الكتابة داخل المحرر، خزن المحتوى بالـ hidden input
-    _editCampaignDescriptionQuill.on('text-change', function () {
-      $('#editCampaignDescriptionAR').val(_editCampaignDescriptionQuill.root.innerHTML);
-    });
-
-    // 2. عند التحميل أول مرة، عبّي المحرر بالقيمة القديمة من hidden input نفسه
-    var oldValue = $('#editCampaignDescriptionAR').val();
-    if (oldValue) {
-      _editCampaignDescriptionQuill.root.innerHTML = oldValue;
-    }
-  }
-  if ($('#editCampaignDescriptionTRId').length) {
-    var editCampaignDescriptionQuillTR = new Quill('#editCampaignDescriptionTRId', {
-      modules: {
-        toolbar: [[{
-          header: [1, 2, false]
-        }], ['bold', 'italic', 'underline'], [{
-          list: 'ordered'
-        }, {
-          list: 'bullet'
-        }], ['image', 'code-block']],
-        keyboard: {
-          bindings: bindings
-        }
-      },
-      placeholder: 'Description',
-      theme: 'snow'
-    });
-
-    // عند أي تعديل بالمحرر → خزّن المحتوى بالـ hidden input
-    editCampaignDescriptionQuillTR.on('text-change', function () {
-      $('#editCampaignDescriptionTR').val(editCampaignDescriptionQuillTR.root.innerHTML);
-    });
-
-    // عند التحميل أول مرة → اعرض القيمة القديمة من الـ hidden input
-    var oldValueTR = $('#editCampaignDescriptionTR').val();
-    if (oldValueTR) {
-      editCampaignDescriptionQuillTR.root.innerHTML = oldValueTR;
-    }
-  }
   if ($('#campaignDescriptionCreateId').length) {
     campaignDescriptionCreateQuill = new Quill('#campaignDescriptionCreateId', {
       modules: {
@@ -10217,12 +10258,9 @@ listen('submit', '#editLanguageForm', function (event) {
 
 document.addEventListener('turbo:load', loadNewsCreateEdit);
 var newsDetailsQuill;
-var newsDetailsQuillAr;
 function loadNewsCreateEdit() {
-  // لو ما فيش محرر إنجليزي ولا عربي
-  if (!$('#newsEditDetails').length && !$('#newsEditDetails_ar').length) {
+  if (!$('#newsEditDetails').length) {
     newsDetailsQuill = null;
-    newsDetailsQuillAr = null;
     return false;
   }
   if ($('#newsTagId').length) {
@@ -10232,6 +10270,7 @@ function loadNewsCreateEdit() {
     });
   }
   var bindings = {
+    // This will overwrite the default binding also named 'tab'
     tab: {
       key: 9,
       handler: function handler() {
@@ -10239,71 +10278,33 @@ function loadNewsCreateEdit() {
       }
     }
   };
-
-  // محرر الوصف الإنجليزي
-  if ($('#newsEditDetails').length) {
-    newsDetailsQuill = new Quill('#newsEditDetails', {
-      modules: {
-        toolbar: true,
-        keyboard: {
-          bindings: bindings
-        }
-      },
-      placeholder: 'Type your text here...',
-      theme: 'snow'
-    });
-    newsDetailsQuill.on('text-change', function () {
-      if (newsDetailsQuill.getText().trim().length === 0) {
-        newsDetailsQuill.setContents([{
-          insert: ''
-        }]);
+  newsDetailsQuill = new Quill('#newsEditDetails', {
+    modules: {
+      toolbar: true,
+      keyboard: {
+        bindings: bindings
       }
-    });
-
-    // وضع البيانات وقت التعديل
-    if ($('#newsIsEdit').length && $('#editNewsDescriptionData').length) {
-      if ($('#newsIsEdit').val()) {
-        var editNewsDescriptionData = $('#editNewsDescriptionData').val();
-        var element = document.createElement('textarea');
-        element.innerHTML = editNewsDescriptionData;
-        newsDetailsQuill.root.innerHTML = element.value;
-      }
+    },
+    placeholder: 'Type your text here...',
+    theme: 'snow'
+  });
+  newsDetailsQuill.on('text-change', function (delta, oldDelta, source) {
+    if (newsDetailsQuill.getText().trim().length === 0) {
+      newsDetailsQuill.setContents([{
+        insert: ''
+      }]);
     }
-  }
-
-  // محرر الوصف بالعربي
-  if ($('#newsEditDetails_ar').length) {
-    newsDetailsQuillAr = new Quill('#newsEditDetails_ar', {
-      modules: {
-        toolbar: true,
-        keyboard: {
-          bindings: bindings
-        }
-      },
-      placeholder: 'اكتب النص هنا...',
-      theme: 'snow'
-    });
-    newsDetailsQuillAr.on('text-change', function () {
-      if (newsDetailsQuillAr.getText().trim().length === 0) {
-        newsDetailsQuillAr.setContents([{
-          insert: ''
-        }]);
-      }
-    });
-
-    // وضع البيانات وقت التعديل
-    if ($('#newsIsEdit').length && $('#editNewsDescriptionDataAr').length) {
-      if ($('#newsIsEdit').val()) {
-        var editNewsDescriptionDataAr = $('#editNewsDescriptionDataAr').val();
-        var _element = document.createElement('textarea');
-        _element.innerHTML = editNewsDescriptionDataAr;
-        newsDetailsQuillAr.root.innerHTML = _element.value;
-      }
+  });
+  if ($('#newsIsEdit').length) {
+    if (!$('#newsIsEdit').val()) {
+      return false;
     }
+    var editNewsDescriptionData = $('#editNewsDescriptionData').val();
+    var element = document.createElement('textarea');
+    element.innerHTML = editNewsDescriptionData;
+    newsDetailsQuill.root.innerHTML = element.value;
   }
 }
-
-// إنشاء slug من العنوان
 listen('keyup', '#newsCreateTitle', function () {
   var newsCreateTitle = $('#newsCreateTitle').val();
   $('#newsCreateSlug').val(newsCreateTitle.toLowerCase().replace(/\s+/g, '-'));
@@ -10312,65 +10313,31 @@ listen('keyup', '#newsCreateTitle', function () {
     $('#newsCreateSlug').val(newsCreateSlug.substr(0, 15));
   }
 });
-
-// إضافة خبر
 listen('submit', '#addNewsForm', function (e) {
   e.preventDefault();
-
-  // تحقق من الوصف الإنجليزي
-  if (newsDetailsQuill && newsDetailsQuill.getText().trim().length === 0) {
+  if (newsDetailsQuill.getText().trim().length === 0) {
     displayErrorMessage('The description field is required.');
-    return false;
-  }
-
-  // تحقق من الوصف العربي
-  if (newsDetailsQuillAr && newsDetailsQuillAr.getText().trim().length === 0) {
-    displayErrorMessage('حقل الوصف بالعربية مطلوب.');
     return false;
   }
   processingBtn('#addNewsForm', '#btnNewsSave', 'loading');
   $('#btnNewsSave').prop('disabled', true);
-
-  // حفظ الإنجليزي
-  if (newsDetailsQuill) {
-    var editor_content = newsDetailsQuill.root.innerHTML;
-    var input = JSON.stringify(editor_content);
-    $('#description').val(input.replace(/"/g, ''));
-  }
-
-  // حفظ العربي
-  if (newsDetailsQuillAr) {
-    var editor_content_ar = newsDetailsQuillAr.root.innerHTML;
-    var input_ar = JSON.stringify(editor_content_ar);
-    $('#description_ar').val(input_ar.replace(/"/g, ''));
-  }
+  var editor_content = newsDetailsQuill.root.innerHTML;
+  var input = JSON.stringify(editor_content);
+  $('#description').val(input.replace(/"/g, ''));
   $('#addNewsForm')[0].submit();
   return true;
 });
-
-// تعديل خبر
 listen('submit', '#editNewsForm', function (event) {
   event.preventDefault();
-  if (newsDetailsQuill && newsDetailsQuill.getText().trim().length === 0) {
+  if (newsDetailsQuill.getText().trim().length === 0) {
     displayErrorMessage('The description field is required.');
-    return false;
-  }
-  if (newsDetailsQuillAr && newsDetailsQuillAr.getText().trim().length === 0) {
-    displayErrorMessage('حقل الوصف بالعربية مطلوب.');
     return false;
   }
   processingBtn('#editNewsForm', '#btnNewsSave', 'loading');
   $('#btnNewsSave').prop('disabled', true);
-  if (newsDetailsQuill) {
-    var editor_content = newsDetailsQuill.root.innerHTML;
-    var input = JSON.stringify(editor_content);
-    $('#description').val(input.replace(/"/g, ''));
-  }
-  if (newsDetailsQuillAr) {
-    var editor_content_ar = newsDetailsQuillAr.root.innerHTML;
-    var input_ar = JSON.stringify(editor_content_ar);
-    $('#description_ar').val(input_ar.replace(/"/g, ''));
-  }
+  var editor_content = newsDetailsQuill.root.innerHTML;
+  var input = JSON.stringify(editor_content);
+  $('#description').val(input.replace(/"/g, ''));
   $('#editNewsForm')[0].submit();
   return true;
 });
@@ -11647,7 +11614,7 @@ __webpack_require__.r(__webpack_exports__);
 /************************************************************************/
 /******/ 	// The module cache
 /******/ 	var __webpack_module_cache__ = {};
-/******/ 	
+/******/
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
 /******/ 		// Check if module is in cache
@@ -11661,17 +11628,17 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 			// no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
-/******/ 	
+/******/
 /******/ 		// Execute the module function
 /******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
-/******/ 	
+/******/
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
-/******/ 	
+/******/
 /******/ 	// expose the modules object (__webpack_modules__)
 /******/ 	__webpack_require__.m = __webpack_modules__;
-/******/ 	
+/******/
 /************************************************************************/
 /******/ 	/* webpack/runtime/chunk loaded */
 /******/ 	(() => {
@@ -11704,7 +11671,7 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 			return result;
 /******/ 		};
 /******/ 	})();
-/******/ 	
+/******/
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
 /******/ 		// define getter functions for harmony exports
@@ -11716,12 +11683,12 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 			}
 /******/ 		};
 /******/ 	})();
-/******/ 	
+/******/
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
 /******/ 	(() => {
 /******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
 /******/ 	})();
-/******/ 	
+/******/
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
 /******/ 		// define __esModule on exports
@@ -11732,11 +11699,11 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 			Object.defineProperty(exports, '__esModule', { value: true });
 /******/ 		};
 /******/ 	})();
-/******/ 	
+/******/
 /******/ 	/* webpack/runtime/jsonp chunk loading */
 /******/ 	(() => {
 /******/ 		// no baseURI
-/******/ 		
+/******/
 /******/ 		// object to store loaded and loading chunks
 /******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
 /******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
@@ -11746,19 +11713,19 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 			"css/front-custom": 0,
 /******/ 			"css/pages": 0
 /******/ 		};
-/******/ 		
+/******/
 /******/ 		// no chunk on demand loading
-/******/ 		
+/******/
 /******/ 		// no prefetching
-/******/ 		
+/******/
 /******/ 		// no preloaded
-/******/ 		
+/******/
 /******/ 		// no HMR
-/******/ 		
+/******/
 /******/ 		// no HMR manifest
-/******/ 		
+/******/
 /******/ 		__webpack_require__.O.j = (chunkId) => (installedChunks[chunkId] === 0);
-/******/ 		
+/******/
 /******/ 		// install a JSONP callback for chunk loading
 /******/ 		var webpackJsonpCallback = (parentChunkLoadingFunction, data) => {
 /******/ 			var [chunkIds, moreModules, runtime] = data;
@@ -11783,14 +11750,14 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 			}
 /******/ 			return __webpack_require__.O(result);
 /******/ 		}
-/******/ 		
+/******/
 /******/ 		var chunkLoadingGlobal = self["webpackChunk"] = self["webpackChunk"] || [];
 /******/ 		chunkLoadingGlobal.forEach(webpackJsonpCallback.bind(null, 0));
 /******/ 		chunkLoadingGlobal.push = webpackJsonpCallback.bind(null, chunkLoadingGlobal.push.bind(chunkLoadingGlobal));
 /******/ 	})();
-/******/ 	
+/******/
 /************************************************************************/
-/******/ 	
+/******/
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
@@ -11845,6 +11812,6 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 	__webpack_require__.O(undefined, ["css/app","css/front-custom","css/pages"], () => (__webpack_require__("./resources/assets/css/landing/front-custom.scss")))
 /******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/app","css/front-custom","css/pages"], () => (__webpack_require__("./resources/css/app.css")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
-/******/ 	
+/******/
 /******/ })()
 ;

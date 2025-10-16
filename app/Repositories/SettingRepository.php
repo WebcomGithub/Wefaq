@@ -34,45 +34,53 @@ class SettingRepository extends BaseRepository
      * @param  array  $input
      * @return void
      */
-    public function update($input, $userId)
-    {
+public function update($input, $userId)
+{
+    $about_us_lang = [
+        'ar' => $input['about_us_ar'] ?? '',
+        'tr' => $input['about_us_tr'] ?? '',
+    ];
+    $input['about_us_lang'] = json_encode($about_us_lang);
 
-        $about_us_lang = [
-            'ar' => $input['about_us_ar'] ?? '',
-            'tr' => $input['about_us_tr'] ?? '',
-        ];
-        $input['about_us_lang'] = json_encode($about_us_lang); 
+    unset($input['about_us_ar'], $input['about_us_tr']);
 
-        unset($input['about_us_ar'], $input['about_us_tr']);
-
-
-        if ($input['sectionName'] == 'contact-informations') {
-        }
-
-        $inputArr = Arr::except($input, ['_token']);
-        foreach ($inputArr as $key => $value) {
-            /** @var Setting $setting */
-            $setting = Setting::where('key', $key)->first();
-            if (! $setting || ! $value) {
-                continue;
-            }
-
-            if ($inputArr['sectionName'] == 'generals') {
-                $inputArr['phone'] = '+'.$inputArr['prefix_code'].$inputArr['phone'];
-
-                if (in_array($key, ['app_logo', 'app_favicon'])) {
-                    $this->fileUpload($setting, $value);
-                    continue;
-                }
-            }
-
-            if (! $setting) {
-                continue;
-            }
-
-            $setting->update(['value' => $value]);
-        }
+    if ($input['sectionName'] == 'contact-informations') {
     }
+
+    $inputArr = Arr::except($input, ['_token']);
+
+    foreach ($inputArr as $key => $value) {
+
+        if (empty($value)) {
+            continue;
+        }
+
+        if ($inputArr['sectionName'] == 'generals') {
+
+            if ($key === 'phone' && isset($inputArr['prefix_code'])) {
+                $value = '+' . $inputArr['prefix_code'] . $value;
+            }
+
+            if (in_array($key, ['app_logo', 'app_favicon'])) {
+                $setting = Setting::where('key', $key)->first();
+
+                if ($setting) {
+                    $this->fileUpload($setting, $value);
+                } else {                    $setting = Setting::create(['key' => $key, 'value' => '']);
+                    $this->fileUpload($setting, $value);
+                }
+
+                continue; 
+            }
+        }
+
+        Setting::updateOrCreate(
+            ['key' => $key],
+            ['value' => $value]
+        );
+    }
+}
+
 
     /**
      * @param $input

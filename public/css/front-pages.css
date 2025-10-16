@@ -353,7 +353,7 @@ a {
     position: absolute;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 29, 36, .6);
+    /* background-color: rgba(0, 29, 36, .6); */
     top: 0;
     bottom: 0;
     right: 0;
@@ -368,30 +368,7 @@ a {
     color: #fff
 }
 
-@media (min-width: 768px) {
-    .inner-bgimg .parallelogram-shape::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: -200px;
-        bottom: 0;
-        background: #001d24;
-        transform: skew(30deg);
-        width: 55%
-    }
-}
 
-@media (max-width: 1399px)and (min-width: 992px) {
-    .inner-bgimg .parallelogram-shape::before {
-        width: 60%
-    }
-}
-
-@media (max-width: 991px)and (min-width: 768px) {
-    .inner-bgimg .parallelogram-shape::before {
-        width: 80%
-    }
-}
 
 .card {
     height: 100%;
@@ -967,7 +944,7 @@ a {
     position: absolute;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 29, 36, .6);
+    /* background-color: rgba(0, 29, 36, .6); */
     top: 0;
     bottom: 0;
     right: 0;

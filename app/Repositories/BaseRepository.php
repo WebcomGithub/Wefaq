@@ -146,7 +146,7 @@ abstract class BaseRepository
      * @param  array  $columns
      * @return Builder|Builder[]|Collection|Model|null
      */
-    public function find($id, $columns = ['*'])
+    public function Wfind($id, $columns = ['*'])
     {
         $query = $this->model->newQuery();
 

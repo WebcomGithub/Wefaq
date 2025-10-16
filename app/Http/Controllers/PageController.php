@@ -6,6 +6,7 @@ use App\Http\Requests\CreatePageRequest;
 use App\Http\Requests\UpdatePageRequest;
 use App\Models\Campaign;
 use App\Models\CampaignCategory;
+use App\Models\FrontSliderThird;
 use App\Models\News;
 use App\Models\Page;
 use App\Repositories\PageRepository;
@@ -193,6 +194,7 @@ class PageController extends AppBaseController
                 $q->where('status', '=', Campaign::STATUS_ACTIVE);
             },
         ])->get();
+        $data['homepageThreeSliders'] = FrontSliderThird::all();
 
         // فك تشفير JSON إلى مصفوفة
         $files = json_decode($page->files, true);

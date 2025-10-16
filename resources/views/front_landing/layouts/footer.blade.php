@@ -122,7 +122,7 @@
 --}}
 
 
-@if (!request()->routeIs('landing.home'))
+{{-- @if (!request()->routeIs('landing.home'))
     <section class="companies-logo-section pb-50 bg-gray" style="direction: ltr; padding-top: 30px" data-aos="zoom-in">
         <div class="container">
             <div class="text-center mb-10">
@@ -143,7 +143,7 @@
             </div>
         </div>
     </section>
-@endif
+@endif --}}
 
 
 
