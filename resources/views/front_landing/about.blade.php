@@ -34,172 +34,172 @@ $settings = settings();
             </div>
         </section> --}}
 
-            <section class="hero-section" data-aos="fade-left">
-                <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-                    <div class="carousel-indicators d-flex d-xl-none">
-                        @for($i = 0; $i< count($data['homepageThreeSliders']);$i++)
-                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{$i}}"
-                                    @if($i == 0) class="active" aria-current="true"
-                                    @endif aria-label="Slide {{$i+1}}"></button>
-                        @endfor
-                    </div>
-                    <div class="carousel-inner">
-                         @foreach($data['homepageThreeSliders'] as $slider)
-                             <div class="carousel-item {{$loop->first ? 'active' : ''}}">
-                                 <div class="inner-bgimg position-relative object-fit-cover"
-                                     style="background: url('{{ $slider->slider_image ? : asset('front_landing/images/hero-image.png')}}') no-repeat right;">
-                                     <div class="container">
-                                         <div class="row">
-                                             <div class="col-lg-5 col-md-7 parallelogram-shape">
-                                                 <div class="text-white inner-text position-relative">
+        <section class="hero-section" data-aos="fade-left">
+            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-indicators d-flex d-xl-none">
+                    @for($i = 0; $i< count($data['homepageThreeSliders']);$i++)
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{$i}}"
+                                @if($i == 0) class="active" aria-current="true"
+                                @endif aria-label="Slide {{$i+1}}"></button>
+                    @endfor
+                </div>
+                <div class="carousel-inner">
+                     @foreach($data['homepageThreeSliders'] as $slider)
+                         <div class="carousel-item {{$loop->first ? 'active' : ''}}">
+                             <div class="inner-bgimg position-relative object-fit-cover"
+                                 style="background: url('{{ $slider->slider_image ? : asset('front_landing/images/hero-image.png')}}') no-repeat right;">
+                                 <div class="container">
+                                     <div class="row">
+                                         <div class="col-lg-5 col-md-7 parallelogram-shape">
+                                             <div class="text-white inner-text position-relative">
 
-                                                     <p class="fs-18 fw-5">
-                                                         @if (App::getLocale() == 'AR' && $slider->title_1_lang != null)
-                                                             {{ $slider->title_1_lang['ar'] ??  ''}}
-                                                         @elseif (App::getLocale() == 'TR' && $slider->title_1_lang != null)
-                                                             {{ $slider->title_1_lang['tr'] ??  ''}}
-                                                         @else
-                                                             <p class="fs-18 fw-5">{{ $slider->title_1 }}</p>
-                                                         @endif
-                                                     </p>
+                                                 <p class="fs-18 fw-5">
+                                                     @if (App::getLocale() == 'AR' && $slider->title_1_lang != null)
+                                                         {{ $slider->title_1_lang['ar'] ??  ''}}
+                                                     @elseif (App::getLocale() == 'TR' && $slider->title_1_lang != null)
+                                                         {{ $slider->title_1_lang['tr'] ??  ''}}
+                                                     @else
+                                                         <p class="fs-18 fw-5">{{ $slider->title_1 }}</p>
+                                                     @endif
+                                                 </p>
 
-                                                     <h2 class="fs-1 mb-0 fw-6">
-                                                         @if (App::getLocale() == 'AR' && $slider->title_2_lang != null)
-                                                             {{ $slider->title_2_lang['ar'] ??  ''}}
-                                                         @elseif (App::getLocale() == 'TR' && $slider->title_2_lang != null)
-                                                             {{ $slider->title_2_lang['tr'] ??  ''}}
-                                                         @else
-                                                             <p class="fs-18 fw-5">{{ $slider->title_2 }}</p>
-                                                         @endif
-                                                     </h2>
-                                                 </div>
+                                                 <h2 class="fs-1 mb-0 fw-6">
+                                                     @if (App::getLocale() == 'AR' && $slider->title_2_lang != null)
+                                                         {{ $slider->title_2_lang['ar'] ??  ''}}
+                                                     @elseif (App::getLocale() == 'TR' && $slider->title_2_lang != null)
+                                                         {{ $slider->title_2_lang['tr'] ??  ''}}
+                                                     @else
+                                                         <p class="fs-18 fw-5">{{ $slider->title_2 }}</p>
+                                                     @endif
+                                                 </h2>
                                              </div>
-                                              {{-- <div class="col-lg-7 col-md-5 mt-3 mt-md-4">
-                                                 <div class="video-play-btn m-lg-auto ms-md-auto">
-                                                     <button type="button"
-                                                             class="play-video popup-video fs-4 border-0 slider-popup-video"
-                                                             data-src="https://ummeti.mynet.net/video/ummeti1.mp4">
-                                                         <i class="fas fa-play text-primary"></i>
-                                                     </button>
-                                                 </div>
-                                             </div> --}}
                                          </div>
+                                          {{-- <div class="col-lg-7 col-md-5 mt-3 mt-md-4">
+                                             <div class="video-play-btn m-lg-auto ms-md-auto">
+                                                 <button type="button"
+                                                         class="play-video popup-video fs-4 border-0 slider-popup-video"
+                                                         data-src="https://ummeti.mynet.net/video/ummeti1.mp4">
+                                                     <i class="fas fa-play text-primary"></i>
+                                                 </button>
+                                             </div>
+                                         </div> --}}
                                      </div>
                                  </div>
                              </div>
-                         @endforeach
-                        <!-- Modal -->
-                        <div class="modal fade" id="homePageVideoModal" tabindex="-1"
-                                aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="btn-close text-white"
-                                                    data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body w-100">
-                                            <iframe src=""
-                                                    class="w-100 h-100 home-page-video" title="YouTube video player"
-                                                    frameborder="0"
-                                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                                    allowfullscreen></iframe>
-                                        </div>
+                         </div>
+                     @endforeach
+                    <!-- Modal -->
+                    <div class="modal fade" id="homePageVideoModal" tabindex="-1"
+                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="btn-close text-white"
+                                                data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body w-100">
+                                        <iframe src=""
+                                                class="w-100 h-100 home-page-video" title="YouTube video player"
+                                                frameborder="0"
+                                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                allowfullscreen></iframe>
                                     </div>
                                 </div>
                             </div>
-                    </div>
-                    {{--<div class="carousel-inner">
-                        @foreach($allSlides as $slide)
-                            <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
-                                <div class="inner-bgimg position-relative object-fit-cover"
-                                     style="background: url('{{ $slide->image ?? $slide->slider_image ?? asset('front_landing/images/hero-image.png')}}') no-repeat right;">
-                                    <div class="container">
-                                        <div class="row">
-                                            <div class="col-lg-5 col-md-7 parallelogram-shape">
-                                                <div class="text-white inner-text position-relative">
+                        </div>
+                </div>
+                {{--<div class="carousel-inner">
+                    @foreach($allSlides as $slide)
+                        <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
+                            <div class="inner-bgimg position-relative object-fit-cover"
+                                 style="background: url('{{ $slide->image ?? $slide->slider_image ?? asset('front_landing/images/hero-image.png')}}') no-repeat right;">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-lg-5 col-md-7 parallelogram-shape">
+                                            <div class="text-white inner-text position-relative">
 
-                                                    --}}{{-- العنوان الأول --}}{{--
-                                                    <p class="fs-18 fw-5">
-                                                        @if (isset($slide->title_lang))
-                                                            --}}{{-- campaign --}}{{--
-                                                            @if (App::getLocale() == 'AR')
-                                                                {{ $slide->title_lang['ar'] ?? '' }}
-                                                            @elseif (App::getLocale() == 'TR')
-                                                                {{ $slide->title_lang['tr'] ?? '' }}
-                                                            @else
-                                                                {{ $slide->title }}
-                                                            @endif
+                                                --}}{{-- العنوان الأول --}}{{--
+                                                <p class="fs-18 fw-5">
+                                                    @if (isset($slide->title_lang))
+                                                        --}}{{-- campaign --}}{{--
+                                                        @if (App::getLocale() == 'AR')
+                                                            {{ $slide->title_lang['ar'] ?? '' }}
+                                                        @elseif (App::getLocale() == 'TR')
+                                                            {{ $slide->title_lang['tr'] ?? '' }}
                                                         @else
-                                                            --}}{{-- slider --}}{{--
-                                                            @if (App::getLocale() == 'AR')
-                                                                {{ $slide->title_1_lang['ar'] ?? '' }}
-                                                            @elseif (App::getLocale() == 'TR')
-                                                                {{ $slide->title_1_lang['tr'] ?? '' }}
-                                                            @else
-                                                                {{ $slide->title_1 }}
-                                                            @endif
+                                                            {{ $slide->title }}
                                                         @endif
-                                                    </p>
+                                                    @else
+                                                        --}}{{-- slider --}}{{--
+                                                        @if (App::getLocale() == 'AR')
+                                                            {{ $slide->title_1_lang['ar'] ?? '' }}
+                                                        @elseif (App::getLocale() == 'TR')
+                                                            {{ $slide->title_1_lang['tr'] ?? '' }}
+                                                        @else
+                                                            {{ $slide->title_1 }}
+                                                        @endif
+                                                    @endif
+                                                </p>
 
-                                                    --}}{{-- الوصف --}}{{--
-                                                    <h2 class="fs-1 mb-0 fw-6">
-                                                        @if (isset($slide->short_description_lang))
-                                                            --}}{{-- campaign --}}{{--
-                                                            @if (App::getLocale() == 'AR')
-                                                                {{ $slide->short_description_lang['ar'] ?? '' }}
-                                                            @elseif (App::getLocale() == 'TR')
-                                                                {{ $slide->short_description_lang['tr'] ?? '' }}
-                                                            @else
-                                                                {{ $slide->short_description }}
-                                                            @endif
+                                                --}}{{-- الوصف --}}{{--
+                                                <h2 class="fs-1 mb-0 fw-6">
+                                                    @if (isset($slide->short_description_lang))
+                                                        --}}{{-- campaign --}}{{--
+                                                        @if (App::getLocale() == 'AR')
+                                                            {{ $slide->short_description_lang['ar'] ?? '' }}
+                                                        @elseif (App::getLocale() == 'TR')
+                                                            {{ $slide->short_description_lang['tr'] ?? '' }}
                                                         @else
-                                                            --}}{{-- slider --}}{{--
-                                                            @if (App::getLocale() == 'AR')
-                                                                {{ $slide->title_2_lang['ar'] ?? '' }}
-                                                            @elseif (App::getLocale() == 'TR')
-                                                                {{ $slide->title_2_lang['tr'] ?? '' }}
-                                                            @else
-                                                                {{ $slide->title_2 }}
-                                                            @endif
+                                                            {{ $slide->short_description }}
                                                         @endif
-                                                    </h2>
+                                                    @else
+                                                        --}}{{-- slider --}}{{--
+                                                        @if (App::getLocale() == 'AR')
+                                                            {{ $slide->title_2_lang['ar'] ?? '' }}
+                                                        @elseif (App::getLocale() == 'TR')
+                                                            {{ $slide->title_2_lang['tr'] ?? '' }}
+                                                        @else
+                                                            {{ $slide->title_2 }}
+                                                        @endif
+                                                    @endif
+                                                </h2>
+                                            </div>
+                                        </div>
+
+                                        --}}{{-- إذا كان slider وليس campaign أضف الفيديو --}}{{--
+                                        @if (isset($slide->slider_image))
+                                            <div class="col-lg-7 col-md-5 mt-3 mt-md-4">
+                                                <div class="video-play-btn m-lg-auto ms-md-auto">
+                                                    <button type="button"
+                                                            class="play-video popup-video fs-4 border-0 slider-popup-video"
+                                                            data-src="https://ummeti.mynet.net/video/ummeti1.mp4">
+                                                        <i class="fas fa-play text-primary"></i>
+                                                    </button>
                                                 </div>
                                             </div>
-
-                                            --}}{{-- إذا كان slider وليس campaign أضف الفيديو --}}{{--
-                                            @if (isset($slide->slider_image))
-                                                <div class="col-lg-7 col-md-5 mt-3 mt-md-4">
-                                                    <div class="video-play-btn m-lg-auto ms-md-auto">
-                                                        <button type="button"
-                                                                class="play-video popup-video fs-4 border-0 slider-popup-video"
-                                                                data-src="https://ummeti.mynet.net/video/ummeti1.mp4">
-                                                            <i class="fas fa-play text-primary"></i>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            @endif
-                                        </div>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
-                        @endforeach
-                    </div>--}}
+                        </div>
+                    @endforeach
+                </div>--}}
 
-                    <div class="d-none d-xl-block">
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
-                                data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">{{__('messages.common.previous')}}</span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
-                                data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">{{__('messages.common.next')}}</span>
-                        </button>
-                    </div>
+                <div class="d-none d-xl-block">
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                            data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">{{__('messages.common.previous')}}</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                            data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">{{__('messages.common.next')}}</span>
+                    </button>
                 </div>
+            </div>
 
-            </section>
+        </section>
         <!-- end hero-section -->
 
         <!-- start about-section -->
@@ -270,31 +270,7 @@ $settings = settings();
         <!-- end about-section -->
 
             <!-- start our-team-section -->
-            <section class="our-team-section pb-60 mt-4" data-aos="zoom-out">
-                <div class="container">
-                    <div class="text-center">
-                        <!--<h2 class="fs-6 fw-6 text-primary">{{__('messages.front_landing.volunteers')}}</h2>-->
-                        <h3 class="fs-2 fw-6 mb-60 text-gold-custom">{{__('messages.front_landing.our_team_mates_with_good_history')}}</h3>
-                    </div>
-                    <div class="row">
-                        @foreach($data['teams'] as $team)
-                            <div class="col-lg-3 col-sm-6 col-12 our-team-block d-flex align-items-stretch mb-lg-0 mb-4">
-                                <div class="card flex-fill border-0">
-                                    <div class="card-image  mx-auto ">
-                                        <img src="{{ $team->image_url ? : asset('front_landing/images/team-1.png')}}"
-                                            alt="ummeti"
-                                            class="img-fluid object-fit-cover">
-                                    </div>
-                                    <div class="card-body text-center d-flex flex-column">
-                                        <h4 class="fs-18 fw-5">{{ $team->name }}</h4>
-                                        <h5 class="text-primary fs-14 fw-5 mb-0">{{ $team->designation }}</h5>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
-                </div>
-            </section>
+           
         <!-- end our-team-section -->
         @if(count($successStories) > 0)
             <section class="success-stories-section pb-100">

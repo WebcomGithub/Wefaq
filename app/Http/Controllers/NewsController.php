@@ -103,6 +103,7 @@ class NewsController extends AppBaseController
             $item->created_at = $request->created_at;
             $item->save();
         }
+        
         $news = $this->newsRepository->find($id);
 
         if (empty($news)) {

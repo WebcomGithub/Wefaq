@@ -34,7 +34,7 @@ class SettingRepository extends BaseRepository
      * @param  array  $input
      * @return void
      */
-public function update($input, $userId)
+    public function update($input, $userId)
 {
     $about_us_lang = [
         'ar' => $input['about_us_ar'] ?? '',
@@ -80,7 +80,6 @@ public function update($input, $userId)
         );
     }
 }
-
 
     /**
      * @param $input

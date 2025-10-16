@@ -151,7 +151,7 @@ class LandingController extends AppBaseController
 
         $data['campaigns'] = Campaign::with('campaignCategory', 'user')->where('status',
             Campaign::STATUS_ACTIVE)->latest()->take(6)->orderBy('is_emergency', 'desc')->get();
-        $data['homepageThreeSliders'] = FrontSliderThird::all();
+            $data['homepageThreeSliders'] = FrontSliderThird::all();
 
         return view('front_landing.campaigns', compact('campaignCategories', 'contactUs', 'campaignCategoryId','latestFiveNews','data'));
     }
@@ -166,7 +166,7 @@ class LandingController extends AppBaseController
         $data['campaigns'] = Campaign::with('campaignCategory', 'user')->where('status',
             Campaign::STATUS_ACTIVE)->latest()->take(6)->orderBy('is_emergency', 'desc')->get();
 
-        $data['homepageThreeSliders'] = FrontSliderThird::all();
+            $data['homepageThreeSliders'] = FrontSliderThird::all();
 
         return view('front_landing.contact', compact('contactUs','latestFiveNews','data'));
     }
@@ -189,6 +189,7 @@ class LandingController extends AppBaseController
 
             return $this->sendSuccess('complaints sent successfully.');
         }
+        $data['homepageThreeSliders'] = FrontSliderThird::all();
 
         return view('front_landing.complaints', compact('contactUs','latestFiveNews','data'));
 
@@ -240,7 +241,7 @@ class LandingController extends AppBaseController
 
         $data['campaigns'] = Campaign::with('campaignCategory', 'user')->where('status',
             Campaign::STATUS_ACTIVE)->latest()->take(6)->orderBy('is_emergency', 'desc')->get();
-        $data['homepageThreeSliders'] = FrontSliderThird::all();
+            $data['homepageThreeSliders'] = FrontSliderThird::all();
 
         return view('front_landing.news',
             compact('newsCategories', 'newsTags', 'latestFourNews', 'mostUser', 'newsCategoryId', 'newsTagId', 'newsImg','latestFiveNews','data'));
@@ -275,7 +276,7 @@ class LandingController extends AppBaseController
         $data['campaigns'] = Campaign::with('campaignCategory', 'user')->where('status',
             Campaign::STATUS_ACTIVE)->latest()->take(6)->orderBy('is_emergency', 'desc')->get();
 
-        $data['homepageThreeSliders'] = FrontSliderThird::all();
+            $data['homepageThreeSliders'] = FrontSliderThird::all();
 
         return view('front_landing.news-details',
             compact('news', 'newsies', 'newsCategories', 'newsTags', 'latestFourNews', 'allCommnets', 'relatedPosts',
@@ -305,6 +306,7 @@ class LandingController extends AppBaseController
 
         $data['campaigns'] = Campaign::with('campaignCategory', 'user')->where('status',
             Campaign::STATUS_ACTIVE)->latest()->take(6)->orderBy('is_emergency', 'desc')->get();
+            $data['homepageThreeSliders'] = FrontSliderThird::all();
 
         return view('front_landing.faqs', compact('faqs', 'faqsImg','latestFiveNews','data'));
     }
@@ -348,7 +350,7 @@ class LandingController extends AppBaseController
 
         $data['campaigns'] = Campaign::with('campaignCategory', 'user')->where('status',
             Campaign::STATUS_ACTIVE)->latest()->take(6)->orderBy('is_emergency', 'desc')->get();
-        $data['homepageThreeSliders'] = FrontSliderThird::all();
+            $data['homepageThreeSliders'] = FrontSliderThird::all();
 
         return view('front_landing.campaign-details',
             compact('campaign', 'campaignCategories', 'medias', 'contactUs', 'campaignFaqs', 'campaignUpdates',
@@ -380,6 +382,7 @@ class LandingController extends AppBaseController
 
         $data['campaigns'] = Campaign::with('campaignCategory', 'user')->where('status',
             Campaign::STATUS_ACTIVE)->latest()->take(6)->orderBy('is_emergency', 'desc')->get();
+            $data['homepageThreeSliders'] = FrontSliderThird::all();
 
         return view('front_landing.terms-conditions', compact('termsConditions','latestFiveNews','data'));
     }
@@ -394,6 +397,7 @@ class LandingController extends AppBaseController
 
         $data['campaigns'] = Campaign::with('campaignCategory', 'user')->where('status',
             Campaign::STATUS_ACTIVE)->latest()->take(6)->orderBy('is_emergency', 'desc')->get();
+            $data['homepageThreeSliders'] = FrontSliderThird::all();
 
         return view('front_landing.privacy-policy', compact('privacyPolicy','latestFiveNews','data'));
     }
@@ -460,6 +464,7 @@ class LandingController extends AppBaseController
 
         $data['campaigns'] = Campaign::with('campaignCategory', 'user')->where('status',
             Campaign::STATUS_ACTIVE)->latest()->take(6)->orderBy('is_emergency', 'desc')->get();
+            $data['homepageThreeSliders'] = FrontSliderThird::all();
 
         return view('front_landing.payment',
             compact('campaign', 'totalAmount', 'chargeAmount', 'typeOfCommission', 'donationCommission',
