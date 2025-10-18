@@ -54,7 +54,7 @@ class DefaultPermissionSeeder extends Seeder
                 ],
                 [
                     'name' => 'manage_pages',
-                    'display_name' => 'Manage Pages',
+                    'display_name' => 'Manage Reports',
                 ],
                 [
                     'name' => 'manage_success_stories',
@@ -72,6 +72,11 @@ class DefaultPermissionSeeder extends Seeder
                 //                'name'         => 'manage_news_tags',
                 //                'display_name' => 'Manage News Tags',
                 //            ],
+                
+                [
+                    'name' => 'manage_media',
+                    'display_name' => 'Manage Media',
+                ],
                 [
                     'name' => 'manage_email_subscribe',
                     'display_name' => 'Manage Email Subscribe',

@@ -96,7 +96,7 @@ class LandingController extends AppBaseController
 
         $data['latestNewsFeeds'] = News::with('newsCategory')->latest()->first();
 
-        $latestFiveNews = News::latest()->take(5)->get();
+        $latestFiveNews = News::latest()->take(3)->get();
 
         $data['oldNewsFeeds'] = News::where('id', '!=',
             $data['latestNewsFeeds'] != null ? $data['latestNewsFeeds']->id : '')->limit(3)->get();
@@ -121,7 +121,7 @@ class LandingController extends AppBaseController
         $aboutUs = AboutUs::pluck('value', 'key')->toArray();
         $brands = Brand::all();
         $successStories = SuccessStory::all();
-        $latestFiveNews = News::latest()->take(5)->get();
+        $latestFiveNews = News::latest()->take(3)->get();
         $data['campaigns'] = Campaign::with('campaignCategory', 'user')->where('status',
             Campaign::STATUS_ACTIVE)->latest()->take(6)->orderBy('is_emergency', 'desc')->get();
         $data['teams'] = Team::latest()->take(4)->get();
@@ -147,7 +147,7 @@ class LandingController extends AppBaseController
                 $q->where('status', '=', Campaign::STATUS_ACTIVE);
             },
         ])->get();
-        $latestFiveNews = News::latest()->take(5)->get();
+        $latestFiveNews = News::latest()->take(3)->get();
 
         $data['campaigns'] = Campaign::with('campaignCategory', 'user')->where('status',
             Campaign::STATUS_ACTIVE)->latest()->take(6)->orderBy('is_emergency', 'desc')->get();
@@ -162,7 +162,7 @@ class LandingController extends AppBaseController
     public function contact()
     {
         $contactUs = ContactUs::pluck('value', 'key')->toArray();
-        $latestFiveNews = News::latest()->take(5)->get();
+        $latestFiveNews = News::latest()->take(3)->get();
         $data['campaigns'] = Campaign::with('campaignCategory', 'user')->where('status',
             Campaign::STATUS_ACTIVE)->latest()->take(6)->orderBy('is_emergency', 'desc')->get();
 
@@ -174,7 +174,7 @@ class LandingController extends AppBaseController
     public function complaints(Request $request)
     {
         $contactUs = ContactUs::pluck('value', 'key')->toArray();
-        $latestFiveNews = News::latest()->take(5)->get();
+        $latestFiveNews = News::latest()->take(3)->get();
         $data['campaigns'] = Campaign::with('campaignCategory', 'user')->where('status',
             Campaign::STATUS_ACTIVE)->latest()->take(6)->orderBy('is_emergency', 'desc')->get();
         if ($request->isMethod('post')) {
@@ -237,7 +237,7 @@ class LandingController extends AppBaseController
 
         $newsImg = ContactUs::pluck('value', 'key')->toArray();
 
-        $latestFiveNews = News::latest()->take(5)->get();
+        $latestFiveNews = News::latest()->take(3)->get();
 
         $data['campaigns'] = Campaign::with('campaignCategory', 'user')->where('status',
             Campaign::STATUS_ACTIVE)->latest()->take(6)->orderBy('is_emergency', 'desc')->get();
@@ -271,7 +271,7 @@ class LandingController extends AppBaseController
 
         $newsDetailsImg = ContactUs::pluck('value', 'key')->toArray();
 
-        $latestFiveNews = News::latest()->take(5)->get();
+        $latestFiveNews = News::latest()->take(3)->get();
 
         $data['campaigns'] = Campaign::with('campaignCategory', 'user')->where('status',
             Campaign::STATUS_ACTIVE)->latest()->take(6)->orderBy('is_emergency', 'desc')->get();
@@ -302,7 +302,7 @@ class LandingController extends AppBaseController
         $faqs = Faqs::all();
 
         $faqsImg = ContactUs::pluck('value', 'key')->toArray();
-        $latestFiveNews = News::latest()->take(5)->get();
+        $latestFiveNews = News::latest()->take(3)->get();
 
         $data['campaigns'] = Campaign::with('campaignCategory', 'user')->where('status',
             Campaign::STATUS_ACTIVE)->latest()->take(6)->orderBy('is_emergency', 'desc')->get();
@@ -346,7 +346,7 @@ class LandingController extends AppBaseController
         $donationEnableGifts = Campaign::with('campaignGifts')->where('id', '=', $campaign->id)->where('gift_status',
             '=', true)->first();
 
-        $latestFiveNews = News::latest()->take(5)->get();
+        $latestFiveNews = News::latest()->take(3)->get();
 
         $data['campaigns'] = Campaign::with('campaignCategory', 'user')->where('status',
             Campaign::STATUS_ACTIVE)->latest()->take(6)->orderBy('is_emergency', 'desc')->get();
@@ -378,7 +378,7 @@ class LandingController extends AppBaseController
     public function termCondition()
     {
         $termsConditions = Setting::where('key', 'terms_conditions')->first();
-        $latestFiveNews = News::latest()->take(5)->get();
+        $latestFiveNews = News::latest()->take(3)->get();
 
         $data['campaigns'] = Campaign::with('campaignCategory', 'user')->where('status',
             Campaign::STATUS_ACTIVE)->latest()->take(6)->orderBy('is_emergency', 'desc')->get();
@@ -393,7 +393,7 @@ class LandingController extends AppBaseController
     public function privacyPolicy()
     {
         $privacyPolicy = Setting::where('key', 'privacy_policy')->first();
-        $latestFiveNews = News::latest()->take(5)->get();
+        $latestFiveNews = News::latest()->take(3)->get();
 
         $data['campaigns'] = Campaign::with('campaignCategory', 'user')->where('status',
             Campaign::STATUS_ACTIVE)->latest()->take(6)->orderBy('is_emergency', 'desc')->get();
@@ -460,7 +460,7 @@ class LandingController extends AppBaseController
 
 //        return view('front_landing.payment', compact('campaign', 'stripeWithdraw', 'paypalWithdraw', 'totalAmount', 'chargeAmount'));
 
-        $latestFiveNews = News::latest()->take(5)->get();
+        $latestFiveNews = News::latest()->take(3)->get();
 
         $data['campaigns'] = Campaign::with('campaignCategory', 'user')->where('status',
             Campaign::STATUS_ACTIVE)->latest()->take(6)->orderBy('is_emergency', 'desc')->get();

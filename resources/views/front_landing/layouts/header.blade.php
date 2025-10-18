@@ -379,7 +379,7 @@
                 <ul class="dropdown-nav ps-0">
                     @foreach ($latestFiveNews as $news)
                             <li>
-                                <a href="{{route('landing.news-details',$news->slug)}}"
+                                <a href="{{route('landing.news-details',$news->id)}}"
                                     class="fs-14 fw-5 text-dark">
                                     @if (App::getLocale() == 'AR')
                                         {!! nl2br(\Illuminate\Support\Str::limit($news->title_ar)) !!}

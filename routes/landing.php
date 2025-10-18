@@ -24,7 +24,7 @@ Route::middleware(['xss', 'setLanguage'])->group(function () {
     Route::get('/privacy-policy', [LandingController::class, 'privacyPolicy'])->name('landing.privacy-policy');
     Route::post('/email-subscribe', [EmailSubscribeController::class, 'store'])->name('email.subscribe.store');
     Route::get('/news', [LandingController::class, 'news'])->name('landing.news');
-    Route::get('news-details/{news:slug}', [LandingController::class, 'newsDetails'])->name('landing.news-details');
+    Route::get('news-details/{news:id}', [LandingController::class, 'newsDetails'])->name('landing.news-details');
     Route::get('/events/{category?}', [EventController::class, 'getEventList'])->name('landing.event');
     Route::get('/event-details/{event:slug}', [EventController::class, 'eventDetail'])->name('landing.event.detail');
     Route::post('/event-details/book-seat', [EventController::class, 'bookSeat'])->name('landing.event.book-seat');

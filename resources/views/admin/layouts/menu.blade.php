@@ -66,12 +66,14 @@
     </li>
 @endcan -->
 
+@can('manage_media')
     <li class="nav-item {{ Request::is('admin/media*') ? 'active' : '' }}" href="{{ route('media.index') }}">
         <a class="nav-link d-flex align-items-center py-3" aria-current="page" href="{{ route('media.index') }}">
             <span class="aside-menu-icon pe-3"><i class="fa fa-adjust fs-3"></i></span>
             <span class="aside-menu-title">{{__('messages.media')}}</span>
         </a>
     </li>
+@endcan
 
 @can('manage_language')
     <li class="nav-item {{ Request::is('admin/languages*') ? 'active' : '' }}">
